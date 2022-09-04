@@ -1,0 +1,17 @@
+server:
+  port: 0
+
+zeebe:
+  client:
+    security:
+      plaintext: true
+#    cloud:
+#        clientId: OBhwsvhFq.nv4uORMf2~ErKsNAkgTqay
+#        clientSecret: s5YqMasEu7rPVATa4jhzSOzNi_moKctw~q~.7Eok2.4ictOqY8zRUAqg~XiA4Hpo
+#        clusterId: e2a93558-5296-431a-98b1-c4616798a556
+#        region: dsm-1
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8981/eureka}

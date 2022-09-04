@@ -1,0 +1,8 @@
+server:
+  port: 8980
+
+spring:
+  application:
+    name: configuration-service
+  profiles:
+    active: native

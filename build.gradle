@@ -1,0 +1,17 @@
+subprojects {
+    apply plugin: 'java'
+
+    group = 'com.invite'
+    version = '0.0.1-SNAPSHOT'
+    sourceCompatibility = '11'
+
+    repositories {
+        mavenCentral()
+    }
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+}

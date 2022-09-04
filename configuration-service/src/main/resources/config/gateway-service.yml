@@ -1,0 +1,60 @@
+server:
+  forward-headers-strategy: framework
+  port: 8983
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8981/eureka/
+
+spring:
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: address-service
+          uri: lb://address-service
+          predicates:
+            - Path=/addresses/**
+          filters:
+            - RewritePath=/addresses/(?<path>.*), /$\{path}
+        - id: organization-service
+          uri: lb://organization-service
+          predicates:
+            - Path=/organizations/**
+          filters:
+            - RewritePath=/organizations/(?<path>.*), /$\{path}
+        - id: amenity-service
+          uri: lb://amenity-service
+          predicates:
+            - Path=/amenities/**
+          filters:
+            - RewritePath=/amenities/(?<path>.*), /$\{path}
+        - id: benefit-service
+          uri: lb://benefit-service
+          predicates:
+            - Path=/benefits/**
+          filters:
+            - RewritePath=/benefits/(?<path>.*), /$\{path}
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    urls:
+      - name: addresses
+        url: /v3/api-docs/addresses
+      - name: organizations
+        url: /v3/api-docs/organizations
+      - name: amenities
+        url: /v3/api-docs/amenities
+      - name: benefits
+        url: /v3/api-docs/benefits
