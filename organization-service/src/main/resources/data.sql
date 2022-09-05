@@ -1,0 +1,1 @@
+INSERT INTO PROVIDER_GROUP (ID, NAME) VALUES (2, 'Peachtree City Provider Group');

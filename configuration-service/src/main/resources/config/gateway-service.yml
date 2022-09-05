@@ -46,6 +46,12 @@ spring:
             - Path=/benefits/**
           filters:
             - RewritePath=/benefits/(?<path>.*), /$\{path}
+        - id: process-service
+          uri: lb://process-service
+          predicates:
+            - Path=/processes/**
+          filters:
+            - RewritePath=/processes/(?<path>.*), /$\{path}
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
@@ -58,3 +64,5 @@ springdoc:
         url: /v3/api-docs/amenities
       - name: benefits
         url: /v3/api-docs/benefits
+      - name: processes
+        url: /v3/api-docs/processes
