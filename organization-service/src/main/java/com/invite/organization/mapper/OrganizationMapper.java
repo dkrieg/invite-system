@@ -6,6 +6,7 @@ import com.invite.organization.domain.OrganizationRequest;
 import com.invite.organization.entity.OrganizationEntity;
 import com.invite.organization.repository.CommunityRepository;
 import com.invite.organization.repository.MarketRepository;
+import com.invite.organization.repository.OrganizationSegmentRepository;
 import com.invite.organization.repository.ProviderGroupRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -25,6 +26,8 @@ public class OrganizationMapper {
     CommunityRepository communityRepository;
     ProviderGroupMapper providerGroupMapper;
     ProviderGroupRepository providerGroupRepository;
+    OrganizationSegmentRepository organizationSegmentRepository;
+    OrganizationSegmentMapper organizationSegmentMapper;
 
     public Organization toDomain(OrganizationEntity entity, Address address) {
         return Organization.builder()
@@ -34,6 +37,7 @@ public class OrganizationMapper {
                 .market(Optional.ofNullable(entity.getMarket()).map(marketMapper::toDomain).orElse(null))
                 .community(Optional.ofNullable(entity.getCommunity()).map(communityMapper::toDomain).orElse(null))
                 .providerGroup(Optional.ofNullable(entity.getProviderGroup()).map(providerGroupMapper::toDomain).orElse(null))
+                .segment(Optional.ofNullable(entity.getSegment()).map(organizationSegmentMapper::toDomain).orElse(null))
                 .build();
     }
 
@@ -46,6 +50,7 @@ public class OrganizationMapper {
         entity.setMarket(Optional.ofNullable(request.getMarketId()).map(marketRepository::getReferenceById).orElse(null));
         entity.setCommunity(Optional.ofNullable(request.getCommunityId()).map(communityRepository::getReferenceById).orElse(null));
         entity.setProviderGroup(Optional.ofNullable(request.getProviderGroupId()).map(providerGroupRepository::getReferenceById).orElse(null));
+        entity.setSegment(Optional.ofNullable(request.getSegment()).map(organizationSegmentRepository::getReferenceById).orElse(null));
         entity.setAddressId(address.getId());
         return entity;
     }

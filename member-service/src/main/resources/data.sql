@@ -1,0 +1,1 @@
+INSERT INTO MEMBER (ID, FIRST_NAME, LAST_NAME, EMAIL, ADDRESS_ID) VALUES (1, 'Daniel', 'Krieg', 'daniel.krieg@gmail.com', 29872);

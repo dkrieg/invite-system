@@ -30,7 +30,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class ProviderGroupController {
     ProviderGroupDomainService service;
 
-    @GetMapping(path = "/", produces = APPLICATION_JSON_VALUE)
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
     @Operation(description = "get-provider-groups",summary = "Get All Provider Groups")
     Collection<ProviderGroup> getProviderGroups() {
         return service.fetchAll();
@@ -38,7 +38,7 @@ public class ProviderGroupController {
 
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @Operation(description = "create-provider-group", summary = "Create New Provider Group")
-    ResponseEntity<ProviderGroup> createProviderGroups(@RequestBody ProviderGroupRequest request) {
+    ResponseEntity<ProviderGroup> createProviderGroup(@RequestBody ProviderGroupRequest request) {
         ProviderGroup saved = service.create(request);
         return ResponseEntity.created(UriComponentsBuilder.fromPath("/provider-groups/{id}")
                         .build("id", saved.getId()))
@@ -53,13 +53,13 @@ public class ProviderGroupController {
 
     @PutMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @Operation(description = "update-provider-group", summary = "Update Provider Group By ID")
-    ResponseEntity<ProviderGroup> updateProviderGroups(@PathVariable("id") Long id, @RequestBody ProviderGroupRequest request) {
+    ResponseEntity<ProviderGroup> updateProviderGroup(@PathVariable("id") Long id, @RequestBody ProviderGroupRequest request) {
         return ResponseEntity.of(service.updateById(id, request));
     }
 
     @DeleteMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
     @Operation(description = "delete-provider-group", summary = "Delete Provider Group By ID")
-    ResponseEntity<Void> deleteProviderGroups(@PathVariable("id") Long id) {
+    ResponseEntity<Void> deleteProviderGroup(@PathVariable("id") Long id) {
         return service.deleteById(id)
                 ? ResponseEntity.noContent().build()
                 : ResponseEntity.notFound().build();

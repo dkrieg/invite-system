@@ -27,7 +27,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class AmenityController {
     AmenityDomainService service;
 
-    @GetMapping(path = "/", produces = APPLICATION_JSON_VALUE)
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
     @Operation(description = "get-amenities",summary = "Get All Amenities")
     Collection<Amenity> getAmenities() {
         return service.fetchAll();

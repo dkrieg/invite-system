@@ -48,7 +48,7 @@ public class TasklistController {
 
     @PostMapping("/complete/{taskId}")
     @Operation(description = "complete-task", summary = "Complete Task")
-    public ResponseEntity<Task> completeTask(@PathVariable("taskId") String taskId, @RequestBody Map<String, Object> variables) throws TaskListException {
-        return ResponseEntity.ok(client.completeTask(taskId, variables));
+    public ResponseEntity<Task> completeTask(@PathVariable("taskId") String taskId) throws TaskListException {
+        return ResponseEntity.ok(client.completeTask(taskId, Map.of()));
     }
 }

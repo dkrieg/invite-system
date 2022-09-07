@@ -45,7 +45,7 @@ public class AddressController {
         return zipCodeService.fetchByState(state);
     }
 
-    @PostMapping(path = "/", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @Operation(description = "create-address", summary = "Create New Address")
     ResponseEntity<Address> createAddress(@RequestBody AddressRequest addressRequest) {
         Address saved = service.create(addressRequest);

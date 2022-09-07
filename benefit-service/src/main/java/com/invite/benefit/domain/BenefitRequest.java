@@ -18,9 +18,7 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(level = PRIVATE)
 public class BenefitRequest {
     @NotNull
-    Long amenityId;
+    Long organizationId;
     @NotBlank
-    String name;
-    @NotBlank
-    String tier;
+    String type;
 }

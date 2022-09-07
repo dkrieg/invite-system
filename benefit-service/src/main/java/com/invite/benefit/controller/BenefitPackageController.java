@@ -29,7 +29,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class BenefitPackageController {
     BenefitPackageDomainService service;
 
-    @GetMapping(path = "/", produces = APPLICATION_JSON_VALUE)
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
     @Operation(description = "get-benefit-packages",summary = "Get All Benefit Packages")
     Collection<BenefitPackage> getBenefitPackages() {
         return service.fetchAll();

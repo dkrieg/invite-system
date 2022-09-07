@@ -11,15 +11,15 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @FeignClient("ORGANIZATION-SERVICE")
 public interface OrganizationServiceGateway {
-    @GetMapping(path = "/provider-groups/", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/provider-groups", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     List<Map<String, Object>> getProviderGroups();
 
-    @GetMapping(path = "/communities/", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/communities", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     List<Map<String, Object>> getCommunities();
 
-    @GetMapping(path = "/markets/", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/markets", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     List<Map<String, Object>> getMarkets();
 
-    @PostMapping(path = "/", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     Map<String, Object> createOrganization(Map<String, Object> request);
 }

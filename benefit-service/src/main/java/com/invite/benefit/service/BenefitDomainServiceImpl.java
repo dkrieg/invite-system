@@ -31,6 +31,14 @@ public class BenefitDomainServiceImpl implements BenefitDomainService {
     }
 
     @Override
+    public Collection<Benefit> fetchAllByOrganizationId(Long organizationId) {
+        return repository.findAllByOrganizationId(organizationId)
+                .stream()
+                .map(mapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public Benefit create(BenefitRequest request) {
         return Optional.ofNullable(request)
                 .map(mapper::toEntity)

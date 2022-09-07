@@ -19,4 +19,6 @@ import static lombok.AccessLevel.PRIVATE;
 public class ProviderGroupRequest {
     @NotBlank
     String name;
+    @NotNull
+    String providerGroupTypeCode;
 }

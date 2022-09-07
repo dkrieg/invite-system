@@ -30,10 +30,8 @@ public class BenefitEntity {
     @GeneratedValue
     Long id;
     @Column(nullable = false)
-    Long amenityId;
-    @Column(nullable = false)
-    String name;
+    Long organizationId;
     @ManyToOne(optional = false)
     @JoinColumn(nullable = false, updatable = false)
-    BenefitTierEntity tier;
+    BenefitTypeEntity type;
 }

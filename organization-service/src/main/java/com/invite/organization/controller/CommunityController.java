@@ -30,7 +30,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class CommunityController {
     CommunityDomainService service;
 
-    @GetMapping(path = "/", produces = APPLICATION_JSON_VALUE)
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
     @Operation(description = "get-communities",summary = "Get All Communities")
     Collection<Community> getCommunities() {
         return service.fetchAll();

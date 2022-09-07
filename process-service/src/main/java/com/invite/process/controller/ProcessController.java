@@ -5,10 +5,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
@@ -18,10 +17,11 @@ import static lombok.AccessLevel.PRIVATE;
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = PRIVATE)
 @RestController
+@RequestMapping(path = "/start")
 public class ProcessController {
     ZeebeClient client;
 
-    @PostMapping("/start/new-organization")
+    @PostMapping("/new-organization")
     @Operation(description = "start-new-organization-process", summary = "Start New Organization Process")
     public ResponseEntity<Long> startNewOrganizationProcess() {
         return ResponseEntity.ok(client.newCreateInstanceCommand()
@@ -33,7 +33,7 @@ public class ProcessController {
                 .getProcessInstanceKey());
     }
 
-//    @PostMapping("/start/reservation")
+//    @PostMapping("/new-reservation")
 //    @Operation(description = "start-reservation-process", summary = "Start Reservation Process")
 //    public ResponseEntity<Boolean> startReservationProcess() {
 //        return ResponseEntity.ok((Boolean) client.newCreateInstanceCommand()
@@ -45,21 +45,4 @@ public class ProcessController {
 //                .getVariablesAsMap()
 //                .get("approvalStatus"));
 //    }
-
-    @PostMapping("/submit/new-organization")
-    public void newOrganizationSubmitted(@RequestBody Map<String, Object> variables) {
-        client.newPublishMessageCommand()
-                .messageName("newOrganizationSubmitted")
-                .correlationKey("organization-123")
-                .variables(variables)
-                .send();
-    }
-    @PostMapping("/submit/new-amenity")
-    public void newAmenitySubmitted(@RequestBody Map<String, Object> variables) {
-        client.newPublishMessageCommand()
-                .messageName("newAmenityForOrganizationSubmitted")
-                .correlationKey("amenity-123")
-                .variables(variables)
-                .send();
-    }
 }

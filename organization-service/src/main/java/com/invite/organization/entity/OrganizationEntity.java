@@ -46,6 +46,10 @@ public class OrganizationEntity {
     @JoinColumn
     ProviderGroupEntity providerGroup;
 
+    @ManyToOne
+    @JoinColumn
+    OrganizationSegmentEntity segment;
+
     Long addressId;
 
     @Override

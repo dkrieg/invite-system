@@ -30,7 +30,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class MarketController {
     MarketDomainService service;
 
-    @GetMapping(path = "/", produces = APPLICATION_JSON_VALUE)
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
     @Operation(description = "get-markets",summary = "Get All Markets")
     Collection<Market> getMarkets() {
         return service.fetchAll();

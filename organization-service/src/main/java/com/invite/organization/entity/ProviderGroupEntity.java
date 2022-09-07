@@ -1,6 +1,5 @@
 package com.invite.organization.entity;
 
-import com.invite.organization.domain.Organization;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,11 +13,9 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import java.util.Set;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -35,6 +32,10 @@ public class ProviderGroupEntity {
     @GeneratedValue
     Long id;
     String name;
+
+    @ManyToOne
+    @JoinColumn
+    ProviderGroupTypeEntity providerGroupType;
 
     @Override
     public boolean equals(Object o) {

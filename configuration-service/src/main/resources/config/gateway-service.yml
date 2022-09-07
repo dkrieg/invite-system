@@ -52,6 +52,18 @@ spring:
             - Path=/processes/**
           filters:
             - RewritePath=/processes/(?<path>.*), /$\{path}
+        - id: member-service
+          uri: lb://member-service
+          predicates:
+            - Path=/members/**
+          filters:
+            - RewritePath=/members/(?<path>.*), /$\{path}
+        - id: membership-service
+          uri: lb://membership-service
+          predicates:
+            - Path=/memberships/**
+          filters:
+            - RewritePath=/memberships/(?<path>.*), /$\{path}
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
@@ -66,3 +78,7 @@ springdoc:
         url: /v3/api-docs/benefits
       - name: processes
         url: /v3/api-docs/processes
+      - name: members
+        url: /v3/api-docs/members
+      - name: memberships
+        url: /v3/api-docs/memberships

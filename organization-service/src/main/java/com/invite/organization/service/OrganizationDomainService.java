@@ -5,6 +5,6 @@ import com.invite.organization.domain.OrganizationRequest;
 
 import java.util.Collection;
 
-public interface OrganizationDomainService extends DomainService<Organization, OrganizationRequest> {
+public interface OrganizationDomainService extends DomainService<Organization, OrganizationRequest, Long> {
     Collection<Organization> fetchAllByProviderGroup(Long providerGroupId);
 }

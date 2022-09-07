@@ -11,9 +11,9 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @FeignClient("AMENITY-SERVICE")
 public interface AmenityServiceGateway {
-    @GetMapping(path = "/types/", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/amenity-types", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     List<String> getAmenityTypes();
 
-    @PostMapping(path = "/", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     Map<String, Object> createAmenity(Map<String, Object> request);
 }

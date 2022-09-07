@@ -23,11 +23,11 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = PRIVATE)
 @RestController
-@RequestMapping(path = "/types")
+@RequestMapping(path = "/amenity-types")
 public class AmenityTypeController {
     AmenityTypeDomainService service;
 
-    @GetMapping(path = "/", produces = APPLICATION_JSON_VALUE)
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
     @Operation(description = "get-amenity-types",summary = "Get All Amenity Types")
     Collection<String> getAmenityTypes() {
         return service.fetchAll();

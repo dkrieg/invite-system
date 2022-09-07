@@ -23,6 +23,8 @@ public class OrganizationRequest {
     Long communityId;
     Long marketId;
     Long providerGroupId;
+    @NotBlank
+    String segment;
     @NotNull
     AddressRequest address;
 }

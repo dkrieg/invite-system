@@ -33,7 +33,13 @@ public class BenefitController {
         return service.fetchAll();
     }
 
-    @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/with-organization/{organizationId}", produces = APPLICATION_JSON_VALUE)
+    @Operation(description = "get-benefits-with-organization",summary = "Get All Benefits")
+    Collection<Benefit> getBenefitsWithOrganization(@PathVariable("organizationId") Long organizationId) {
+        return service.fetchAllByOrganizationId(organizationId);
+    }
+
+    @PostMapping(path = "/", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @Operation(description = "create-benefit", summary = "Create New Benefit")
     ResponseEntity<Benefit> createBenefit(@RequestBody BenefitRequest request) {
         Benefit saved = service.create(request);
