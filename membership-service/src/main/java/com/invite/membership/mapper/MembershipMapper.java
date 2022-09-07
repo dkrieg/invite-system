@@ -38,6 +38,7 @@ public class MembershipMapper {
         entity.setLoginId(request.getLoginId());
         entity.setMemberId(request.getMemberId());
         entity.setBenefitPackageId(request.getBenefitPackageId());
+        entity.setHomeClubId(request.getHomeClubId());
         entity.setLevel(repository.getReferenceById(request.getLevel()));
         return entity;
     }
