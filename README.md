@@ -1,7 +1,7 @@
 ## Invite System Run Setup
 1. From the project root
    1. gradlew build -x test
-   2. docker-build.bat (on Windows) or docker-build.sf (on Mac or Linux)
+   2. docker-build.bat (on Windows) or docker-build.sh (on Mac or Linux)
    3. wait for script to complete...it takes time but is fairly reliable
 2. Access the API Gateway Swagger UI
    1. http://localhost:8983/webjars/swagger-ui/index.html
