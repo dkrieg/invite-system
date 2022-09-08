@@ -1,0 +1,355 @@
+services:
+  address-service:
+    image: invite/address-service:latest
+    container_name: address-service
+    hostname: address-service
+    environment:
+      - management.server.port=8080
+      - spring.config.import=optional:configserver:http://configuration-service:8980
+      - EUREKA_URI=http://discovery-service:8981/eureka
+    healthcheck:
+      test: curl --fail http://localhost:8080/actuator/health || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+    networks:
+      - invite-system
+    depends_on:
+      configuration-service:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+
+  amenity-service:
+    image: invite/amenity-service:latest
+    container_name: amenity-service
+    hostname: amenity-service
+    environment:
+      - management.server.port=8080
+      - spring.config.import=optional:configserver:http://configuration-service:8980
+      - EUREKA_URI=http://discovery-service:8981/eureka
+    healthcheck:
+      test: curl --fail http://localhost:8080/actuator/health || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+    networks:
+      - invite-system
+    depends_on:
+      configuration-service:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+
+  benefit-service:
+    image: invite/benefit-service:latest
+    container_name: benefit-service
+    hostname: benefit-service
+    environment:
+      - management.server.port=8080
+      - spring.config.import=optional:configserver:http://configuration-service:8980
+      - EUREKA_URI=http://discovery-service:8981/eureka
+    healthcheck:
+      test: curl --fail http://localhost:8080/actuator/health || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+    networks:
+      - invite-system
+    depends_on:
+      configuration-service:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+
+  configuration-service:
+    image: invite/configuration-service:latest
+    container_name: configuration-service
+    hostname: configuration-server
+    environment:
+      - management.server.port=8080
+    healthcheck:
+      test: curl --fail http://localhost:8080/actuator/health || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+    networks:
+      - invite-system
+
+  discovery-service:
+    image: invite/discovery-service:latest
+    container_name: discovery-service
+    hostname: discovery-service
+    ports:
+      - "8981:8981"
+    environment:
+      - management.server.port=8080
+      - spring.config.import=optional:configserver:http://configuration-service:8980
+    healthcheck:
+      test: curl --fail http://localhost:8080/actuator/health || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+    networks:
+      - invite-system
+    depends_on:
+      configuration-service:
+        condition: service_healthy
+
+  gateway-service:
+    image: invite/gateway-service:latest
+    container_name: gateway-service
+    hostname: gateway-service
+    environment:
+      - management.server.port=8080
+      - spring.config.import=optional:configserver:http://configuration-service:8980
+      - EUREKA_URI=http://discovery-service:8981/eureka
+    healthcheck:
+      test: curl --fail http://localhost:8080/actuator/health || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+    ports:
+      - "8983:8983"
+    networks:
+      - invite-system
+    depends_on:
+      address-service:
+        condition: service_started
+      amenity-service:
+        condition: service_started
+      benefit-service:
+        condition: service_started
+      configuration-service:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+      member-service:
+        condition: service_started
+      membership-service:
+        condition: service_started
+      organization-service:
+        condition: service_started
+      process-service:
+        condition: service_started
+
+  job-worker-service:
+    image: invite/job-worker-service:latest
+    container_name: job-worker-service
+    hostname: job-worker-service
+    environment:
+      - management.server.port=8080
+      - spring.config.import=optional:configserver:http://configuration-service:8980
+      - EUREKA_URI=http://discovery-service:8981/eureka
+      - zeebe.client.broker.gatewayAddress=zeebe:26500
+    healthcheck:
+      test: curl --fail http://localhost:8080/actuator/health || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+    networks:
+      - invite-system
+    depends_on:
+      zeebe:
+        condition: service_started
+      configuration-service:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+
+  member-service:
+    image: invite/member-service:latest
+    container_name: member-service
+    hostname: member-service
+    environment:
+      - management.server.port=8080
+      - spring.config.import=optional:configserver:http://configuration-service:8980
+      - EUREKA_URI=http://discovery-service:8981/eureka
+    healthcheck:
+      test: curl --fail http://localhost:8080/actuator/health || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+    networks:
+      - invite-system
+    depends_on:
+      address-service:
+        condition: service_started
+      configuration-service:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+
+  membership-service:
+    image: invite/membership-service:latest
+    container_name: membership-service
+    hostname: membership-service
+    environment:
+      - management.server.port=8080
+      - spring.config.import=optional:configserver:http://configuration-service:8980
+      - EUREKA_URI=http://discovery-service:8981/eureka
+    healthcheck:
+      test: curl --fail http://localhost:8080/actuator/health || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+    networks:
+      - invite-system
+    depends_on:
+      configuration-service:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+      benefit-service:
+        condition: service_started
+      member-service:
+        condition: service_started
+      organization-service:
+        condition: service_started
+
+  organization-service:
+    image: invite/organization-service:latest
+    container_name: organization-service
+    hostname: organization-service
+    environment:
+      - management.server.port=8080
+      - spring.config.import=optional:configserver:http://configuration-service:8980
+      - EUREKA_URI=http://discovery-service:8981/eureka
+    healthcheck:
+      test: curl --fail http://localhost:8080/actuator/health || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+    networks:
+      - invite-system
+    depends_on:
+      address-service:
+        condition: service_started
+      configuration-service:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+
+  process-service:
+    image: invite/process-service:latest
+    container_name: process-service
+    hostname: process-service
+    environment:
+      - management.server.port=8080
+      - spring.config.import=optional:configserver:http://configuration-service:8980
+      - EUREKA_URI=http://discovery-service:8981/eureka
+      - zeebe.client.broker.gatewayAddress=zeebe:26500
+      - tasklist.url=http://tasklist:8080
+    healthcheck:
+      test: curl --fail http://localhost:8080/actuator/health || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+    networks:
+      - invite-system
+    depends_on:
+      tasklist:
+        condition: service_started
+      configuration-service:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+
+  zeebe: # https://docs.camunda.io/docs/self-managed/platform-deployment/docker/#zeebe
+    image: camunda/zeebe:${CAMUNDA_PLATFORM_VERSION:-8.0.6}
+    container_name: zeebe
+    ports:
+      - "26500:26500"
+      - "9600:9600"
+    environment: # https://docs.camunda.io/docs/self-managed/zeebe-deployment/configuration/environment-variables/
+      - ZEEBE_BROKER_EXPORTERS_ELASTICSEARCH_CLASSNAME=io.camunda.zeebe.exporter.ElasticsearchExporter
+      - ZEEBE_BROKER_EXPORTERS_ELASTICSEARCH_ARGS_URL=http://elasticsearch:9200
+      - ZEEBE_BROKER_EXPORTERS_ELASTICSEARCH_ARGS_BULK_SIZE=1
+      # allow running with low disk space
+      - ZEEBE_BROKER_DATA_DISKUSAGECOMMANDWATERMARK=0.998
+      - ZEEBE_BROKER_DATA_DISKUSAGEREPLICATIONWATERMARK=0.999
+      - "JAVA_TOOL_OPTIONS=-Xms512m -Xmx512m"
+    restart: always
+    volumes:
+      - zeebe:/usr/local/zeebe/data
+    networks:
+      - invite-system
+    depends_on:
+      - elasticsearch
+
+  operate: # https://docs.camunda.io/docs/self-managed/platform-deployment/docker/#operate
+    image: camunda/operate:${CAMUNDA_PLATFORM_VERSION:-8.0.6}
+    container_name: operate
+    ports:
+      - "8081:8080"
+    environment: # https://docs.camunda.io/docs/self-managed/operate-deployment/configuration/
+      - CAMUNDA_OPERATE_ZEEBE_GATEWAYADDRESS=zeebe:26500
+      - CAMUNDA_OPERATE_ELASTICSEARCH_URL=http://elasticsearch:9200
+      - CAMUNDA_OPERATE_ZEEBEELASTICSEARCH_URL=http://elasticsearch:9200
+    networks:
+      - invite-system
+    depends_on:
+      - zeebe
+      - elasticsearch
+
+  tasklist: # https://docs.camunda.io/docs/self-managed/platform-deployment/docker/#tasklist
+    image: camunda/tasklist:${CAMUNDA_PLATFORM_VERSION:-8.0.6}
+    container_name: tasklist
+    hostname: tasklist
+    ports:
+      - "8082:8080"
+    environment: # https://docs.camunda.io/docs/self-managed/tasklist-deployment/configuration/
+      - CAMUNDA_TASKLIST_ZEEBE_GATEWAYADDRESS=zeebe:26500
+      - CAMUNDA_TASKLIST_ELASTICSEARCH_URL=http://elasticsearch:9200
+      - CAMUNDA_TASKLIST_ZEEBEELASTICSEARCH_URL=http://elasticsearch:9200
+    networks:
+      - invite-system
+    depends_on:
+      - zeebe
+      - elasticsearch
+
+  elasticsearch: # https://hub.docker.com/_/elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION:-7.17.0}
+    container_name: elasticsearch
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - bootstrap.memory_lock=true
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      # allow running with low disk space
+      - cluster.routing.allocation.disk.threshold_enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    restart: always
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:9200/_cat/health | grep -q green" ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    volumes:
+      - elastic:/usr/share/elasticsearch/data
+    networks:
+      - invite-system
+
+volumes:
+  zeebe:
+  elastic:
+
+networks:
+  invite-system:

@@ -9,6 +9,7 @@ import io.camunda.zeebe.spring.client.annotation.ZeebeDeployment;
 import io.camunda.zeebe.spring.client.properties.ZeebeClientConfigurationProperties;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,7 +22,7 @@ import org.springframework.context.annotation.Bean;
         title = "process-service",
         description = "This application provides repository access to Process and Task entities."
 ))
-
+@Slf4j
 public class ProcessServiceApplication {
 
     public static void main(String[] args) {
@@ -29,9 +30,10 @@ public class ProcessServiceApplication {
     }
 
     @Bean
-    CamundaTaskListClient taskListClient(AuthInterface auth) throws TaskListException {
+    CamundaTaskListClient taskListClient(AuthInterface auth, @Value("${tasklist.url:http://localhost:8082}") String taskListUrl) throws TaskListException {
+        log.info("Logging into Tasklist {}", taskListUrl);
         return new CamundaTaskListClient.Builder()
-                .taskListUrl("http://localhost:8082")
+                .taskListUrl(taskListUrl)
                 .shouldReturnVariables()
                 .authentication(auth)
                 .build();

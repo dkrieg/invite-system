@@ -32,16 +32,17 @@ class GatewayOpenApiRouteLocatorConfiguration {
                 .route("openapi", r -> r.path(ALL_API_DOCS_PATTERN)
                         .filters(f -> f
                                 .rewritePath(ALL_API_DOCS_REGEX, ALL_API_DOCS_REPLACEMENT)
-                                .modifyResponseBody(String.class, String.class, modifyOpenAPI(url)))
+                                .modifyResponseBody(String.class, String.class, modifyOpenAPI()))
                         .uri(url))
                 .build();
     }
 
-    RewriteFunction<String, String> modifyOpenAPI(String url) {
+    RewriteFunction<String, String> modifyOpenAPI() {
         return (exchange, json) -> {
             try {
                 String path = exchange.getRequest().getPath().value().replace(DEFAULT_API_DOCS_URL, "");
                 OpenAPI openAPI = Json.mapper().readValue(json, OpenAPI.class);
+                String url = exchange.getRequest().getURI().toString().replace(exchange.getRequest().getPath().value(), "");
                 openAPI.servers(List.of(new Server().url(url)));
                 Paths paths = new Paths();
                 openAPI.getPaths().forEach((key, value) -> paths.addPathItem(path + key, value));
