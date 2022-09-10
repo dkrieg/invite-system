@@ -24,5 +24,7 @@ public class BenefitPackage {
     @NotBlank
     String name;
     @NotNull
+    Long organizationId;
+    @NotNull
     List<Benefit> benefits;
 }

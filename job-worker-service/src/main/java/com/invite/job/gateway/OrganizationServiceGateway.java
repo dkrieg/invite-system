@@ -1,25 +1,29 @@
 package com.invite.job.gateway;
 
+import com.invite.organization.domain.Community;
+import com.invite.organization.domain.Market;
+import com.invite.organization.domain.Organization;
+import com.invite.organization.domain.OrganizationRequest;
+import com.invite.organization.domain.ProviderGroup;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
-import java.util.Map;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @FeignClient("ORGANIZATION-SERVICE")
 public interface OrganizationServiceGateway {
     @GetMapping(path = "/provider-groups", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-    List<Map<String, Object>> getProviderGroups();
+    List<ProviderGroup> getProviderGroups();
 
     @GetMapping(path = "/communities", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-    List<Map<String, Object>> getCommunities();
+    List<Community> getCommunities();
 
     @GetMapping(path = "/markets", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-    List<Map<String, Object>> getMarkets();
+    List<Market> getMarkets();
 
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-    Map<String, Object> createOrganization(Map<String, Object> request);
+    Organization createOrganization(OrganizationRequest request);
 }

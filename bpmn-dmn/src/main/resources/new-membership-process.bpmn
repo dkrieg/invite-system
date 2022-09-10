@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0g6ya3p" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.2.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0">
+  <bpmn:process id="new-membership-process" name="New Membership Process" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1hf2tsm</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1hf2tsm" sourceRef="StartEvent_1" targetRef="Activity_0q71a60" />
+    <bpmn:userTask id="Activity_0q71a60" name="Define New Membership">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formKey="define-new-membership-form" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1hf2tsm</bpmn:incoming>
+      <bpmn:outgoing>Flow_18jsc8x</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_0coxb2z">
+      <bpmn:incoming>Flow_18jsc8x</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_18jsc8x" sourceRef="Activity_0q71a60" targetRef="Event_0coxb2z" />
+    <bpmn:boundaryEvent id="Event_02f6yib" cancelActivity="false" attachedToRef="Activity_0q71a60">
+      <bpmn:extensionElements>
+        <zeebe:ioMapping>
+          <zeebe:output source="=membership" target="membership" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>Flow_0cxfb9s</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1eofg1b" messageRef="Message_1sh4vu6" />
+    </bpmn:boundaryEvent>
+    <bpmn:sequenceFlow id="Flow_0cxfb9s" sourceRef="Event_02f6yib" targetRef="Activity_0pb96t7" />
+    <bpmn:serviceTask id="Activity_0pb96t7" name="Create Membership">
+      <bpmn:extensionElements>
+        <zeebe:ioMapping>
+          <zeebe:input source="=membership" target="membership" />
+          <zeebe:output source="=membership" target="membership" />
+        </zeebe:ioMapping>
+        <zeebe:taskDefinition type="create-membership" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0cxfb9s</bpmn:incoming>
+      <bpmn:outgoing>Flow_0kv19zx</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_1dmfb8z">
+      <bpmn:incoming>Flow_0kv19zx</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0kv19zx" sourceRef="Activity_0pb96t7" targetRef="Event_1dmfb8z" />
+  </bpmn:process>
+  <bpmn:message id="Message_1sh4vu6" name="newMembershipSubmitted">
+    <bpmn:extensionElements>
+      <zeebe:subscription correlationKey="=&#34;new-membership-submitted&#34;" />
+    </bpmn:extensionElements>
+  </bpmn:message>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="new-membership-process">
+      <bpmndi:BPMNEdge id="Flow_1hf2tsm_di" bpmnElement="Flow_1hf2tsm">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_18jsc8x_di" bpmnElement="Flow_18jsc8x">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="432" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0cxfb9s_di" bpmnElement="Flow_0cxfb9s">
+        <di:waypoint x="320" y="175" />
+        <di:waypoint x="320" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0kv19zx_di" bpmnElement="Flow_0kv19zx">
+        <di:waypoint x="370" y="250" />
+        <di:waypoint x="422" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0mfwr6w_di" bpmnElement="Activity_0q71a60">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0coxb2z_di" bpmnElement="Event_0coxb2z">
+        <dc:Bounds x="432" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_140lp1p_di" bpmnElement="Activity_0pb96t7">
+        <dc:Bounds x="270" y="210" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1dmfb8z_di" bpmnElement="Event_1dmfb8z">
+        <dc:Bounds x="422" y="232" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0catffh_di" bpmnElement="Event_02f6yib">
+        <dc:Bounds x="302" y="139" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

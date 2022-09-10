@@ -19,6 +19,7 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	implementation project(':address-library')
 	implementation project(':member-library')
+	implementation project(':membership-library')
 	implementation project(':benefit-library')
 	implementation project(':organization-library')
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'

@@ -16,8 +16,16 @@ dependencyManagement {
 
 dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	implementation project(':address-library')
+	implementation project(':amenity-library')
+	implementation project(':benefit-library')
+	implementation project(':job-worker-library')
+	implementation project(':member-library')
+	implementation project(':membership-library')
+	implementation project(':organization-library')
 	implementation 'io.camunda:spring-zeebe-starter:8.0.7'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
 	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'

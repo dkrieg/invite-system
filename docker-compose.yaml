@@ -13,8 +13,6 @@ services:
       retries: 5
       start_period: 10s
       timeout: 5s
-    networks:
-      - invite-system
     depends_on:
       configuration-service:
         condition: service_healthy
@@ -35,8 +33,6 @@ services:
       retries: 5
       start_period: 10s
       timeout: 5s
-    networks:
-      - invite-system
     depends_on:
       configuration-service:
         condition: service_healthy
@@ -57,8 +53,6 @@ services:
       retries: 5
       start_period: 10s
       timeout: 5s
-    networks:
-      - invite-system
     depends_on:
       configuration-service:
         condition: service_healthy
@@ -77,8 +71,6 @@ services:
       retries: 5
       start_period: 10s
       timeout: 5s
-    networks:
-      - invite-system
 
   discovery-service:
     image: invite/discovery-service:latest
@@ -95,8 +87,6 @@ services:
       retries: 5
       start_period: 10s
       timeout: 5s
-    networks:
-      - invite-system
     depends_on:
       configuration-service:
         condition: service_healthy
@@ -117,8 +107,6 @@ services:
       timeout: 5s
     ports:
       - "8983:8983"
-    networks:
-      - invite-system
     depends_on:
       address-service:
         condition: service_started
@@ -154,8 +142,6 @@ services:
       retries: 5
       start_period: 10s
       timeout: 5s
-    networks:
-      - invite-system
     depends_on:
       zeebe:
         condition: service_started
@@ -178,8 +164,6 @@ services:
       retries: 5
       start_period: 10s
       timeout: 5s
-    networks:
-      - invite-system
     depends_on:
       address-service:
         condition: service_started
@@ -202,8 +186,6 @@ services:
       retries: 5
       start_period: 10s
       timeout: 5s
-    networks:
-      - invite-system
     depends_on:
       configuration-service:
         condition: service_healthy
@@ -230,8 +212,6 @@ services:
       retries: 5
       start_period: 10s
       timeout: 5s
-    networks:
-      - invite-system
     depends_on:
       address-service:
         condition: service_started
@@ -256,8 +236,6 @@ services:
       retries: 5
       start_period: 10s
       timeout: 5s
-    networks:
-      - invite-system
     depends_on:
       tasklist:
         condition: service_started
@@ -283,8 +261,6 @@ services:
     restart: always
     volumes:
       - zeebe:/usr/local/zeebe/data
-    networks:
-      - invite-system
     depends_on:
       - elasticsearch
 
@@ -297,8 +273,6 @@ services:
       - CAMUNDA_OPERATE_ZEEBE_GATEWAYADDRESS=zeebe:26500
       - CAMUNDA_OPERATE_ELASTICSEARCH_URL=http://elasticsearch:9200
       - CAMUNDA_OPERATE_ZEEBEELASTICSEARCH_URL=http://elasticsearch:9200
-    networks:
-      - invite-system
     depends_on:
       - zeebe
       - elasticsearch
@@ -313,8 +287,6 @@ services:
       - CAMUNDA_TASKLIST_ZEEBE_GATEWAYADDRESS=zeebe:26500
       - CAMUNDA_TASKLIST_ELASTICSEARCH_URL=http://elasticsearch:9200
       - CAMUNDA_TASKLIST_ZEEBEELASTICSEARCH_URL=http://elasticsearch:9200
-    networks:
-      - invite-system
     depends_on:
       - zeebe
       - elasticsearch
@@ -344,12 +316,7 @@ services:
       retries: 3
     volumes:
       - elastic:/usr/share/elasticsearch/data
-    networks:
-      - invite-system
 
 volumes:
   zeebe:
   elastic:
-
-networks:
-  invite-system:

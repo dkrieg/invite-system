@@ -27,7 +27,28 @@ public class ProcessController {
         return ResponseEntity.ok(client.newCreateInstanceCommand()
                 .bpmnProcessId("new-organization-process")
                 .latestVersion()
-                .variables(Map.of("newOrganizationEventKey", "organization-123"))
+                .send()
+                .join()
+                .getProcessInstanceKey());
+    }
+
+    @PostMapping("/new-member")
+    @Operation(description = "start-new-member-process", summary = "Start New Member Process")
+    public ResponseEntity<Long> startNewMemberProcess() {
+        return ResponseEntity.ok(client.newCreateInstanceCommand()
+                .bpmnProcessId("new-member-process")
+                .latestVersion()
+                .send()
+                .join()
+                .getProcessInstanceKey());
+    }
+
+    @PostMapping("/new-membership")
+    @Operation(description = "start-new-membership-process", summary = "Start New Membership Process")
+    public ResponseEntity<Long> startNewMembershipProcess() {
+        return ResponseEntity.ok(client.newCreateInstanceCommand()
+                .bpmnProcessId("new-membership-process")
+                .latestVersion()
                 .send()
                 .join()
                 .getProcessInstanceKey());

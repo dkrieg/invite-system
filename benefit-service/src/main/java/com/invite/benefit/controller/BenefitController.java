@@ -33,36 +33,30 @@ public class BenefitController {
         return service.fetchAll();
     }
 
-    @GetMapping(path = "/with-organization/{organizationId}", produces = APPLICATION_JSON_VALUE)
-    @Operation(description = "get-benefits-with-organization",summary = "Get All Benefits")
-    Collection<Benefit> getBenefitsWithOrganization(@PathVariable("organizationId") Long organizationId) {
-        return service.fetchAllByOrganizationId(organizationId);
-    }
-
     @PostMapping(path = "/", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @Operation(description = "create-benefit", summary = "Create New Benefit")
     ResponseEntity<Benefit> createBenefit(@RequestBody BenefitRequest request) {
         Benefit saved = service.create(request);
         return ResponseEntity.created(UriComponentsBuilder.fromPath("/{id}")
-                        .build("id", saved.getId()))
+                        .build("id", saved.getCode()))
                 .body(saved);
     }
 
     @GetMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
     @Operation(description = "get-benefit", summary = "Get Benefit By ID")
-    ResponseEntity<Benefit> getBenefit(@PathVariable("id") Long id) {
+    ResponseEntity<Benefit> getBenefit(@PathVariable("id") String id) {
         return ResponseEntity.of(service.fetchById(id));
     }
 
     @PutMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @Operation(description = "update-benefit", summary = "Update Benefit By ID")
-    ResponseEntity<Benefit> updateBenefit(@PathVariable("id") Long id, @RequestBody BenefitRequest request) {
+    ResponseEntity<Benefit> updateBenefit(@PathVariable("id") String id, @RequestBody BenefitRequest request) {
         return ResponseEntity.of(service.updateById(id, request));
     }
 
     @DeleteMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
     @Operation(description = "delete-benefit", summary = "Delete Benefit By ID")
-    ResponseEntity<Void> deleteBenefit(@PathVariable("id") Long id) {
+    ResponseEntity<Void> deleteBenefit(@PathVariable("id") String id) {
         return service.deleteById(id)
                 ? ResponseEntity.noContent().build()
                 : ResponseEntity.notFound().build();

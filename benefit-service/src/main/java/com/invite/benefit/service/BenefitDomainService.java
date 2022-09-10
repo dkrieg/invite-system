@@ -5,7 +5,5 @@ import com.invite.benefit.domain.BenefitRequest;
 
 import java.util.Collection;
 
-public interface BenefitDomainService extends DomainService<Benefit, BenefitRequest, Long>  {
-    Collection<Benefit> fetchAllByOrganizationId(Long Benefit);
-
+public interface BenefitDomainService extends DomainService<Benefit, BenefitRequest, String>  {
 }

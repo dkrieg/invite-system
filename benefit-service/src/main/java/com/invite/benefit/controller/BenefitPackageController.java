@@ -1,5 +1,6 @@
 package com.invite.benefit.controller;
 
+import com.invite.benefit.domain.Benefit;
 import com.invite.benefit.domain.BenefitPackage;
 import com.invite.benefit.domain.BenefitPackageRequest;
 import com.invite.benefit.service.BenefitPackageDomainService;
@@ -33,6 +34,12 @@ public class BenefitPackageController {
     @Operation(description = "get-benefit-packages",summary = "Get All Benefit Packages")
     Collection<BenefitPackage> getBenefitPackages() {
         return service.fetchAll();
+    }
+
+    @GetMapping(path = "/with-organization/{organizationId}", produces = APPLICATION_JSON_VALUE)
+    @Operation(description = "get-benefits-with-organization",summary = "Get All Benefits")
+    Collection<BenefitPackage> getBenefitPackagesWithOrganization(@PathVariable("organizationId") Long organizationId) {
+        return service.fetchAllByOrganizationId(organizationId);
     }
 
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)

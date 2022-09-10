@@ -1,23 +1,17 @@
-package com.invite.benefit.domain;
+package com.invite.job.domain;
 
+import com.invite.membership.domain.Membership;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-import javax.validation.constraints.NotBlank;
-
 import static lombok.AccessLevel.PRIVATE;
 
 @Data
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = PRIVATE)
-public class BenefitType {
-    @NotBlank
-    String code;
-    @NotBlank
-    String description;
+public class MembershipVariable {
+    Membership membership;
 }

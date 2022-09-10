@@ -31,14 +31,6 @@ public class BenefitDomainServiceImpl implements BenefitDomainService {
     }
 
     @Override
-    public Collection<Benefit> fetchAllByOrganizationId(Long organizationId) {
-        return repository.findAllByOrganizationId(organizationId)
-                .stream()
-                .map(mapper::toDomain)
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public Benefit create(BenefitRequest request) {
         return Optional.ofNullable(request)
                 .map(mapper::toEntity)
@@ -48,12 +40,12 @@ public class BenefitDomainServiceImpl implements BenefitDomainService {
     }
 
     @Override
-    public Optional<Benefit> fetchById(Long id) {
+    public Optional<Benefit> fetchById(String id) {
         return repository.findById(id).map(mapper::toDomain);
     }
 
     @Override
-    public Optional<Benefit> updateById(Long id, BenefitRequest request) {
+    public Optional<Benefit> updateById(String id, BenefitRequest request) {
         return repository.findById(id)
                 .map(e -> mapper.toEntity(e, request))
                 .map(repository::saveAndFlush)
@@ -61,7 +53,7 @@ public class BenefitDomainServiceImpl implements BenefitDomainService {
     }
 
     @Override
-    public boolean deleteById(Long id) {
+    public boolean deleteById(String id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);
             return true;

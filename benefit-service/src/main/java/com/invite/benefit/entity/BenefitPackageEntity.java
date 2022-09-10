@@ -11,6 +11,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -37,6 +38,8 @@ public class BenefitPackageEntity {
     @GeneratedValue
     Long id;
     String name;
+    @Column(nullable = false)
+    Long organizationId;
     @OneToMany(fetch = EAGER)
     Set<BenefitEntity> benefits;
 

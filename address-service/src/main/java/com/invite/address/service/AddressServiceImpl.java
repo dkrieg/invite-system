@@ -8,7 +8,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -18,6 +20,14 @@ import static lombok.AccessLevel.PRIVATE;
 class AddressServiceImpl implements AddressService {
     AddressRepository repository;
     AddressMapper mapper;
+
+    @Override
+    public Collection<Address> fetchAll() {
+        return repository.findAll()
+                .stream()
+                .map(mapper::toDomain)
+                .collect(Collectors.toList());
+    }
 
     @Override
     public Address create(AddressRequest addressRequest) {

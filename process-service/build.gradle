@@ -18,6 +18,13 @@ dependencyManagement {
 dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	implementation project(":bpmn-dmn")
+	implementation project(':address-library')
+	implementation project(':amenity-library')
+	implementation project(':benefit-library')
+	implementation project(':job-worker-library')
+	implementation project(':member-library')
+	implementation project(':membership-library')
+	implementation project(':organization-library')
 	implementation 'io.camunda:spring-zeebe-starter:8.0.7'
 	implementation 'io.camunda:camunda-tasklist-client-java:1.5.0'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'

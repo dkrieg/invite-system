@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -16,9 +18,11 @@ import static lombok.AccessLevel.PRIVATE;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = PRIVATE)
-public class BenefitRequest {
+public class BenefitPackageRequest {
+    @NotBlank
+    String name;
     @NotNull
     Long organizationId;
-    @NotBlank
-    String type;
+    @NotEmpty
+    List<String> benefitsIds;
 }

@@ -54,6 +54,12 @@ public class AddressController {
                 .body(saved);
     }
 
+    @GetMapping(path = "/", produces = APPLICATION_JSON_VALUE)
+    @Operation(description = "get-addresses", summary = "Get All Addresses")
+    Collection<Address> getAddresses() {
+        return service.fetchAll();
+    }
+
     @GetMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
     @Operation(description = "get-address", summary = "Get Address By ID")
     ResponseEntity<Address> getAddress(@PathVariable("id") Long addressId) {

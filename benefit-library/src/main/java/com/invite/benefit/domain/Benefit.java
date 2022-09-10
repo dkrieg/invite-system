@@ -17,10 +17,8 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor
 @FieldDefaults(level = PRIVATE)
 public class Benefit {
-    @NotNull
-    Long id;
     @NotBlank
-    Long organizationId;
+    String code;
     @NotBlank
-    BenefitType type;
+    String description;
 }

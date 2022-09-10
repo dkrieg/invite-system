@@ -3,14 +3,10 @@ package com.invite.amenity.mapper;
 import com.invite.amenity.domain.Amenity;
 import com.invite.amenity.domain.AmenityRequest;
 import com.invite.amenity.entity.AmenityEntity;
-import com.invite.amenity.entity.AmenityTypeEntity;
 import com.invite.amenity.repository.AmenityTypeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static lombok.AccessLevel.PRIVATE;
 

@@ -1,5 +1,6 @@
 package com.invite.benefit.service;
 
+import com.invite.benefit.domain.Benefit;
 import com.invite.benefit.domain.BenefitPackage;
 import com.invite.benefit.domain.BenefitPackageRequest;
 import com.invite.benefit.mapper.BenefitPackageMapper;
@@ -25,6 +26,14 @@ class BenefitPackageDomainServiceImpl implements BenefitPackageDomainService {
     @Override
     public Collection<BenefitPackage> fetchAll() {
         return repository.findAll()
+                .stream()
+                .map(mapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Collection<BenefitPackage> fetchAllByOrganizationId(Long organizationId) {
+        return repository.findAllByOrganizationId(organizationId)
                 .stream()
                 .map(mapper::toDomain)
                 .collect(Collectors.toList());

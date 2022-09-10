@@ -60,11 +60,5 @@ class DatabaseStartupListener implements ApplicationListener<ContextRefreshedEve
                         .build());
             });
         }
-        addressRepository.saveAndFlush(AddressEntity.builder()
-                .line1("123 Somewhere")
-                .city("Overland Park")
-                .state(stateRepository.getReferenceById("KS"))
-                .zipCode(zipCodeRepository.findByPostalCodeAndPlusFour("66221", null))
-                .build());
     }
 }

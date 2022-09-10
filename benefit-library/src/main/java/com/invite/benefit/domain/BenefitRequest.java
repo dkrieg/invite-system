@@ -1,28 +1,24 @@
-package com.invite.benefit.entity;
+package com.invite.benefit.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import static lombok.AccessLevel.PRIVATE;
 
-@Setter
-@Getter
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @FieldDefaults(level = PRIVATE)
-@Entity
-@Table(name = "BENEFIT_TYPE")
-public class BenefitTypeEntity {
-    @Id
+public class BenefitRequest {
+    @NotBlank
     String code;
+    @NotBlank
     String description;
 }

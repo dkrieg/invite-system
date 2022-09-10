@@ -1,5 +1,18 @@
 package com.invite.process.controller;
 
+import com.invite.amenity.domain.AmenityRequest;
+import com.invite.benefit.domain.BenefitPackageRequest;
+import com.invite.job.domain.AmenityRequestVariable;
+import com.invite.job.domain.BenefitPackageRequestVariable;
+import com.invite.job.domain.BenefitPackageVariable;
+import com.invite.job.domain.MemberRequestVariable;
+import com.invite.job.domain.MemberVariable;
+import com.invite.job.domain.MembershipRequestVariable;
+import com.invite.job.domain.MembershipVariable;
+import com.invite.job.domain.OrganizationRequestVariable;
+import com.invite.member.domain.MemberRequest;
+import com.invite.membership.domain.MembershipRequest;
+import com.invite.organization.domain.OrganizationRequest;
 import io.camunda.zeebe.client.ZeebeClient;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -22,38 +35,47 @@ public class MessageController {
     ZeebeClient client;
 
     @PostMapping("/new-organization")
-    public void newOrganizationSubmitted(@RequestBody Map<String, Object> variables) {
+    public void newOrganizationSubmitted(@RequestBody OrganizationRequest request) {
         client.newPublishMessageCommand()
                 .messageName("newOrganizationSubmitted")
-                .correlationKey("organization-123")
-                .variables(variables)
+                .correlationKey("new-organization-submitted")
+                .variables(new OrganizationRequestVariable(request))
                 .send();
     }
 
     @PostMapping("/new-amenity")
-    public void newAmenitySubmitted(@RequestBody Map<String, Object> variables) {
+    public void newAmenitySubmitted(@RequestBody AmenityRequest request) {
         client.newPublishMessageCommand()
                 .messageName("newAmenityForOrganizationSubmitted")
-                .correlationKey("amenity-123")
-                .variables(variables)
-                .send();
-    }
-
-    @PostMapping("/new-benefit")
-    public void newBenefitSubmitted(@RequestBody Map<String, Object> variables) {
-        client.newPublishMessageCommand()
-                .messageName("newBenefitForOrganizationSubmitted")
-                .correlationKey("benefit-123")
-                .variables(variables)
+                .correlationKey("new-amenity-submitted")
+                .variables(new AmenityRequestVariable(request))
                 .send();
     }
 
     @PostMapping("/new-benefit-package")
-    public void newBenefitPackageSubmitted(@RequestBody Map<String, Object> variables) {
+    public void newBenefitPackageSubmitted(@RequestBody BenefitPackageRequest request) {
         client.newPublishMessageCommand()
                 .messageName("newBenefitPackageForOrganizationSubmitted")
-                .correlationKey("benefit-package-123")
-                .variables(variables)
+                .correlationKey("new-benefit-package-submitted")
+                .variables(new BenefitPackageRequestVariable(request))
+                .send();
+    }
+
+    @PostMapping("/new-member")
+    public void newMemberSubmitted(@RequestBody MemberRequest request) {
+        client.newPublishMessageCommand()
+                .messageName("newMemberSubmitted")
+                .correlationKey("new-member-submitted")
+                .variables(new MemberRequestVariable(request))
+                .send();
+    }
+
+    @PostMapping("/new-membership")
+    public void newMembershipSubmitted(@RequestBody MembershipRequest request) {
+        client.newPublishMessageCommand()
+                .messageName("newMembershipSubmitted")
+                .correlationKey("new-membership-submitted")
+                .variables(new MembershipRequestVariable(request))
                 .send();
     }
 }
