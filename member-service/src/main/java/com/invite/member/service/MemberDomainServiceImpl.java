@@ -1,10 +1,10 @@
 package com.invite.member.service;
 
 import com.invite.address.domain.Address;
-import com.invite.member.gateway.AddressGateway;
 import com.invite.member.domain.Member;
 import com.invite.member.domain.MemberRequest;
 import com.invite.member.entity.MemberEntity;
+import com.invite.member.gateway.AddressGateway;
 import com.invite.member.mapper.MemberMapper;
 import com.invite.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;

@@ -4,26 +4,19 @@ import com.invite.amenity.domain.AmenityRequest;
 import com.invite.benefit.domain.BenefitPackageRequest;
 import com.invite.job.domain.AmenityRequestVariable;
 import com.invite.job.domain.BenefitPackageRequestVariable;
-import com.invite.job.domain.BenefitPackageVariable;
 import com.invite.job.domain.MemberRequestVariable;
-import com.invite.job.domain.MemberVariable;
 import com.invite.job.domain.MembershipRequestVariable;
-import com.invite.job.domain.MembershipVariable;
 import com.invite.job.domain.OrganizationRequestVariable;
 import com.invite.member.domain.MemberRequest;
 import com.invite.membership.domain.MembershipRequest;
 import com.invite.organization.domain.OrganizationRequest;
 import io.camunda.zeebe.client.ZeebeClient;
-import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Map;
 
 import static lombok.AccessLevel.PRIVATE;
 

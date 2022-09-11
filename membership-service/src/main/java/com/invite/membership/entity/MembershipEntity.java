@@ -36,8 +36,8 @@ public class MembershipEntity {
     Long benefitPackageId;
     Long homeClubId;
 
-    @ManyToOne(optional=false)
-    @JoinColumn(nullable=false)
+    @ManyToOne(optional = false)
+    @JoinColumn(nullable = false)
     MembershipLevelEntity level;
 
     @Override

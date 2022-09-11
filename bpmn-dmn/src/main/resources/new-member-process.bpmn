@@ -6,6 +6,9 @@
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_1wqzg6d" sourceRef="StartEvent_1" targetRef="Activity_1e3yqiw" />
     <bpmn:userTask id="Activity_1e3yqiw" name="Define New Member">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formKey="define-new-member-form" />
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_1wqzg6d</bpmn:incoming>
       <bpmn:outgoing>Flow_0r855cn</bpmn:outgoing>
     </bpmn:userTask>

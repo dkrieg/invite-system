@@ -1,6 +1,5 @@
 package com.invite.member.domain;
 
-import com.invite.address.domain.Address;
 import com.invite.address.domain.AddressRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

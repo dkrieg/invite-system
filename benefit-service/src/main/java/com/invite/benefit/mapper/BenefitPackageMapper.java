@@ -2,7 +2,6 @@ package com.invite.benefit.mapper;
 
 import com.invite.benefit.domain.BenefitPackage;
 import com.invite.benefit.domain.BenefitPackageRequest;
-import com.invite.benefit.entity.BenefitEntity;
 import com.invite.benefit.entity.BenefitPackageEntity;
 import com.invite.benefit.repository.BenefitRepository;
 import lombok.RequiredArgsConstructor;

@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface AddressService {
 
     Collection<Address> fetchAll();
+
     Address create(AddressRequest view);
 
     Optional<Address> fetchById(Long id);

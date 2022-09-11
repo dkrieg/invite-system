@@ -26,6 +26,7 @@ class OrganizationDomainServiceImpl implements OrganizationDomainService {
     OrganizationRepository repository;
     OrganizationMapper mapper;
     AddressGateway gateway;
+
     @Override
     public Collection<Organization> fetchAll() {
         return repository.findAll()

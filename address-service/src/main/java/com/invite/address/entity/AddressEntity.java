@@ -35,12 +35,12 @@ public final class AddressEntity {
     String line2;
     String city;
 
-    @ManyToOne(optional=false)
-    @JoinColumn(nullable=false)
+    @ManyToOne(optional = false)
+    @JoinColumn(nullable = false)
     StateEntity state;
 
-    @ManyToOne(optional=false)
-    @JoinColumn(nullable=false)
+    @ManyToOne(optional = false)
+    @JoinColumn(nullable = false)
     ZipCodeEntity zipCode;
 
     @Override

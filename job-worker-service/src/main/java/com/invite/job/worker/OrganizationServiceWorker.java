@@ -3,6 +3,7 @@ package com.invite.job.worker;
 import com.invite.job.domain.CommunitiesVariable;
 import com.invite.job.domain.MarketsVariable;
 import com.invite.job.domain.OrganizationRequestVariable;
+import com.invite.job.domain.OrganizationSegmentsVariable;
 import com.invite.job.domain.OrganizationVariable;
 import com.invite.job.domain.ProviderGroupsVariable;
 import com.invite.job.gateway.OrganizationServiceGateway;
@@ -28,6 +29,11 @@ public class OrganizationServiceWorker {
     @ZeebeWorker(type = "get-markets", autoComplete = true)
     public MarketsVariable handleGetMarkets() {
         return new MarketsVariable(gateway.getMarkets());
+    }
+
+    @ZeebeWorker(type = "get-organization-segments", autoComplete = true)
+    public OrganizationSegmentsVariable handleGetOrganizationSegments() {
+        return new OrganizationSegmentsVariable(gateway.getOrganizationSegments());
     }
 
     @ZeebeWorker(type = "get-provider-groups", autoComplete = true)

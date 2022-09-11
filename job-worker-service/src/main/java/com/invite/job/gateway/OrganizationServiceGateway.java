@@ -4,6 +4,7 @@ import com.invite.organization.domain.Community;
 import com.invite.organization.domain.Market;
 import com.invite.organization.domain.Organization;
 import com.invite.organization.domain.OrganizationRequest;
+import com.invite.organization.domain.OrganizationSegment;
 import com.invite.organization.domain.ProviderGroup;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,9 @@ public interface OrganizationServiceGateway {
 
     @GetMapping(path = "/markets", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     List<Market> getMarkets();
+
+    @GetMapping(path = "/organization-segments", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+    List<OrganizationSegment> getOrganizationSegments();
 
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     Organization createOrganization(OrganizationRequest request);

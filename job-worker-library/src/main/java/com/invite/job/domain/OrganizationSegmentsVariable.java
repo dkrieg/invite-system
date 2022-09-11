@@ -1,23 +1,19 @@
-package com.invite.benefit.domain;
+package com.invite.job.domain;
 
+import com.invite.organization.domain.OrganizationSegment;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 import static lombok.AccessLevel.PRIVATE;
 
 @Data
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = PRIVATE)
-public class Benefit {
-    @NotBlank
-    String code;
-    @NotBlank
-    String description;
+public class OrganizationSegmentsVariable {
+    List<OrganizationSegment> organizationSegments;
 }
