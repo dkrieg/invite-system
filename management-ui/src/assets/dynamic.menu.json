@@ -1,14 +1,14 @@
 [
   {
-    "name": "Create Organization",
+    "name": "New Organization Process",
     "url": "/"
   },
   {
-    "name": "Create Amenity",
+    "name": "New Member Process",
     "url": "/"
   },
   {
-    "name": "Create Benefit",
+    "name": "New Membership Process",
     "url": "/"
   }
 ]
