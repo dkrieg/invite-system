@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,7 +29,7 @@ public class ProviderGroupTypeController {
     ProviderGroupTypeDomainService service;
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
-    @Operation(description = "get-provider-group-types",summary = "Get All Provider Group Types")
+    @Operation(description = "get-provider-group-types", summary = "Get All Provider Group Types")
     Collection<ProviderGroupType> getProviderGroups() {
         return service.fetchAll();
     }

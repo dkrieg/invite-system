@@ -3,7 +3,6 @@ package com.invite.organization.controller;
 import com.invite.organization.domain.Community;
 import com.invite.organization.domain.CommunityRequest;
 import com.invite.organization.service.CommunityDomainService;
-import com.invite.organization.service.DomainService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -31,7 +30,7 @@ public class CommunityController {
     CommunityDomainService service;
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
-    @Operation(description = "get-communities",summary = "Get All Communities")
+    @Operation(description = "get-communities", summary = "Get All Communities")
     Collection<Community> getCommunities() {
         return service.fetchAll();
     }

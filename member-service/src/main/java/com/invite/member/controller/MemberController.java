@@ -28,7 +28,7 @@ public class MemberController {
     MemberDomainService service;
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
-    @Operation(description = "get-members",summary = "Get All Members")
+    @Operation(description = "get-members", summary = "Get All Members")
     Collection<Member> getProviderGroups() {
         return service.fetchAll();
     }

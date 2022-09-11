@@ -34,13 +34,13 @@ public class AddressController {
     AddressService service;
 
     @GetMapping(path = "/states", produces = APPLICATION_JSON_VALUE)
-    @Operation(description = "get-states",summary = "Get All States")
+    @Operation(description = "get-states", summary = "Get All States")
     Collection<State> getStates() {
         return stateService.fetchAll();
     }
 
     @GetMapping(path = "/{state}/zip-codes", produces = APPLICATION_JSON_VALUE)
-    @Operation(description = "get-zip-codes-for-state",summary = "Get Zip Codes For State")
+    @Operation(description = "get-zip-codes-for-state", summary = "Get Zip Codes For State")
     Collection<ZipCode> getZipCodesWithPostalCode(@PathVariable("state") String state) {
         return zipCodeService.fetchByState(state);
     }

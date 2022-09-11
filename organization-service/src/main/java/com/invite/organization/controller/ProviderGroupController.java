@@ -2,7 +2,6 @@ package com.invite.organization.controller;
 
 import com.invite.organization.domain.ProviderGroup;
 import com.invite.organization.domain.ProviderGroupRequest;
-import com.invite.organization.service.DomainService;
 import com.invite.organization.service.ProviderGroupDomainService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +30,7 @@ public class ProviderGroupController {
     ProviderGroupDomainService service;
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
-    @Operation(description = "get-provider-groups",summary = "Get All Provider Groups")
+    @Operation(description = "get-provider-groups", summary = "Get All Provider Groups")
     Collection<ProviderGroup> getProviderGroups() {
         return service.fetchAll();
     }

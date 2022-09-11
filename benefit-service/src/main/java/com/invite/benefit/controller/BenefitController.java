@@ -28,7 +28,7 @@ public class BenefitController {
     BenefitDomainService service;
 
     @GetMapping(path = "/", produces = APPLICATION_JSON_VALUE)
-    @Operation(description = "get-benefits",summary = "Get All Benefits")
+    @Operation(description = "get-benefits", summary = "Get All Benefits")
     Collection<Benefit> getBenefits() {
         return service.fetchAll();
     }

@@ -6,7 +6,6 @@ import io.camunda.tasklist.auth.SimpleAuthentication;
 import io.camunda.tasklist.exception.TaskListException;
 import io.camunda.zeebe.spring.client.EnableZeebeClient;
 import io.camunda.zeebe.spring.client.annotation.ZeebeDeployment;
-import io.camunda.zeebe.spring.client.properties.ZeebeClientConfigurationProperties;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +16,7 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @EnableZeebeClient
-@ZeebeDeployment(resources = { "classpath*:*.bpmn", "classpath*:*.dmn"})
+@ZeebeDeployment(resources = {"classpath*:*.bpmn", "classpath*:*.dmn"})
 @OpenAPIDefinition(info = @Info(
         title = "process-service",
         description = "This application provides repository access to Process and Task entities."

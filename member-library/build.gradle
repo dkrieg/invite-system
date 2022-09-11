@@ -1,5 +1,5 @@
 plugins {
-	id 'java'
+    id 'java'
 }
 
 group = 'com.invite'
@@ -7,25 +7,25 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 ext {
-	set('springCloudVersion', "2021.0.3")
+    set('springCloudVersion', "2021.0.3")
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	compileOnly 'org.projectlombok:lombok:1.18.24'
-	compileOnly 'jakarta.validation:jakarta.validation-api:2.0.2'
-	annotationProcessor 'org.projectlombok:lombok:1.18.24'
-	implementation project(':address-library')
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    compileOnly 'jakarta.validation:jakarta.validation-api:2.0.2'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    implementation project(':address-library')
 }
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }

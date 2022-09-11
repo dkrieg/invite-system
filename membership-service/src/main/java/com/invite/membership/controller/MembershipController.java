@@ -28,7 +28,7 @@ public class MembershipController {
     MembershipDomainService service;
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
-    @Operation(description = "get-memberships",summary = "Get All Memberships")
+    @Operation(description = "get-memberships", summary = "Get All Memberships")
     Collection<Membership> getMemberships() {
         return service.fetchAll();
     }

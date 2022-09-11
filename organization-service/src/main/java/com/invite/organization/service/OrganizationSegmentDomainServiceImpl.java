@@ -2,12 +2,8 @@ package com.invite.organization.service;
 
 import com.invite.organization.domain.OrganizationSegment;
 import com.invite.organization.domain.OrganizationSegmentRequest;
-import com.invite.organization.domain.ProviderGroupType;
-import com.invite.organization.domain.ProviderGroupTypeRequest;
 import com.invite.organization.mapper.OrganizationSegmentMapper;
-import com.invite.organization.mapper.ProviderGroupTypeMapper;
 import com.invite.organization.repository.OrganizationSegmentRepository;
-import com.invite.organization.repository.ProviderGroupTypeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;

@@ -1,44 +1,44 @@
 plugins {
-	id 'org.springframework.boot' version '2.7.3'
-	id 'io.spring.dependency-management' version '1.0.13.RELEASE'
-	id 'java'
+    id 'org.springframework.boot' version '2.7.3'
+    id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+    id 'java'
 }
 
 ext {
-	set('springCloudVersion', "2021.0.3")
+    set('springCloudVersion', "2021.0.3")
 }
 
 dependencyManagement {
-	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-	}
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
 }
 
 dependencies {
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	implementation project(':address-library')
-	implementation project(':amenity-library')
-	implementation project(':benefit-library')
-	implementation project(':job-worker-library')
-	implementation project(':member-library')
-	implementation project(':membership-library')
-	implementation project(':organization-library')
-	implementation 'io.camunda:spring-zeebe-starter:8.0.7'
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.cloud:spring-cloud-starter-config'
-	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
-	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation project(':address-library')
+    implementation project(':amenity-library')
+    implementation project(':benefit-library')
+    implementation project(':job-worker-library')
+    implementation project(':member-library')
+    implementation project(':membership-library')
+    implementation project(':organization-library')
+    implementation 'io.camunda:spring-zeebe-starter:8.0.7'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 bootJar {
-	archiveName = "$baseName.$extension"
+    archiveName = "$baseName.$extension"
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }

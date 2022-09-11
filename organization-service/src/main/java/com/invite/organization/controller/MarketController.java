@@ -2,7 +2,6 @@ package com.invite.organization.controller;
 
 import com.invite.organization.domain.Market;
 import com.invite.organization.domain.MarketRequest;
-import com.invite.organization.service.DomainService;
 import com.invite.organization.service.MarketDomainService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +30,7 @@ public class MarketController {
     MarketDomainService service;
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
-    @Operation(description = "get-markets",summary = "Get All Markets")
+    @Operation(description = "get-markets", summary = "Get All Markets")
     Collection<Market> getMarkets() {
         return service.fetchAll();
     }

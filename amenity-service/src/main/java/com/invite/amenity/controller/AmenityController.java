@@ -28,13 +28,13 @@ public class AmenityController {
     AmenityDomainService service;
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
-    @Operation(description = "get-amenities",summary = "Get All Amenities")
+    @Operation(description = "get-amenities", summary = "Get All Amenities")
     Collection<Amenity> getAmenities() {
         return service.fetchAll();
     }
 
     @GetMapping(path = "/with-organization/{organizationId}", produces = APPLICATION_JSON_VALUE)
-    @Operation(description = "get-amenities-with-organization",summary = "Get All Amenities With Organization")
+    @Operation(description = "get-amenities-with-organization", summary = "Get All Amenities With Organization")
     Collection<Amenity> getAmenitiesWithOrganization(@PathVariable("organizationId") Long organizationId) {
         return service.fetchAllByOrganization(organizationId);
     }

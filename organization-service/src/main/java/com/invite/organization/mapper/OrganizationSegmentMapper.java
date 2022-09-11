@@ -2,10 +2,7 @@ package com.invite.organization.mapper;
 
 import com.invite.organization.domain.OrganizationSegment;
 import com.invite.organization.domain.OrganizationSegmentRequest;
-import com.invite.organization.domain.ProviderGroupType;
-import com.invite.organization.domain.ProviderGroupTypeRequest;
 import com.invite.organization.entity.OrganizationSegmentEntity;
-import com.invite.organization.entity.ProviderGroupTypeEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;

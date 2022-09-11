@@ -13,6 +13,7 @@
       <bpmn:outgoing>Flow_1wbw9vb</bpmn:outgoing>
       <bpmn:outgoing>Flow_1ueaxzu</bpmn:outgoing>
       <bpmn:outgoing>Flow_1fmwrvc</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1s75jja</bpmn:outgoing>
     </bpmn:parallelGateway>
     <bpmn:serviceTask id="Activity_1vx91r0" name="Get All Provider Groups">
       <bpmn:extensionElements>
@@ -51,6 +52,7 @@
       <bpmn:incoming>Flow_1r82rng</bpmn:incoming>
       <bpmn:incoming>Flow_19l3hs8</bpmn:incoming>
       <bpmn:incoming>Flow_03pauqq</bpmn:incoming>
+      <bpmn:incoming>Flow_1fxe34d</bpmn:incoming>
       <bpmn:outgoing>Flow_0nbkqzl</bpmn:outgoing>
     </bpmn:parallelGateway>
     <bpmn:userTask id="Activity_1wn0spp" name="Define New Organization">
@@ -222,6 +224,18 @@
     <bpmn:sequenceFlow id="Flow_183gg4d" sourceRef="Event_19hqvqz" targetRef="Activity_16eccv1" />
     <bpmn:sequenceFlow id="Flow_0u1w164" sourceRef="Activity_16eccv1" targetRef="Event_079oo3l" />
     <bpmn:sequenceFlow id="Flow_1xhihpk" sourceRef="Gateway_0m4tizd" targetRef="Activity_1kr9egd" />
+    <bpmn:serviceTask id="Activity_00yka3o" name="Get All Organization Segments">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="get-organization-segments" />
+        <zeebe:ioMapping>
+          <zeebe:output source="=organizationSegments" target="organizationSegments" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1s75jja</bpmn:incoming>
+      <bpmn:outgoing>Flow_1fxe34d</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1s75jja" sourceRef="Gateway_1smifns" targetRef="Activity_00yka3o" />
+    <bpmn:sequenceFlow id="Flow_1fxe34d" sourceRef="Activity_00yka3o" targetRef="Gateway_02nhkwg" />
   </bpmn:process>
   <bpmn:message id="Message_0b1j3ro" name="newOrganizationSubmitted">
     <bpmn:extensionElements>
@@ -356,6 +370,16 @@
         <di:waypoint x="1010" y="670" />
         <di:waypoint x="1072" y="670" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1s75jja_di" bpmnElement="Flow_1s75jja">
+        <di:waypoint x="270" y="125" />
+        <di:waypoint x="270" y="760" />
+        <di:waypoint x="360" y="760" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fxe34d_di" bpmnElement="Flow_1fxe34d">
+        <di:waypoint x="460" y="760" />
+        <di:waypoint x="550" y="760" />
+        <di:waypoint x="550" y="125" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="BPMNShape_0abb32u" bpmnElement="Event_02im4on">
         <dc:Bounds x="152" y="82" width="36" height="36" />
       </bpmndi:BPMNShape>
@@ -426,6 +450,10 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_079oo3l_di" bpmnElement="Event_079oo3l">
         <dc:Bounds x="1072" y="652" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_02ow628_di" bpmnElement="Activity_00yka3o">
+        <dc:Bounds x="360" y="720" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0an5so3_di" bpmnElement="new-organization-submitted">
         <dc:Bounds x="682" y="122" width="36" height="36" />

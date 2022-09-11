@@ -16,6 +16,7 @@ import static lombok.AccessLevel.PRIVATE;
 public class ProviderGroupMapper {
     ProviderGroupTypeRepository repository;
     ProviderGroupTypeMapper mapper;
+
     public ProviderGroup toDomain(ProviderGroupEntity entity) {
         return ProviderGroup.builder()
                 .id(entity.getId())

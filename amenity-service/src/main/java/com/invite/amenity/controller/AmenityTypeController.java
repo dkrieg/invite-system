@@ -28,7 +28,7 @@ public class AmenityTypeController {
     AmenityTypeDomainService service;
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
-    @Operation(description = "get-amenity-types",summary = "Get All Amenity Types")
+    @Operation(description = "get-amenity-types", summary = "Get All Amenity Types")
     Collection<String> getAmenityTypes() {
         return service.fetchAll();
     }
