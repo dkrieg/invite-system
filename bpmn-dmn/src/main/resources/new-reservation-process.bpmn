@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0itoh1y" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.2.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0">
+  <bpmn:process id="new-reservation-process" name="New Reservation Process" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:extensionElements>
+        <zeebe:ioMapping>
+          <zeebe:output source="=amenityId" target="amenityId" />
+          <zeebe:output source="=membershipId" target="membershipId" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>Flow_0kh9xnv</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0kh9xnv" sourceRef="StartEvent_1" targetRef="Gateway_1r0bwxc" />
+    <bpmn:parallelGateway id="Gateway_1r0bwxc">
+      <bpmn:incoming>Flow_0kh9xnv</bpmn:incoming>
+      <bpmn:outgoing>Flow_0bkfmda</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0mx0ul6</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:sequenceFlow id="Flow_0bkfmda" sourceRef="Gateway_1r0bwxc" targetRef="Activity_0yhmdto" />
+    <bpmn:sequenceFlow id="Flow_0mx0ul6" sourceRef="Gateway_1r0bwxc" targetRef="Activity_0kdwsqu" />
+    <bpmn:serviceTask id="Activity_0yhmdto" name="Get Amenity By ID">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="get-amenity-by-id" />
+        <zeebe:ioMapping>
+          <zeebe:input source="=amenityId" target="amenityId" />
+          <zeebe:output source="=amenity" target="amenity" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0bkfmda</bpmn:incoming>
+      <bpmn:outgoing>Flow_0o57cuf</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_0kdwsqu" name="Get Membership By ID">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="get-membership-by-id" />
+        <zeebe:ioMapping>
+          <zeebe:input source="=membershipId" target="membershipId" />
+          <zeebe:output source="=membership" target="membership" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0mx0ul6</bpmn:incoming>
+      <bpmn:outgoing>Flow_1oovni7</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0o57cuf" sourceRef="Activity_0yhmdto" targetRef="Activity_0isc6eb" />
+    <bpmn:serviceTask id="Activity_0isc6eb" name="Get Organization By ID">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="get-organization-by-id" />
+        <zeebe:ioMapping>
+          <zeebe:input source="=amenity.organizationId" target="organizationId" />
+          <zeebe:output source="=organization" target="organization" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0o57cuf</bpmn:incoming>
+      <bpmn:outgoing>Flow_1s08utk</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1s08utk" sourceRef="Activity_0isc6eb" targetRef="Gateway_0pth1pe" />
+    <bpmn:parallelGateway id="Gateway_0pth1pe">
+      <bpmn:incoming>Flow_1s08utk</bpmn:incoming>
+      <bpmn:incoming>Flow_1oovni7</bpmn:incoming>
+      <bpmn:outgoing>Flow_1lput4l</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:sequenceFlow id="Flow_1oovni7" sourceRef="Activity_0kdwsqu" targetRef="Gateway_0pth1pe" />
+    <bpmn:sequenceFlow id="Flow_1lput4l" sourceRef="Gateway_0pth1pe" targetRef="determineIfChosenClubIsHomeClub" />
+    <bpmn:businessRuleTask id="determineIfChosenClubIsHomeClub" name="Determine If Chosen Organization Is Home Club">
+      <bpmn:extensionElements>
+        <zeebe:calledDecision decisionId="isHomeClub" resultVariable="isHomeClub" />
+        <zeebe:ioMapping>
+          <zeebe:input source="=membership" target="membership" />
+          <zeebe:input source="=organization" target="chosenClub" />
+          <zeebe:output source="=isHomeClub" target="isHomeClub" />
+        </zeebe:ioMapping>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1lput4l</bpmn:incoming>
+      <bpmn:outgoing>Flow_06xkzly</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:endEvent id="Event_156lddw">
+      <bpmn:incoming>Flow_06xkzly</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_06xkzly" sourceRef="determineIfChosenClubIsHomeClub" targetRef="Event_156lddw" />
+    <bpmn:textAnnotation id="TextAnnotation_0212pf0">
+      <bpmn:text>Next Get Reservations By Member ID</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1lej6k0" sourceRef="Activity_0kdwsqu" targetRef="TextAnnotation_0212pf0" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="new-reservation-process">
+      <bpmndi:BPMNShape id="TextAnnotation_0212pf0_di" bpmnElement="TextAnnotation_0212pf0">
+        <dc:Bounds x="530" y="250" width="100" height="55" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_06xkzly_di" bpmnElement="Flow_06xkzly">
+        <di:waypoint x="910" y="120" />
+        <di:waypoint x="982" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1lput4l_di" bpmnElement="Flow_1lput4l">
+        <di:waypoint x="745" y="120" />
+        <di:waypoint x="810" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1oovni7_di" bpmnElement="Flow_1oovni7">
+        <di:waypoint x="470" y="230" />
+        <di:waypoint x="720" y="230" />
+        <di:waypoint x="720" y="145" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1s08utk_di" bpmnElement="Flow_1s08utk">
+        <di:waypoint x="630" y="120" />
+        <di:waypoint x="695" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0o57cuf_di" bpmnElement="Flow_0o57cuf">
+        <di:waypoint x="470" y="120" />
+        <di:waypoint x="530" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0mx0ul6_di" bpmnElement="Flow_0mx0ul6">
+        <di:waypoint x="290" y="145" />
+        <di:waypoint x="290" y="230" />
+        <di:waypoint x="370" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0bkfmda_di" bpmnElement="Flow_0bkfmda">
+        <di:waypoint x="315" y="120" />
+        <di:waypoint x="370" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0kh9xnv_di" bpmnElement="Flow_0kh9xnv">
+        <di:waypoint x="215" y="120" />
+        <di:waypoint x="265" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1sru2o7_di" bpmnElement="Gateway_1r0bwxc">
+        <dc:Bounds x="265" y="95" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0z3wp3l_di" bpmnElement="Activity_0yhmdto">
+        <dc:Bounds x="370" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0bjq839_di" bpmnElement="Activity_0kdwsqu">
+        <dc:Bounds x="370" y="190" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1z0cdc7_di" bpmnElement="Activity_0isc6eb">
+        <dc:Bounds x="530" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_14rzx6p_di" bpmnElement="Gateway_0pth1pe">
+        <dc:Bounds x="695" y="95" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ig2jvf_di" bpmnElement="determineIfChosenClubIsHomeClub">
+        <dc:Bounds x="810" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_156lddw_di" bpmnElement="Event_156lddw">
+        <dc:Bounds x="982" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1lej6k0_di" bpmnElement="Association_1lej6k0">
+        <di:waypoint x="470" y="241" />
+        <di:waypoint x="530" y="254" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

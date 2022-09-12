@@ -3,6 +3,7 @@ package com.invite.job.worker;
 import com.invite.job.domain.MembershipRequestVariable;
 import com.invite.job.domain.MembershipVariable;
 import com.invite.job.gateway.MembershipServiceGateway;
+import io.camunda.zeebe.spring.client.annotation.ZeebeVariable;
 import io.camunda.zeebe.spring.client.annotation.ZeebeVariablesAsType;
 import io.camunda.zeebe.spring.client.annotation.ZeebeWorker;
 import lombok.RequiredArgsConstructor;
@@ -20,5 +21,10 @@ public class MembershipServiceWorker {
     @ZeebeWorker(type = "create-membership", autoComplete = true)
     public MembershipVariable handleCreateMembership(@ZeebeVariablesAsType MembershipRequestVariable variable) {
         return new MembershipVariable(gateway.createMembership(variable.getMembership()));
+    }
+
+    @ZeebeWorker(type = "get-membership-by-id", autoComplete = true)
+    public MembershipVariable handleCreateMembership(@ZeebeVariable Integer membershipId) {
+        return new MembershipVariable(gateway.getMembership(membershipId.longValue()));
     }
 }

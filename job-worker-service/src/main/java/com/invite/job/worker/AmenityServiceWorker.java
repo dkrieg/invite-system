@@ -4,6 +4,7 @@ import com.invite.job.domain.AmenityRequestVariable;
 import com.invite.job.domain.AmenityTypesVariable;
 import com.invite.job.domain.AmenityVariable;
 import com.invite.job.gateway.AmenityServiceGateway;
+import io.camunda.zeebe.spring.client.annotation.ZeebeVariable;
 import io.camunda.zeebe.spring.client.annotation.ZeebeVariablesAsType;
 import io.camunda.zeebe.spring.client.annotation.ZeebeWorker;
 import lombok.RequiredArgsConstructor;
@@ -26,5 +27,10 @@ public class AmenityServiceWorker {
     @ZeebeWorker(type = "create-amenity", autoComplete = true)
     public AmenityVariable handleCreateAmenity(@ZeebeVariablesAsType AmenityRequestVariable variable) {
         return new AmenityVariable(gateway.createAmenity(variable.getAmenity()));
+    }
+
+    @ZeebeWorker(type = "get-amenity-by-id", autoComplete = true)
+    public AmenityVariable handleGetAmenityById(@ZeebeVariable Integer amenityId) {
+        return new AmenityVariable(gateway.getAmenity(amenityId.longValue()));
     }
 }

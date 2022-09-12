@@ -5,9 +5,12 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -51,16 +54,16 @@ public class ProcessController {
                 .getProcessInstanceKey());
     }
 
-//    @PostMapping("/new-reservation")
-//    @Operation(description = "start-reservation-process", summary = "Start Reservation Process")
-//    public ResponseEntity<Boolean> startReservationProcess() {
-//        return ResponseEntity.ok((Boolean) client.newCreateInstanceCommand()
-//                .bpmnProcessId("reservation-process")
-//                .latestVersion()
-//                .withResult()
-//                .send()
-//                .join()
-//                .getVariablesAsMap()
-//                .get("approvalStatus"));
-//    }
+    @PostMapping("/new-reservation/{membershipId}/{amenityId}")
+    @Operation(description = "start-new-reservation-process", summary = "Start New Reservation Process")
+    public ResponseEntity<Map<String, Object>> startReservationProcess(@PathVariable("membershipId") Long membershipId, @PathVariable("amenityId") Long amenityId) {
+        return ResponseEntity.ok(client.newCreateInstanceCommand()
+                .bpmnProcessId("new-reservation-process")
+                .latestVersion()
+                .variables(Map.of("membershipId", membershipId, "amenityId", amenityId))
+                .withResult()
+                .send()
+                .join()
+                .getVariablesAsMap());
+    }
 }

@@ -7,6 +7,7 @@ import com.invite.job.domain.OrganizationSegmentsVariable;
 import com.invite.job.domain.OrganizationVariable;
 import com.invite.job.domain.ProviderGroupsVariable;
 import com.invite.job.gateway.OrganizationServiceGateway;
+import io.camunda.zeebe.spring.client.annotation.ZeebeVariable;
 import io.camunda.zeebe.spring.client.annotation.ZeebeVariablesAsType;
 import io.camunda.zeebe.spring.client.annotation.ZeebeWorker;
 import lombok.RequiredArgsConstructor;
@@ -44,5 +45,10 @@ public class OrganizationServiceWorker {
     @ZeebeWorker(type = "create-organization", autoComplete = true)
     public OrganizationVariable handleCreateOrganization(@ZeebeVariablesAsType OrganizationRequestVariable variable) {
         return new OrganizationVariable(gateway.createOrganization(variable.getOrganization()));
+    }
+
+    @ZeebeWorker(type = "get-organization-by-id", autoComplete = true)
+    public OrganizationVariable handleGetOrganizationById(@ZeebeVariable Integer organizationId) {
+        return new OrganizationVariable(gateway.getOrganization(organizationId.longValue()));
     }
 }

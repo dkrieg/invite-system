@@ -7,7 +7,9 @@ import com.invite.organization.domain.OrganizationRequest;
 import com.invite.organization.domain.OrganizationSegment;
 import com.invite.organization.domain.ProviderGroup;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -30,4 +32,7 @@ public interface OrganizationServiceGateway {
 
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     Organization createOrganization(OrganizationRequest request);
+
+    @GetMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
+    Organization getOrganization(@PathVariable("id") Long organizationId);
 }

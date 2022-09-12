@@ -50,20 +50,20 @@ public class OrganizationController {
 
     @GetMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
     @Operation(description = "get-organization", summary = "Get Organization By ID")
-    ResponseEntity<Organization> getOrganization(@PathVariable("id") Long addressId) {
-        return ResponseEntity.of(service.fetchById(addressId));
+    ResponseEntity<Organization> getOrganization(@PathVariable("id") Long organizationId) {
+        return ResponseEntity.of(service.fetchById(organizationId));
     }
 
     @PutMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @Operation(description = "update-organization", summary = "Update Organization By ID")
-    ResponseEntity<Organization> updateOrganization(@PathVariable("id") Long addressId, @RequestBody OrganizationRequest request) {
-        return ResponseEntity.of(service.updateById(addressId, request));
+    ResponseEntity<Organization> updateOrganization(@PathVariable("id") Long organizationId, @RequestBody OrganizationRequest request) {
+        return ResponseEntity.of(service.updateById(organizationId, request));
     }
 
     @DeleteMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
     @Operation(description = "delete-organization", summary = "Delete Organization By ID")
-    ResponseEntity<Void> deleteOrganization(@PathVariable("id") Long addressId) {
-        return service.deleteById(addressId)
+    ResponseEntity<Void> deleteOrganization(@PathVariable("id") Long organizationId) {
+        return service.deleteById(organizationId)
                 ? ResponseEntity.noContent().build()
                 : ResponseEntity.notFound().build();
     }
