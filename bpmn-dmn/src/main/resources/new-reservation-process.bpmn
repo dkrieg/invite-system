@@ -82,11 +82,11 @@
     <bpmn:sequenceFlow id="Flow_0xfowrq" name="No" sourceRef="Gateway_1nv0uto" targetRef="determine-if-chosen-club-is-in-home-club-market">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=not(isHomeClub)</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:businessRuleTask id="determine-if-benefits-allow-for-home-club-reservation" name="Determine If Benefits Allow For Home Club Reservation">
+    <bpmn:businessRuleTask id="determine-if-reservation-allowed-for-home-club" name="Determine If Reservation Allowed For Home Club">
       <bpmn:extensionElements>
-        <zeebe:calledDecision decisionId="benefits-allow-for-home-club-reservation" resultVariable="benefitsAllowForHomeClubReservation" />
+        <zeebe:calledDecision decisionId="reservation-allowed-for-home-club" resultVariable="reservationAllowedForHomeClub" />
         <zeebe:ioMapping>
-          <zeebe:output source="=benefitsAllowForHomeClubReservation" target="approvedToMakeReservation" />
+          <zeebe:output source="=reservationAllowedForHomeClub" target="approvedToMakeReservation" />
         </zeebe:ioMapping>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_13q7z0h</bpmn:incoming>
@@ -97,17 +97,17 @@
       <bpmn:outgoing>Flow_0xggka5</bpmn:outgoing>
       <bpmn:outgoing>Flow_0rtsv5l</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:businessRuleTask id="determine-if-benefits-allow-for-provider-group-travel-reservation" name="Determine If Benefits Allow For Provider Group Travel Reservation">
+    <bpmn:businessRuleTask id="determine-if-reservation-allowed-for-provider-group-travel" name="Determine If Reservation Allowed For Provider Group Travel">
       <bpmn:extensionElements>
-        <zeebe:calledDecision decisionId="benefits-allow-for-provider-group-travel-reservation" resultVariable="benefitsAllowForProviderGroupTravelReservation" />
+        <zeebe:calledDecision decisionId="reservation-allowed-for-provider-group-travel" resultVariable="reservationAllowedForProviderGroupTravel" />
         <zeebe:ioMapping>
-          <zeebe:output source="=benefitsAllowForProviderGroupTravelReservation" target="approvedToMakeReservation" />
+          <zeebe:output source="=reservationAllowedForProviderGroupTravel" target="approvedToMakeReservation" />
         </zeebe:ioMapping>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1pyt5n6</bpmn:incoming>
       <bpmn:outgoing>Flow_1tz2yk0</bpmn:outgoing>
     </bpmn:businessRuleTask>
-    <bpmn:sequenceFlow id="Flow_13q7z0h" name="Yes" sourceRef="Gateway_1nv0uto" targetRef="determine-if-benefits-allow-for-home-club-reservation">
+    <bpmn:sequenceFlow id="Flow_13q7z0h" name="Yes" sourceRef="Gateway_1nv0uto" targetRef="determine-if-reservation-allowed-for-home-club">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=isHomeClub</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:exclusiveGateway id="Gateway_1qyizt8" name="Is Home Club Reservation Approved?">
@@ -115,7 +115,7 @@
       <bpmn:outgoing>Flow_0l0dlka</bpmn:outgoing>
       <bpmn:outgoing>Flow_1fmb7zy</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_13gd8i6" sourceRef="determine-if-benefits-allow-for-home-club-reservation" targetRef="Gateway_1qyizt8" />
+    <bpmn:sequenceFlow id="Flow_13gd8i6" sourceRef="determine-if-reservation-allowed-for-home-club" targetRef="Gateway_1qyizt8" />
     <bpmn:endEvent id="Event_1nl7xtd" name="Home Club Reservation Declined">
       <bpmn:incoming>Flow_0l0dlka</bpmn:incoming>
     </bpmn:endEvent>
@@ -133,7 +133,7 @@
     <bpmn:sequenceFlow id="Flow_1vdfvyb" sourceRef="determine-if-chosen-club-is-in-home-club-market" targetRef="Gateway_110b34t" />
     <bpmn:businessRuleTask id="determine-if-chosen-club-is-in-home-club-market" name="Determine If Chosen Club Is In Home Club Market">
       <bpmn:extensionElements>
-        <zeebe:calledDecision decisionId="is-marktet-club" resultVariable="isMarketClub" />
+        <zeebe:calledDecision decisionId="chosen-club-is-in-home-club-market" resultVariable="isMarketClub" />
         <zeebe:ioMapping>
           <zeebe:output source="=isMarketClub" target="isMarketClub" />
         </zeebe:ioMapping>
@@ -141,10 +141,10 @@
       <bpmn:incoming>Flow_0xfowrq</bpmn:incoming>
       <bpmn:outgoing>Flow_1vdfvyb</bpmn:outgoing>
     </bpmn:businessRuleTask>
-    <bpmn:sequenceFlow id="Flow_0xggka5" name="No" sourceRef="Gateway_0nhsx8q" targetRef="dDetermine-ff-chosen-club-is-in-provider-group">
+    <bpmn:sequenceFlow id="Flow_0xggka5" name="No" sourceRef="Gateway_0nhsx8q" targetRef="determine-if-chosen-club-is-in-provider-group">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=not(isCommunityClub)</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:businessRuleTask id="dDetermine-ff-chosen-club-is-in-provider-group" name="Determine If Chosen Club Is In Provider Group">
+    <bpmn:businessRuleTask id="determine-if-chosen-club-is-in-provider-group" name="Determine If Chosen Club Is In Provider Group">
       <bpmn:extensionElements>
         <zeebe:calledDecision decisionId="chosen-club-is-in-provider-group" resultVariable="isProviderGroupClub" />
         <zeebe:ioMapping>
@@ -159,14 +159,14 @@
       <bpmn:outgoing>Flow_17oxa4b</bpmn:outgoing>
       <bpmn:outgoing>Flow_1pyt5n6</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_0dcvm7j" sourceRef="dDetermine-ff-chosen-club-is-in-provider-group" targetRef="Gateway_0kcekbf" />
+    <bpmn:sequenceFlow id="Flow_0dcvm7j" sourceRef="determine-if-chosen-club-is-in-provider-group" targetRef="Gateway_0kcekbf" />
     <bpmn:endEvent id="Event_1l4jf1d" name="Reservation Declined">
       <bpmn:incoming>Flow_17oxa4b</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_17oxa4b" name="No" sourceRef="Gateway_0kcekbf" targetRef="Event_1l4jf1d">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=not(isProviderGroupClub)</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1pyt5n6" name="Yes" sourceRef="Gateway_0kcekbf" targetRef="determine-if-benefits-allow-for-provider-group-travel-reservation">
+    <bpmn:sequenceFlow id="Flow_1pyt5n6" name="Yes" sourceRef="Gateway_0kcekbf" targetRef="determine-if-reservation-allowed-for-provider-group-travel">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=isProviderGroupClub</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:exclusiveGateway id="Gateway_1nampko" name="Is Provider Group Travel Reservation Approved?">
@@ -174,7 +174,7 @@
       <bpmn:outgoing>Flow_0dyvppr</bpmn:outgoing>
       <bpmn:outgoing>Flow_1ccibsu</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_1tz2yk0" sourceRef="determine-if-benefits-allow-for-provider-group-travel-reservation" targetRef="Gateway_1nampko" />
+    <bpmn:sequenceFlow id="Flow_1tz2yk0" sourceRef="determine-if-reservation-allowed-for-provider-group-travel" targetRef="Gateway_1nampko" />
     <bpmn:sequenceFlow id="Flow_0dyvppr" name="Yes" sourceRef="Gateway_1nampko" targetRef="Activity_04y5qs3">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=approvedToMakeReservation</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -184,22 +184,22 @@
     <bpmn:sequenceFlow id="Flow_1ccibsu" name="No" sourceRef="Gateway_1nampko" targetRef="Event_0ujuisk">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=not(approvedToMakeReservation)</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1chtzzl" name="Yes" sourceRef="Gateway_110b34t" targetRef="determine-if-benefits-allow-for-farket-club-reservation">
+    <bpmn:sequenceFlow id="Flow_1chtzzl" name="Yes" sourceRef="Gateway_110b34t" targetRef="determine-if-reservation-allowed-for-market-club">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=isMarketClub</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:businessRuleTask id="determine-if-benefits-allow-for-farket-club-reservation" name="Determine If Benefits Allow For Market Club Reservation">
+    <bpmn:businessRuleTask id="determine-if-reservation-allowed-for-market-club" name="Determine If Reservation Allowed For Market Club">
       <bpmn:extensionElements>
-        <zeebe:calledDecision decisionId="benefits-allow-for-market-club-reservation" resultVariable="benefitsAllowForMarketClubReservation" />
+        <zeebe:calledDecision decisionId="reservation-allowed-for-market-club" resultVariable="reservationAllowedForMarketClub" />
         <zeebe:ioMapping>
-          <zeebe:output source="=benefitsAllowForMarketClubReservation" target="approvedToMakeReservation" />
+          <zeebe:output source="=reservationAllowedForMarketClub" target="approvedToMakeReservation" />
         </zeebe:ioMapping>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1chtzzl</bpmn:incoming>
       <bpmn:outgoing>Flow_1vajh61</bpmn:outgoing>
     </bpmn:businessRuleTask>
-    <bpmn:businessRuleTask id="dDetermine-if-chosen-club-is-in-home-club-community" name="Determine If Chosen Club Is In Home Club Community">
+    <bpmn:businessRuleTask id="determine-if-chosen-club-is-in-home-club-community" name="Determine If Chosen Club Is In Home Club Community">
       <bpmn:extensionElements>
-        <zeebe:calledDecision decisionId="isCommunityClub" resultVariable="isCommunityClub" />
+        <zeebe:calledDecision decisionId="chosen-club-is-in-home-club-community" resultVariable="isCommunityClub" />
         <zeebe:ioMapping>
           <zeebe:output source="=isCommunityClub" target="isCommunityClub" />
         </zeebe:ioMapping>
@@ -207,20 +207,20 @@
       <bpmn:incoming>Flow_0vitw84</bpmn:incoming>
       <bpmn:outgoing>Flow_1qzohsp</bpmn:outgoing>
     </bpmn:businessRuleTask>
-    <bpmn:sequenceFlow id="Flow_0vitw84" name="No" sourceRef="Gateway_110b34t" targetRef="dDetermine-if-chosen-club-is-in-home-club-community">
+    <bpmn:sequenceFlow id="Flow_0vitw84" name="No" sourceRef="Gateway_110b34t" targetRef="determine-if-chosen-club-is-in-home-club-community">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=not(isMarketClub)</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1qzohsp" sourceRef="dDetermine-if-chosen-club-is-in-home-club-community" targetRef="Gateway_0nhsx8q" />
+    <bpmn:sequenceFlow id="Flow_1qzohsp" sourceRef="determine-if-chosen-club-is-in-home-club-community" targetRef="Gateway_0nhsx8q" />
     <bpmn:exclusiveGateway id="Gateway_0zi3p5n" name="Is Market Club Reservation Approved?">
       <bpmn:incoming>Flow_1vajh61</bpmn:incoming>
       <bpmn:outgoing>Flow_1v7py4w</bpmn:outgoing>
       <bpmn:outgoing>Flow_1c1azdd</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_1vajh61" sourceRef="determine-if-benefits-allow-for-farket-club-reservation" targetRef="Gateway_0zi3p5n" />
+    <bpmn:sequenceFlow id="Flow_1vajh61" sourceRef="determine-if-reservation-allowed-for-market-club" targetRef="Gateway_0zi3p5n" />
     <bpmn:sequenceFlow id="Flow_1v7py4w" name="Yes" sourceRef="Gateway_0zi3p5n" targetRef="Activity_04y5qs3">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=approvedToMakeReservation</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0rtsv5l" name="Yes" sourceRef="Gateway_0nhsx8q" targetRef="determine-if-benefits-allow-for-community-club-reservation">
+    <bpmn:sequenceFlow id="Flow_0rtsv5l" name="Yes" sourceRef="Gateway_0nhsx8q" targetRef="determine-if-reservation-allowed-for-community-club">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=isCommunityClub</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:endEvent id="Event_087hzxj" name="Market Club Reservation Declined">
@@ -229,11 +229,11 @@
     <bpmn:sequenceFlow id="Flow_1c1azdd" name="No" sourceRef="Gateway_0zi3p5n" targetRef="Event_087hzxj">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=not(approvedToMakeReservation)</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:businessRuleTask id="determine-if-benefits-allow-for-community-club-reservation" name="Determine If Benefits Allow For Community Club Reservation">
+    <bpmn:businessRuleTask id="determine-if-reservation-allowed-for-community-club" name="Determine If Reservation Allowed For Community Club">
       <bpmn:extensionElements>
-        <zeebe:calledDecision decisionId="benefits-allow-for-community-club-reservation" resultVariable="benefitsAllowForCommunityClubReservation" />
+        <zeebe:calledDecision decisionId="reservation-allowed-for-community-club" resultVariable="reservationAllowedForCommunityClub" />
         <zeebe:ioMapping>
-          <zeebe:output source="=benefitsAllowForCommunityClubReservation" target="approvedToMakeReservation" />
+          <zeebe:output source="=reservationAllowedForCommunityClub" target="approvedToMakeReservation" />
         </zeebe:ioMapping>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0rtsv5l</bpmn:incoming>
@@ -244,7 +244,7 @@
       <bpmn:outgoing>Flow_11e11wk</bpmn:outgoing>
       <bpmn:outgoing>Flow_1sf20po</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_1qcywh3" sourceRef="determine-if-benefits-allow-for-community-club-reservation" targetRef="Gateway_08f8zex" />
+    <bpmn:sequenceFlow id="Flow_1qcywh3" sourceRef="determine-if-reservation-allowed-for-community-club" targetRef="Gateway_08f8zex" />
     <bpmn:sequenceFlow id="Flow_11e11wk" name="Yes" sourceRef="Gateway_08f8zex" targetRef="Activity_04y5qs3">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=approvedToMakeReservation</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -499,7 +499,7 @@
           <dc:Bounds x="964" y="632" width="73" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_085t45g_di" bpmnElement="determine-if-benefits-allow-for-home-club-reservation">
+      <bpmndi:BPMNShape id="Activity_085t45g_di" bpmnElement="determine-if-reservation-allowed-for-home-club">
         <dc:Bounds x="950" y="420" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
@@ -524,7 +524,7 @@
           <dc:Bounds x="1548" y="632" width="68" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1sl7vqk_di" bpmnElement="dDetermine-ff-chosen-club-is-in-provider-group">
+      <bpmndi:BPMNShape id="Activity_1sl7vqk_di" bpmnElement="determine-if-chosen-club-is-in-provider-group">
         <dc:Bounds x="1670" y="560" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0kcekbf_di" bpmnElement="Gateway_0kcekbf" isMarkerVisible="true">
@@ -539,7 +539,7 @@
           <dc:Bounds x="1946" y="625" width="59" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_15f2a44_di" bpmnElement="determine-if-benefits-allow-for-provider-group-travel-reservation">
+      <bpmndi:BPMNShape id="Activity_15f2a44_di" bpmnElement="determine-if-reservation-allowed-for-provider-group-travel">
         <dc:Bounds x="1810" y="420" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
@@ -549,10 +549,11 @@
           <dc:Bounds x="1746" y="326" width="87" height="53" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_077fxzo_di" bpmnElement="determine-if-benefits-allow-for-farket-club-reservation">
+      <bpmndi:BPMNShape id="Activity_077fxzo_di" bpmnElement="determine-if-reservation-allowed-for-market-club">
         <dc:Bounds x="1240" y="420" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0p4ajt5_di" bpmnElement="dDetermine-if-chosen-club-is-in-home-club-community">
+      <bpmndi:BPMNShape id="Activity_0p4ajt5_di" bpmnElement="determine-if-chosen-club-is-in-home-club-community">
         <dc:Bounds x="1390" y="560" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0zi3p5n_di" bpmnElement="Gateway_0zi3p5n" isMarkerVisible="true">
@@ -561,7 +562,7 @@
           <dc:Bounds x="1176" y="330" width="71" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1ne9z51_di" bpmnElement="determine-if-benefits-allow-for-community-club-reservation">
+      <bpmndi:BPMNShape id="Activity_1ne9z51_di" bpmnElement="determine-if-reservation-allowed-for-community-club">
         <dc:Bounds x="1530" y="420" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>

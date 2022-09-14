@@ -39,10 +39,6 @@ public class OrganizationEntity {
 
     @ManyToOne
     @JoinColumn
-    MarketEntity market;
-
-    @ManyToOne
-    @JoinColumn
     ProviderGroupEntity providerGroup;
 
     @ManyToOne
@@ -77,7 +73,6 @@ public class OrganizationEntity {
                 .append("id", id)
                 .append("name", name)
                 .append("community", community)
-                .append("market", market)
                 .append("providerGroup", providerGroup)
                 .append("addressId", addressId)
                 .toString();

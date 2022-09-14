@@ -21,7 +21,6 @@ public class OrganizationRequest {
     @NotBlank
     String name;
     Long communityId;
-    Long marketId;
     Long providerGroupId;
     @NotBlank
     String segment;

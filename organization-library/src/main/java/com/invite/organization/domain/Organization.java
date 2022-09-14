@@ -23,7 +23,6 @@ public class Organization {
     @NotBlank
     String name;
     Community community;
-    Market market;
     ProviderGroup providerGroup;
     @NotNull
     OrganizationSegment segment;
