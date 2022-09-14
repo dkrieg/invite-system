@@ -6,9 +6,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class SharedService {
+  public directAccess:boolean =false;
   constructor(private http: HttpClient) {}
 
   fetchSideMenuData<T, R>(url: string) {
+    return this.http.get<T>(url);
+  }
+
+  fetchTaskandClaim<T,R>(url:string){
     return this.http.get<T>(url);
   }
 }

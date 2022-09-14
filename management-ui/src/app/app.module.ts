@@ -6,17 +6,21 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMenuModule } from './AppMenuModule';
 import { HttpClientModule } from "@angular/common/http";
+import { ManagementComponent } from "./management-module/management.component"
+import { OrganizationComponent } from "./organization/organization.component"
 
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,ManagementComponent,OrganizationComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AppMenuModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

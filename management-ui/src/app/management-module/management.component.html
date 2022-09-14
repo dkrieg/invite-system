@@ -1,0 +1,9 @@
+<div *ngIf="!formScreen" class="row">
+    <div class="col-1 container-fluid"><button (click)="claimTask()" mat-raised-button color="primary">Claim
+            Task</button></div>
+</div>
+<div *ngIf="formScreen" class="row">
+    <div class="col-5 container-fluid">
+        <organization></organization>
+    </div>
+</div>

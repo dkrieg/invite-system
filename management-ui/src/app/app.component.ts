@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   title = 'management-ui';
   public menuData: any = [];
 
-  constructor(private sharedService: SharedService) {}
+  constructor(public sharedService: SharedService) {}
 
   ngOnInit(): void {
     this.getSideMenuData();

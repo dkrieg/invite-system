@@ -12,7 +12,8 @@
   </header>
   <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #sidenav autoFocus="false" mode="over" [(opened)]="isMenuOpen" class="sidenav">
-      <a *ngFor="let data of menuData" mat-button routerLink={{data.url}}>{{data.name}}</a>
+      <a (click)="sharedService.directAccess=true" *ngFor="let data of menuData" mat-button
+        routerLink={{data.url}}>{{data.name}}</a>
     </mat-sidenav>
     <mat-sidenav-content>
       <main>

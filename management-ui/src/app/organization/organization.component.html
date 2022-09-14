@@ -1,0 +1,88 @@
+<div class="card m-3">
+    <h5 class="card-header">Define New Organization</h5>
+    <div class="card-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="form-group col-12 mb-2">
+                    <label>Name</label>
+                    <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                        <div *ngIf="f.name.errors.required">name is required</div>
+                    </div>
+                </div>
+                <div class="row">
+                <div class="form-group col-6 mb-2">
+                    <label>Provider Group</label>
+                    <select formControlName="providerGroup" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.providerGroup.errors }">
+                        <option value="">Select Provider</option>
+                        <option value="1">Test</option>
+                        <option value="2">Test</option>
+                    </select>
+                    <div *ngIf="submitted && f.providerGroup.errors" class="invalid-feedback">
+                        <div *ngIf="f.providerGroup.errors.required">providerGroup is required</div>
+                    </div>
+                </div>
+                <div class="form-group col-6 mb-2">
+                    <label>Segment</label>
+                    <select formControlName="segment" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.segment.errors }">
+                        <option value="">Select Segment</option>
+                        <option value="1">Blue</option>
+                        <option value="2">Gold</option>
+                    </select>
+                    <div *ngIf="submitted && f.segment.errors" class="invalid-feedback">
+                        <div *ngIf="f.segment.errors.required">segment is required</div>
+                    </div>
+                </div>
+                </div>
+                
+            <div class="form-group col-12 mb-2">
+                <label>address</label>
+                <input type="text" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
+                <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                    <div *ngIf="f.address.errors.required">address is required</div>
+                </div>
+            </div>
+            <div class="form-group col-12 mb-2">
+                <label>City</label>
+                <input type="text" formControlName="city" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
+                <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                    <div *ngIf="f.city.errors.required">city is required</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6 mb-2">
+                    <label>State</label>
+                    <select formControlName="state" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
+                        <option value="">Select State</option>
+                        <option value="ks">Kansas</option>
+                        <option value="tx">Texas</option>
+                    </select>
+                    <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                        <div *ngIf="f.state.errors.required">State is required</div>
+                    </div>
+                </div>
+                <div class="form-group col-6 mb-2">
+                    <label>Zip Code</label>
+                    <select formControlName="zip" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zip.errors }">
+                        <option value="">Select Zip</option>
+                        <option value="1">66615</option>
+                        <option value="2">66612</option>
+                    </select>
+                    <div *ngIf="submitted && f.zip.errors" class="invalid-feedback">
+                        <div *ngIf="f.zip.errors.required">Zip Code is required</div>
+                    </div>
+                </div>
+
+
+            </div>
+       
+        </div>
+        
+            
+            <div class="text-center">
+                <button class="btn btn-primary mr-2">Submit</button>&nbsp;&nbsp;
+                <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
