@@ -10,6 +10,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -43,6 +44,10 @@ public final class AddressEntity {
     @JoinColumn(nullable = false)
     ZipCodeEntity zipCode;
 
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(nullable = false)
+    GeoLocationEntity geoLocation;
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
@@ -52,6 +57,7 @@ public final class AddressEntity {
                 .append("city", city)
                 .append("state", state)
                 .append("zipCode", zipCode)
+                .append("geoLocation", geoLocation)
                 .toString();
     }
 

@@ -18,3 +18,12 @@ spring:
   h2.console:
     enabled: true
     path: /h2-console
+
+geo-location:
+  key: bbd2251043mshf962c0cc0907331p12b4aajsn9708a7b01483
+  forward:
+    endpoint: https://forward-reverse-geocoding.p.rapidapi.com/v1/forward?street={line1}&city={city}&state={state}&postalcode={postalCode}&addressdetails=1&polygon_threshold=0.0
+    host: forward-reverse-geocoding.p.rapidapi.com
+  distance:
+    endpoint: https://lat-long-distance-calculator.p.rapidapi.com/dist?lat1={lat1}&long1={lon1}&lat2={lat2}&long2={lon2}&unit=miles
+    host: lat-long-distance-calculator.p.rapidapi.com

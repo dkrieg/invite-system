@@ -2,8 +2,10 @@ package com.invite.address.controller;
 
 import com.invite.address.domain.Address;
 import com.invite.address.domain.AddressRequest;
+import com.invite.address.domain.Distance;
 import com.invite.address.domain.State;
 import com.invite.address.domain.ZipCode;
+import com.invite.address.gateway.GeoLocationGateway;
 import com.invite.address.service.AddressService;
 import com.invite.address.service.StateService;
 import com.invite.address.service.ZipCodeService;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -78,5 +81,11 @@ public class AddressController {
         return service.deleteById(addressId)
                 ? ResponseEntity.noContent().build()
                 : ResponseEntity.notFound().build();
+    }
+
+    @GetMapping(path = "/calculate-distance")
+    @Operation(description = "calculate-distance", summary = "Calculate Distance Between 2 Addresses")
+    ResponseEntity<Distance> calculateDistance(@RequestParam("start") Long startId, @RequestParam("end") Long endId) {
+        return ResponseEntity.ok(service.calculateDistance(startId, endId));
     }
 }
