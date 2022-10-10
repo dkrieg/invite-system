@@ -20,7 +20,7 @@ spring:
     path: /h2-console
 
 geo-location:
-  key: bbd2251043mshf962c0cc0907331p12b4aajsn9708a7b01483
+  key: ${API_KEY}
   forward:
     endpoint: https://forward-reverse-geocoding.p.rapidapi.com/v1/forward?street={line1}&city={city}&state={state}&postalcode={postalCode}&addressdetails=1&polygon_threshold=0.0
     host: forward-reverse-geocoding.p.rapidapi.com
