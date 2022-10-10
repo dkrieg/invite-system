@@ -22,7 +22,7 @@ dependencies {
     implementation project(':job-worker-library')
     implementation project(':member-library')
     implementation project(':membership-library')
-    implementation project(':organization-library')
+    implementation project(':club-library')
     implementation 'io.camunda:spring-zeebe-starter:8.0.7'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-web'

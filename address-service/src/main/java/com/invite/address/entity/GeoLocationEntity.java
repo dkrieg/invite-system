@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PRIVATE;
 
 @Setter
@@ -24,7 +25,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Table(name = "GEO_LOCATION")
 public class GeoLocationEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = IDENTITY)
     Long id;
     Double latitude;
     Double longitude;

@@ -27,7 +27,7 @@ dependencies {
     implementation project(':address-library')
     implementation project(':member-library')
     implementation project(':benefit-library')
-    implementation project(':organization-library')
+    implementation project(':club-library')
 }
 test {
     useJUnitPlatform()

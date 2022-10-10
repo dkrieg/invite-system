@@ -7,7 +7,7 @@ docker build -f gateway-service\Dockerfile -t invite/gateway-service:latest gate
 docker build -f job-worker-service\Dockerfile -t invite/job-worker-service:latest job-worker-service\.
 docker build -f member-service\Dockerfile -t invite/member-service:latest member-service\.
 docker build -f membership-service\Dockerfile -t invite/membership-service:latest membership-service\.
-docker build -f organization-service\Dockerfile -t invite/organization-service:latest organization-service\.
+docker build -f club-service\Dockerfile -t invite/club-service:latest club-service\.
 docker build -f process-service\Dockerfile -t invite/process-service:latest process-service\.
 
 
@@ -21,7 +21,7 @@ docker compose up --wait --timeout 60 address-service
 docker compose up --wait --timeout 60 amenity-service
 docker compose up --wait --timeout 60 benefit-service
 docker compose up --wait --timeout 60 member-service
-docker compose up --wait --timeout 60 organization-service
+docker compose up --wait --timeout 60 club-service
 docker compose up --wait --timeout 60 membership-service
 docker compose up --wait --timeout 60 job-worker-service
 docker compose up --wait --timeout 60 process-service

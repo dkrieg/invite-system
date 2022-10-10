@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.PersistenceException;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -32,8 +33,8 @@ class AmenityDomainServiceImpl implements AmenityDomainService {
     }
 
     @Override
-    public Collection<Amenity> fetchAllByOrganization(Long organizationId) {
-        return repository.findAllByOrganizationId(organizationId)
+    public Collection<Amenity> fetchAllById(List<Long> ids) {
+        return repository.findAllById(ids)
                 .stream()
                 .map(mapper::toDomain)
                 .collect(Collectors.toList());

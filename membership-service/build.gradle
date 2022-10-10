@@ -17,11 +17,12 @@ dependencyManagement {
 
 dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation project(':domain-service-library')
     implementation project(':address-library')
     implementation project(':member-library')
     implementation project(':membership-library')
     implementation project(':benefit-library')
-    implementation project(':organization-library')
+    implementation project(':club-library')
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'

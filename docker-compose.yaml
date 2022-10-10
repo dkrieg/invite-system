@@ -59,6 +59,26 @@ services:
       discovery-service:
         condition: service_started
 
+  community-service:
+    image: invite/community-service:latest
+    container_name: community-service
+    hostname: community-service
+    environment:
+      - management.server.port=8080
+      - spring.config.import=optional:configserver:http://configuration-service:8980
+      - EUREKA_URI=http://discovery-service:8981/eureka
+    healthcheck:
+      test: curl --fail http://localhost:8080/actuator/health || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+    depends_on:
+      configuration-service:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+
   configuration-service:
     image: invite/configuration-service:latest
     container_name: configuration-service
@@ -122,7 +142,7 @@ services:
         condition: service_started
       membership-service:
         condition: service_started
-      organization-service:
+      club-service:
         condition: service_started
       process-service:
         condition: service_started
@@ -145,6 +165,46 @@ services:
     depends_on:
       zeebe:
         condition: service_started
+      configuration-service:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+
+  line-of-business-service:
+    image: invite/line-of-business-service:latest
+    container_name: line-of-business-service
+    hostname: line-of-business-service
+    environment:
+      - management.server.port=8080
+      - spring.config.import=optional:configserver:http://configuration-service:8980
+      - EUREKA_URI=http://discovery-service:8981/eureka
+    healthcheck:
+      test: curl --fail http://localhost:8080/actuator/health || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+    depends_on:
+      configuration-service:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+
+  market-service:
+    image: invite/market-service:latest
+    container_name: market-service
+    hostname: market-service
+    environment:
+      - management.server.port=8080
+      - spring.config.import=optional:configserver:http://configuration-service:8980
+      - EUREKA_URI=http://discovery-service:8981/eureka
+    healthcheck:
+      test: curl --fail http://localhost:8080/actuator/health || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+    depends_on:
       configuration-service:
         condition: service_healthy
       discovery-service:
@@ -195,13 +255,13 @@ services:
         condition: service_started
       member-service:
         condition: service_started
-      organization-service:
+      club-service:
         condition: service_started
 
-  organization-service:
-    image: invite/organization-service:latest
-    container_name: organization-service
-    hostname: organization-service
+  club-service:
+    image: invite/club-service:latest
+    container_name: club-service
+    hostname: club-service
     environment:
       - management.server.port=8080
       - spring.config.import=optional:configserver:http://configuration-service:8980
@@ -239,6 +299,26 @@ services:
     depends_on:
       tasklist:
         condition: service_started
+      configuration-service:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+
+  provider-group-service:
+    image: invite/provider-group-service:latest
+    container_name: provider-group-service
+    hostname: provider-group-service
+    environment:
+      - management.server.port=8080
+      - spring.config.import=optional:configserver:http://configuration-service:8980
+      - EUREKA_URI=http://discovery-service:8981/eureka
+    healthcheck:
+      test: curl --fail http://localhost:8080/actuator/health || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+    depends_on:
       configuration-service:
         condition: service_healthy
       discovery-service:

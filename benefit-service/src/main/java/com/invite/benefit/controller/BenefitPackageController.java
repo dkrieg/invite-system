@@ -1,5 +1,6 @@
 package com.invite.benefit.controller;
 
+import com.invite.benefit.domain.Benefit;
 import com.invite.benefit.domain.BenefitPackage;
 import com.invite.benefit.domain.BenefitPackageRequest;
 import com.invite.benefit.service.BenefitPackageDomainService;
@@ -14,10 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Collection;
+import java.util.List;
 
 import static lombok.AccessLevel.PRIVATE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -35,11 +38,12 @@ public class BenefitPackageController {
         return service.fetchAll();
     }
 
-    @GetMapping(path = "/with-organization/{organizationId}", produces = APPLICATION_JSON_VALUE)
-    @Operation(description = "get-benefits-with-organization", summary = "Get All Benefits")
-    Collection<BenefitPackage> getBenefitPackagesWithOrganization(@PathVariable("organizationId") Long organizationId) {
-        return service.fetchAllByOrganizationId(organizationId);
+    @GetMapping(path = "/ids", produces = APPLICATION_JSON_VALUE)
+    @Operation(description = "get-benefit-packages-in-list", summary = "Get All Benefit Packages By ID List")
+    Collection<BenefitPackage> getBenefitPackagesByIds(@RequestParam("id") List<Long> ids) {
+        return service.fetchAllById(ids);
     }
+
 
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @Operation(description = "create-benefit-package", summary = "Create New Benefit Package")
@@ -54,6 +58,12 @@ public class BenefitPackageController {
     @Operation(description = "get-benefit-package", summary = "Get Benefit Package By ID")
     ResponseEntity<BenefitPackage> getBenefitPackage(@PathVariable("id") Long id) {
         return ResponseEntity.of(service.fetchById(id));
+    }
+
+    @GetMapping(path = "/by-name/{name}", produces = APPLICATION_JSON_VALUE)
+    @Operation(description = "get-benefit-package-by-name", summary = "Get Benefit Package By Name")
+    ResponseEntity<BenefitPackage> getBenefitPackageByName(@PathVariable("name") String name) {
+        return ResponseEntity.of(service.fetchByName(name));
     }
 
     @PutMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)

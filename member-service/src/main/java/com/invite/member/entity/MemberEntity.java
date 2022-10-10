@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PRIVATE;
 
 @Setter
@@ -27,7 +28,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Table(name = "MEMBER")
 public class MemberEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = IDENTITY)
     Long id;
     String firstName;
     String lastName;

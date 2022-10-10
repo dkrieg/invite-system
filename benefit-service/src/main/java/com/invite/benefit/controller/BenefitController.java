@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Collection;
+import java.util.List;
 
 import static lombok.AccessLevel.PRIVATE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -44,19 +46,19 @@ public class BenefitController {
 
     @GetMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
     @Operation(description = "get-benefit", summary = "Get Benefit By ID")
-    ResponseEntity<Benefit> getBenefit(@PathVariable("id") String id) {
+    ResponseEntity<Benefit> getBenefit(@PathVariable("id") Long id) {
         return ResponseEntity.of(service.fetchById(id));
     }
 
     @PutMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @Operation(description = "update-benefit", summary = "Update Benefit By ID")
-    ResponseEntity<Benefit> updateBenefit(@PathVariable("id") String id, @RequestBody BenefitRequest request) {
+    ResponseEntity<Benefit> updateBenefit(@PathVariable("id") Long id, @RequestBody BenefitRequest request) {
         return ResponseEntity.of(service.updateById(id, request));
     }
 
     @DeleteMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
     @Operation(description = "delete-benefit", summary = "Delete Benefit By ID")
-    ResponseEntity<Void> deleteBenefit(@PathVariable("id") String id) {
+    ResponseEntity<Void> deleteBenefit(@PathVariable("id") Long id) {
         return service.deleteById(id)
                 ? ResponseEntity.noContent().build()
                 : ResponseEntity.notFound().build();

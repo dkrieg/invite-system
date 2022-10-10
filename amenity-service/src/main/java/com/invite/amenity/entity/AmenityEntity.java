@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PRIVATE;
 
 @Setter
@@ -28,14 +29,9 @@ import static lombok.AccessLevel.PRIVATE;
 @Table(name = "AMENITY")
 public class AmenityEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = IDENTITY)
     Long id;
-
     String name;
-    Long organizationId;
-
-    @ManyToOne(optional = false)
-    AmenityTypeEntity type;
 
     @Override
     public boolean equals(Object o) {
@@ -62,7 +58,6 @@ public class AmenityEntity {
         return new ToStringBuilder(this)
                 .append("id", id)
                 .append("name", name)
-                .append("type", type)
                 .toString();
     }
 }

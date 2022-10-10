@@ -29,7 +29,7 @@ public class MemberController {
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     @Operation(description = "get-members", summary = "Get All Members")
-    Collection<Member> getProviderGroups() {
+    Collection<Member> getMembers() {
         return service.fetchAll();
     }
 

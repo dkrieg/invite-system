@@ -4,12 +4,19 @@ import com.invite.benefit.domain.BenefitPackage;
 import com.invite.member.domain.Member;
 import com.invite.membership.domain.Membership;
 import com.invite.membership.domain.MembershipRequest;
+import com.invite.membership.entity.MembershipBenefitPackageEntity;
 import com.invite.membership.entity.MembershipEntity;
+import com.invite.membership.repository.MembershipBenefitPackageRepository;
 import com.invite.membership.repository.MembershipLevelRepository;
-import com.invite.organization.domain.Organization;
+import com.invite.club.domain.Club;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -17,14 +24,15 @@ import static lombok.AccessLevel.PRIVATE;
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = PRIVATE)
 public class MembershipMapper {
-    MembershipLevelRepository repository;
+    MembershipLevelRepository membershipLevelRepository;
+    MembershipBenefitPackageRepository membershipBenefitPackageRepository;
 
-    public Membership toDomain(MembershipEntity entity, Member member, BenefitPackage benefitPackage, Organization homeClub) {
+    public Membership toDomain(MembershipEntity entity, Member member, List<BenefitPackage> benefitPackages, Club homeClub) {
         return Membership.builder()
                 .id(entity.getId())
                 .loginId(entity.getLoginId())
                 .member(member)
-                .benefitPackage(benefitPackage)
+                .benefitPackages(benefitPackages)
                 .homeClub(homeClub)
                 .level(entity.getLevel().getId())
                 .build();
@@ -37,9 +45,14 @@ public class MembershipMapper {
     public MembershipEntity toEntity(MembershipEntity entity, MembershipRequest request) {
         entity.setLoginId(request.getLoginId());
         entity.setMemberId(request.getMemberId());
-        entity.setBenefitPackageId(request.getBenefitPackageId());
+        entity.setBenefitPackages(Optional.ofNullable(request.getBenefitPackageIds())
+                .map(l -> l
+                        .stream()
+                        .map(id -> membershipBenefitPackageRepository.findById(id).orElseGet(() -> new MembershipBenefitPackageEntity(id)))
+                        .collect(Collectors.toSet()))
+                .orElseGet(Set::of));
         entity.setHomeClubId(request.getHomeClubId());
-        entity.setLevel(repository.getReferenceById(request.getLevel()));
+        entity.setLevel(membershipLevelRepository.getReferenceById(request.getLevel()));
         return entity;
     }
 }

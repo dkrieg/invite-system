@@ -21,8 +21,8 @@ import static lombok.AccessLevel.PRIVATE;
 public class BenefitPackageRequest {
     @NotBlank
     String name;
-    @NotNull
-    Long organizationId;
+    boolean isLocal;
+    boolean isTravel;
     @NotEmpty
-    List<String> benefitsIds;
+    List<Long> benefitsIds;
 }

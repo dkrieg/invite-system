@@ -29,7 +29,10 @@ dependencies {
     implementation project(':benefit-library')
     implementation project(':member-library')
     implementation project(':membership-library')
-    implementation project(':organization-library')
+    implementation project(':club-library')
+    implementation project(':community-library')
+    implementation project(':market-library')
+    implementation project(':provider-group-library')
 }
 test {
     useJUnitPlatform()

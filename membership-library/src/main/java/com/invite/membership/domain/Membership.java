@@ -2,7 +2,7 @@ package com.invite.membership.domain;
 
 import com.invite.benefit.domain.BenefitPackage;
 import com.invite.member.domain.Member;
-import com.invite.organization.domain.Organization;
+import com.invite.club.domain.Club;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +11,8 @@ import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import java.util.List;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -29,7 +31,7 @@ public class Membership {
     @NotNull
     Member member;
     @NotNull
-    BenefitPackage benefitPackage;
+    List<BenefitPackage> benefitPackages;
     @NotNull
-    Organization homeClub;
+    Club homeClub;
 }

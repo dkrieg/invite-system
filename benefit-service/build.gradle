@@ -17,6 +17,7 @@ dependencyManagement {
 
 dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation project(':domain-service-library')
     implementation project(':benefit-library')
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-web'

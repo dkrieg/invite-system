@@ -19,8 +19,4 @@ import static lombok.AccessLevel.PRIVATE;
 public class AmenityRequest {
     @NotBlank
     String name;
-    @NotBlank
-    String type;
-    @NotNull
-    Long organizationId;
 }

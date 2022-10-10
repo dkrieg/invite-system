@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface AmenityRepository extends JpaRepository<AmenityEntity, Long> {
 
-    List<AmenityEntity> findAllByOrganizationId(Long organizationId);
 }

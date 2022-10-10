@@ -18,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PRIVATE;
 
 @Setter
@@ -30,7 +31,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Table(name = "ADDRESS")
 public final class AddressEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = IDENTITY)
     Long id;
     String line1;
     String line2;

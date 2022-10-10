@@ -15,6 +15,7 @@ import static lombok.AccessLevel.PRIVATE;
 public class BenefitMapper {
     public Benefit toDomain(BenefitEntity entity) {
         return Benefit.builder()
+                .id(entity.getId())
                 .code(entity.getCode())
                 .description(entity.getDescription())
                 .build();

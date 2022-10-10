@@ -21,8 +21,4 @@ public class Amenity {
     Long id;
     @NotBlank
     String name;
-    @NotBlank
-    String type;
-    @NotNull
-    Long organizationId;
 }

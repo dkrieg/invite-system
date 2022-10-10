@@ -28,12 +28,6 @@ spring:
             - Path=/addresses/**
           filters:
             - RewritePath=/addresses/(?<path>.*), /$\{path}
-        - id: organization-service
-          uri: lb://organization-service
-          predicates:
-            - Path=/organizations/**
-          filters:
-            - RewritePath=/organizations/(?<path>.*), /$\{path}
         - id: amenity-service
           uri: lb://amenity-service
           predicates:
@@ -46,12 +40,30 @@ spring:
             - Path=/benefits/**
           filters:
             - RewritePath=/benefits/(?<path>.*), /$\{path}
-        - id: process-service
-          uri: lb://process-service
+        - id: club-service
+          uri: lb://club-service
           predicates:
-            - Path=/processes/**
+            - Path=/clubs/**
           filters:
-            - RewritePath=/processes/(?<path>.*), /$\{path}
+            - RewritePath=/clubs/(?<path>.*), /$\{path}
+        - id: community-service
+          uri: lb://community-service
+          predicates:
+            - Path=/communities/**
+          filters:
+            - RewritePath=/communities/(?<path>.*), /$\{path}
+        - id: line-of-business-service
+          uri: lb://line-of-business-service
+          predicates:
+            - Path=/lines-of-business/**
+          filters:
+            - RewritePath=/lines-of-business/(?<path>.*), /$\{path}
+        - id: market-service
+          uri: lb://market-service
+          predicates:
+            - Path=/markets/**
+          filters:
+            - RewritePath=/markets/(?<path>.*), /$\{path}
         - id: member-service
           uri: lb://member-service
           predicates:
@@ -64,21 +76,41 @@ spring:
             - Path=/memberships/**
           filters:
             - RewritePath=/memberships/(?<path>.*), /$\{path}
+        - id: process-service
+          uri: lb://process-service
+          predicates:
+            - Path=/processes/**
+          filters:
+            - RewritePath=/processes/(?<path>.*), /$\{path}
+        - id: provider-group-service
+          uri: lb://provider-group-service
+          predicates:
+            - Path=/provider-groups/**
+          filters:
+            - RewritePath=/provider-groups/(?<path>.*), /$\{path}
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
     urls:
       - name: addresses
         url: /v3/api-docs/addresses
-      - name: organizations
-        url: /v3/api-docs/organizations
       - name: amenities
         url: /v3/api-docs/amenities
       - name: benefits
         url: /v3/api-docs/benefits
-      - name: processes
-        url: /v3/api-docs/processes
+      - name: clubs
+        url: /v3/api-docs/clubs
+      - name: communities
+        url: /v3/api-docs/communities
+      - name: lines-of-business
+        url: /v3/api-docs/lines-of-business
+      - name: markets
+        url: /v3/api-docs/markets
       - name: members
         url: /v3/api-docs/members
       - name: memberships
         url: /v3/api-docs/memberships
+      - name: processes
+        url: /v3/api-docs/processes
+      - name: provider-groups
+        url: /v3/api-docs/provider-groups

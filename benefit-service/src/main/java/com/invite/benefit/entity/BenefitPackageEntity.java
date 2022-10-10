@@ -19,6 +19,7 @@ import javax.persistence.Table;
 import java.util.Set;
 
 import static javax.persistence.FetchType.EAGER;
+import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PRIVATE;
 
 @Setter
@@ -31,11 +32,11 @@ import static lombok.AccessLevel.PRIVATE;
 @Table(name = "BENEFIT_PACKAGE")
 public class BenefitPackageEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = IDENTITY)
     Long id;
     String name;
-    @Column(nullable = false)
-    Long organizationId;
+    boolean isLocal;
+    boolean isTravel;
     @OneToMany(fetch = EAGER)
     Set<BenefitEntity> benefits;
 

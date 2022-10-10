@@ -19,6 +19,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import java.util.Set;
 
+import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PRIVATE;
 
 @Setter
@@ -31,7 +32,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Table(name = "ZIPCODE", uniqueConstraints = @UniqueConstraint(columnNames = {"postalCode", "plusFour"}))
 public final class ZipCodeEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = IDENTITY)
     Long id;
     String postalCode;
     String plusFour;

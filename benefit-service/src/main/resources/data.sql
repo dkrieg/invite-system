@@ -15,4 +15,9 @@ INSERT INTO BENEFIT (CODE, DESCRIPTION) VALUES ('B0014', 'Access to Full price d
 INSERT INTO BENEFIT (CODE, DESCRIPTION) VALUES ('B0015', '12 rounds per year with no more that 2 in a month - Access Fee');
 INSERT INTO BENEFIT (CODE, DESCRIPTION) VALUES ('B0016', 'Excludes clubs within a 50-mile radius of members home address');
 INSERT INTO BENEFIT (CODE, DESCRIPTION) VALUES ('B0017', '25 day advance tee times');
-INSERT INTO BENEFIT (CODE, DESCRIPTION) VALUES ('B0018', 'Specific club set available for play');
+INSERT INTO BENEFIT (CODE, DESCRIPTION) VALUES ('B0018', 'Home Club Dining 50% Off');
+INSERT INTO BENEFIT (CODE, DESCRIPTION) VALUES ('B0019', 'Evening Dining 25% Off');
+INSERT INTO BENEFIT (CODE, DESCRIPTION) VALUES ('B0020', 'Play Away Access By Clubs (Morning and Afternoon)');
+INSERT INTO BENEFIT (CODE, DESCRIPTION) VALUES ('B0021', 'Tiered Club Rates based on Segmentation');
+INSERT INTO BENEFIT (CODE, DESCRIPTION) VALUES ('B0022', 'Dining Access Play Away Member All Clubs');
+INSERT INTO BENEFIT (CODE, DESCRIPTION) VALUES ('B0023', '4 rounds per month at Home Club');

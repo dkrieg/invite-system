@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -16,6 +17,8 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor
 @FieldDefaults(level = PRIVATE)
 public class Benefit {
+    @NotNull
+    Long id;
     @NotBlank
     String code;
     @NotBlank

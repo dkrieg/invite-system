@@ -31,8 +31,8 @@ class BenefitPackageDomainServiceImpl implements BenefitPackageDomainService {
     }
 
     @Override
-    public Collection<BenefitPackage> fetchAllByOrganizationId(Long organizationId) {
-        return repository.findAllByOrganizationId(organizationId)
+    public Collection<BenefitPackage> fetchAllById(Iterable<Long> ids) {
+        return repository.findAllById(ids)
                 .stream()
                 .map(mapper::toDomain)
                 .collect(Collectors.toList());
@@ -50,6 +50,11 @@ class BenefitPackageDomainServiceImpl implements BenefitPackageDomainService {
     @Override
     public Optional<BenefitPackage> fetchById(Long id) {
         return repository.findById(id).map(mapper::toDomain);
+    }
+
+    @Override
+    public Optional<BenefitPackage> fetchByName(String name) {
+        return repository.findByName(name).map(mapper::toDomain);
     }
 
     @Override

@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Collection;
+import java.util.List;
 
 import static lombok.AccessLevel.PRIVATE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -33,10 +35,10 @@ public class AmenityController {
         return service.fetchAll();
     }
 
-    @GetMapping(path = "/with-organization/{organizationId}", produces = APPLICATION_JSON_VALUE)
-    @Operation(description = "get-amenities-with-organization", summary = "Get All Amenities With Organization")
-    Collection<Amenity> getAmenitiesWithOrganization(@PathVariable("organizationId") Long organizationId) {
-        return service.fetchAllByOrganization(organizationId);
+    @GetMapping(path = "/ids", produces = APPLICATION_JSON_VALUE)
+    @Operation(description = "get-amenities-in-list", summary = "Get All Amenities By ID List")
+    Collection<Amenity> getAmenitiesByIds(@RequestParam("id") List<Long> ids) {
+        return service.fetchAllById(ids);
     }
 
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
