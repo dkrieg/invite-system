@@ -1,0 +1,66 @@
+{
+  "BenefitPackage": {
+
+  },
+  "Clubs": [
+    {
+      "name": "The Clubs of Kingwood",
+      "phoneNumber": "281-358-2171",
+      "marketIds": [
+        82
+      ],
+      "communityIds": [
+        14
+      ],
+      "providerGroupIds": [
+        18
+      ],
+      "amenityIds": [
+        1,
+        2,
+        3
+      ],
+      "benefitPackageIds": [
+        1,
+        2
+      ],
+      "segment": "Green",
+      "lineOfBusinessId": 2,
+      "address": {
+        "line1": "1700 Lake Kingwood Trl",
+        "city": "Kingwood",
+        "state": "TX",
+        "zipCode": {
+          "postalCode": "77339"
+        }
+      },
+      "owned": true,
+      "alliance": false,
+      "active": true
+    }
+  ],
+  "Member": {
+    "loginId": "member3",
+    "firstName": "Bob",
+    "lastName": "Smith",
+    "email": null,
+    "homeAddress": {
+      "line1": "3032 Falls Dr",
+      "city": "Dallas",
+      "state": "TX",
+      "zipCode": {
+        "postalCode": "75211"
+      }
+    }
+  },
+  "Membership": {
+    "level": "GOLD",
+    "memberIds": [
+      3
+    ],
+    "benefitPackageId": 2,
+    "homeClubId": 1
+  },
+  "Reservation": {
+  }
+}

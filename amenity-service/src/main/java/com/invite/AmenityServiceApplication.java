@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @OpenAPIDefinition(info = @Info(
         title = "amenity-service",
-        description = "This application provides repository access to Amenity and Amenity Restriction entities."
+        version = "1.0",
+        description = "This application provides repository access to Amenity entities."
 ))
 @SpringBootApplication
 public class AmenityServiceApplication {

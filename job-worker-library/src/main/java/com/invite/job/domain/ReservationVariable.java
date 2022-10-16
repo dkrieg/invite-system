@@ -1,6 +1,5 @@
 package com.invite.job.domain;
 
-import com.invite.club.domain.Club;
 import com.invite.reservation.domain.Reservation;
 import lombok.AllArgsConstructor;
 import lombok.Data;

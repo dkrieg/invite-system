@@ -1,0 +1,151 @@
+openapi: 3.0.1
+info:
+  title: provider-group-service
+  version: '1.0'
+  description: This application provides repository access to Provider Group entities.
+servers:
+  - url: http://localhost:8983
+paths:
+  /provider-groups/{id}:
+    get:
+      tags:
+        - provider-group-controller
+      summary: Get Provider Group By ID
+      description: get-provider-group
+      operationId: getProviderGroup
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderGroup'
+    put:
+      tags:
+        - provider-group-controller
+      summary: Update Provider Group By ID
+      description: update-provider-group
+      operationId: updateProviderGroup
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProviderGroupRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderGroup'
+    delete:
+      tags:
+        - provider-group-controller
+      summary: Delete Provider Group By ID
+      description: delete-provider-group
+      operationId: deleteProviderGroup
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+  /provider-groups/:
+    get:
+      tags:
+        - provider-group-controller
+      summary: Get All Provider Groups
+      description: get-provider-groups
+      operationId: getProviderGroups
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProviderGroup'
+    post:
+      tags:
+        - provider-group-controller
+      summary: Create New Provider Group
+      description: create-provider-group
+      operationId: createProviderGroup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProviderGroupRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderGroup'
+  /provider-groups/ids:
+    get:
+      tags:
+        - provider-group-controller
+      summary: Get All Provider Groups By ID List
+      description: get-provider-groups-in-list
+      operationId: getProviderGroupsByIds
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProviderGroup'
+components:
+  schemas:
+    ProviderGroupRequest:
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+    ProviderGroup:
+      required:
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string

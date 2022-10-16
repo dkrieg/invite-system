@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @OpenAPIDefinition(info = @Info(
         title = "benefit-service",
-        description = "This application provides repository access to Benefit, Benefit Package and Restriction entities."
+        version = "1.0",
+        description = "This application provides repository access to Benefit nd Benefit Package entities."
 ))
 @SpringBootApplication
 public class BenefitServiceApplication {

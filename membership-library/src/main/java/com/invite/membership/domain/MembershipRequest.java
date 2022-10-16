@@ -1,6 +1,5 @@
 package com.invite.membership.domain;
 
-import com.invite.benefit.domain.BenefitPackage;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +8,6 @@ import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
 import java.util.List;
 
 import static lombok.AccessLevel.PRIVATE;

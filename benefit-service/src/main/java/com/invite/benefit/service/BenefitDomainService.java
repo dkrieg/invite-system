@@ -5,8 +5,6 @@ import com.invite.benefit.domain.BenefitRequest;
 import com.invite.domain.service.DomainService;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
-
 @Transactional
 public interface BenefitDomainService extends DomainService<Benefit, BenefitRequest, Long> {
 }

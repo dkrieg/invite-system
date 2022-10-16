@@ -8,6 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @OpenAPIDefinition(info = @Info(
         title = "reservation-service",
+        version = "1.0",
         description = "This application provides repository access to Reservation entities."
 ))
 @SpringBootApplication

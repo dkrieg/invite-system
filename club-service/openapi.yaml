@@ -1,0 +1,460 @@
+openapi: 3.0.1
+info:
+  title: club-service
+  version: '1.0'
+  description: This application provides repository access to Club entities.
+servers:
+  - url: http://localhost:8983
+paths:
+  /clubs/{id}:
+    get:
+      tags:
+        - club-controller
+      summary: Get Club By ID
+      description: get-club
+      operationId: getClub
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Club'
+    put:
+      tags:
+        - club-controller
+      summary: Update Club By ID
+      description: update-club
+      operationId: updateClub
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClubRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Club'
+    delete:
+      tags:
+        - club-controller
+      summary: Delete Club By ID
+      description: delete-club
+      operationId: deleteClub
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+  /clubs/:
+    get:
+      tags:
+        - club-controller
+      summary: Get All Clubs
+      description: get-clubs
+      operationId: getClubs
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Club'
+    post:
+      tags:
+        - club-controller
+      summary: Create New Club
+      description: create-club
+      operationId: createClub
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClubRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Club'
+  /clubs/club-segments:
+    get:
+      tags:
+        - club-segment-controller
+      summary: Get All Club Segments
+      description: get-club-segments
+      operationId: getClubSegments
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClubSegment'
+    post:
+      tags:
+        - club-segment-controller
+      summary: Create New Club Segment
+      description: create-club-segment
+      operationId: createClubSegment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClubSegmentRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubSegment'
+  /clubs/club-segments/{id}:
+    get:
+      tags:
+        - club-segment-controller
+      summary: Get Club Segment By ID
+      description: get-club-segment
+      operationId: getClubSegment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClubSegment'
+    delete:
+      tags:
+        - club-segment-controller
+      summary: Delete Club Segment By ID
+      description: delete-club-segment
+      operationId: deleteClubSegment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /clubs/by-name/{name}:
+    get:
+      tags:
+        - club-controller
+      summary: Get Club By Name
+      description: get-club
+      operationId: getClubByName
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Club'
+components:
+  schemas:
+    AddressRequest:
+      required:
+        - city
+        - line1
+        - state
+        - zipCode
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipCode:
+          $ref: '#/components/schemas/ZipCode'
+    ClubRequest:
+      required:
+        - address
+        - name
+        - segment
+      type: object
+      properties:
+        name:
+          type: string
+        phoneNumber:
+          type: string
+        website:
+          type: string
+        marketIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        communityIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        providerGroupIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        amenityIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        benefitPackageIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        segment:
+          type: string
+        lineOfBusinessId:
+          type: integer
+          format: int64
+        address:
+          $ref: '#/components/schemas/AddressRequest'
+        owned:
+          type: boolean
+        alliance:
+          type: boolean
+        active:
+          type: boolean
+    ZipCode:
+      required:
+        - postalCode
+      type: object
+      properties:
+        postalCode:
+          type: string
+        plusFour:
+          type: string
+    Address:
+      required:
+        - city
+        - id
+        - line1
+        - state
+        - zipCode
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        line1:
+          type: string
+        line2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipCode:
+          $ref: '#/components/schemas/ZipCode'
+        geoLocation:
+          $ref: '#/components/schemas/GeoLocation'
+    Amenity:
+      required:
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    Benefit:
+      required:
+        - code
+        - description
+        - id
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        description:
+          type: string
+    BenefitPackage:
+      required:
+        - benefits
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        benefits:
+          type: array
+          items:
+            $ref: '#/components/schemas/Benefit'
+    Club:
+      required:
+        - address
+        - id
+        - name
+        - segment
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        phoneNumber:
+          type: string
+        website:
+          type: string
+        markets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Market'
+        communities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Community'
+        providerGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProviderGroup'
+        amenities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Amenity'
+        benefitPackages:
+          type: array
+          items:
+            $ref: '#/components/schemas/BenefitPackage'
+        segment:
+          $ref: '#/components/schemas/ClubSegment'
+        lineOfBusiness:
+          $ref: '#/components/schemas/LineOfBusiness'
+        address:
+          $ref: '#/components/schemas/Address'
+        owned:
+          type: boolean
+        alliance:
+          type: boolean
+        active:
+          type: boolean
+    ClubSegment:
+      required:
+        - color
+        - name
+      type: object
+      properties:
+        color:
+          type: string
+        name:
+          type: string
+    Community:
+      required:
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    GeoLocation:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+    LineOfBusiness:
+      required:
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    Market:
+      required:
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    ProviderGroup:
+      required:
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    ClubSegmentRequest:
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string

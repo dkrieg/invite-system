@@ -2,11 +2,10 @@ package com.invite.membership.service;
 
 import com.invite.membership.domain.Membership;
 import com.invite.membership.domain.MembershipRequest;
-import com.invite.membership.entity.MembershipBenefitPackageEntity;
 import com.invite.membership.entity.MembershipMemberEntity;
 import com.invite.membership.gateway.BenefitServiceGateway;
-import com.invite.membership.gateway.MemberServiceGateway;
 import com.invite.membership.gateway.ClubServiceGateway;
+import com.invite.membership.gateway.MemberServiceGateway;
 import com.invite.membership.mapper.MembershipMapper;
 import com.invite.membership.repository.MembershipRepository;
 import lombok.RequiredArgsConstructor;

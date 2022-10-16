@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 
 @OpenAPIDefinition(info = @Info(
         title = "address-service",
+        version = "1.0",
         description = "This application provides repository access to Address, City, State, and Zip Code entities."
 ))
 @SpringBootApplication

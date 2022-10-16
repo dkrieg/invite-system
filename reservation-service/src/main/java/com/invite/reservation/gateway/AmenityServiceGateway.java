@@ -1,7 +1,6 @@
 package com.invite.reservation.gateway;
 
 import com.invite.amenity.domain.Amenity;
-import com.invite.club.domain.Club;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

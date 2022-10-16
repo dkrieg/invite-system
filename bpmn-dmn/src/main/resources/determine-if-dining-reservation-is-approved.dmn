@@ -27,21 +27,6 @@
         </inputExpression>
       </input>
       <output id="Output_1" label="Is Approved" name="isApproved" typeRef="boolean" />
-      <rule id="DecisionRule_0bfrs19">
-        <description>25% off evening dining at all City &amp; Stadium clubs</description>
-        <inputEntry id="UnaryTests_1mktxhn">
-          <text>"City Club", "Stadium Club"</text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_10gww7t">
-          <text>-</text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_1b1v5lg">
-          <text>list contains(benefitList, "B0009")</text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_0pcdgnb">
-          <text>true</text>
-        </outputEntry>
-      </rule>
       <rule id="DecisionRule_18lbr5u">
         <description>50% off Home club dining, some clubs with peak time restrictions</description>
         <inputEntry id="UnaryTests_1p2nwy7">
@@ -54,6 +39,36 @@
           <text>list contains(benefitList, "B0007")</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1wllvuq">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1nin1rt">
+        <description>Dining access for all Play Away members at all clubs (Community &amp; Travel)</description>
+        <inputEntry id="UnaryTests_0rshyis">
+          <text>not("City Club","Stadium Club")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jx9mm9">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0zqmf6l">
+          <text>list contains(benefitList, "B0008")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ss85ll">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0bfrs19">
+        <description>25% off evening dining at all City &amp; Stadium clubs</description>
+        <inputEntry id="UnaryTests_1mktxhn">
+          <text>"City Club", "Stadium Club"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10gww7t">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1b1v5lg">
+          <text>list contains(benefitList, "B0009")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0pcdgnb">
           <text>true</text>
         </outputEntry>
       </rule>

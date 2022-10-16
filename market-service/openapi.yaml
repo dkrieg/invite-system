@@ -1,0 +1,151 @@
+openapi: 3.0.1
+info:
+  title: market-service
+  version: '1.0'
+  description: This application provides repository access to Market entities.
+servers:
+  - url: http://localhost:8983
+paths:
+  /markets/{id}:
+    get:
+      tags:
+        - market-controller
+      summary: Get Market By ID
+      description: get-market
+      operationId: getMarket
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Market'
+    put:
+      tags:
+        - market-controller
+      summary: Update Market By ID
+      description: update-market
+      operationId: updateMarket
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarketRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Market'
+    delete:
+      tags:
+        - market-controller
+      summary: Delete Market By ID
+      description: delete-market
+      operationId: deleteMarket
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+  /markets/:
+    get:
+      tags:
+        - market-controller
+      summary: Get All Markets
+      description: get-market
+      operationId: getMarkets
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Market'
+    post:
+      tags:
+        - market-controller
+      summary: Create New Market
+      description: create-market
+      operationId: createMarket
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarketRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Market'
+  /markets/ids:
+    get:
+      tags:
+        - market-controller
+      summary: Get All Markets By ID List
+      description: get-market-in-list
+      operationId: getMarketsByIds
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Market'
+components:
+  schemas:
+    MarketRequest:
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+    Market:
+      required:
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string

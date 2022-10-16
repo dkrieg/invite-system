@@ -1,0 +1,228 @@
+openapi: 3.0.1
+info:
+  title: member-service
+  version: '1.0'
+  description: This application provides repository access to Member entities.
+servers:
+  - url: http://localhost:8983
+paths:
+  /members/{id}:
+    get:
+      tags:
+        - member-controller
+      summary: Get Member By ID
+      description: get-member
+      operationId: getMember
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+    put:
+      tags:
+        - member-controller
+      summary: Update Member By ID
+      description: update-member
+      operationId: updateMember
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemberRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+    delete:
+      tags:
+        - member-controller
+      summary: Delete Member By ID
+      description: delete-member
+      operationId: deleteMember
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+  /members/:
+    get:
+      tags:
+        - member-controller
+      summary: Get All Members
+      description: get-members
+      operationId: getMembers
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Member'
+    post:
+      tags:
+        - member-controller
+      summary: Create New Member
+      description: create-member
+      operationId: createMember
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemberRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+  /members/by-login-id/{id}:
+    get:
+      tags:
+        - member-controller
+      summary: Get Member By Login ID
+      description: get-member-by-login-id
+      operationId: getMemberByLoginId
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+components:
+  schemas:
+    AddressRequest:
+      required:
+        - city
+        - line1
+        - state
+        - zipCode
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipCode:
+          $ref: '#/components/schemas/ZipCode'
+    MemberRequest:
+      required:
+        - firstName
+        - homeAddress
+        - lastName
+        - loginId
+      type: object
+      properties:
+        loginId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        homeAddress:
+          $ref: '#/components/schemas/AddressRequest'
+    ZipCode:
+      required:
+        - postalCode
+      type: object
+      properties:
+        postalCode:
+          type: string
+        plusFour:
+          type: string
+    Address:
+      required:
+        - city
+        - id
+        - line1
+        - state
+        - zipCode
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        line1:
+          type: string
+        line2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipCode:
+          $ref: '#/components/schemas/ZipCode'
+        geoLocation:
+          $ref: '#/components/schemas/GeoLocation'
+    GeoLocation:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+    Member:
+      required:
+        - firstName
+        - homeAddress
+        - id
+        - lastName
+        - loginId
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        loginId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        homeAddress:
+          $ref: '#/components/schemas/Address'

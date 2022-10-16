@@ -1,10 +1,8 @@
 package com.invite.job.worker;
 
-import com.invite.job.domain.ClubVariable;
 import com.invite.job.domain.ReservationListVariable;
 import com.invite.job.domain.ReservationRequestVariable;
 import com.invite.job.domain.ReservationVariable;
-import com.invite.job.gateway.ClubServiceGateway;
 import com.invite.job.gateway.ReservationServiceGateway;
 import com.invite.reservation.domain.ReservationRequest;
 import io.camunda.zeebe.spring.client.annotation.ZeebeVariable;
@@ -13,8 +11,6 @@ import io.camunda.zeebe.spring.client.annotation.ZeebeWorker;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDateTime;
 
 import static lombok.AccessLevel.PRIVATE;
 

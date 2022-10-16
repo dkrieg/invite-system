@@ -1,0 +1,126 @@
+openapi: 3.0.1
+info:
+  title: line-of-business-service
+  version: '1.0'
+  description: This application provides repository access to Line Of Business entities.
+servers:
+  - url: http://localhost:8983
+paths:
+  /lines-of-business/{id}:
+    get:
+      tags:
+        - line-of-business-controller
+      summary: Get Line Of Business By ID
+      description: get-line-of-business
+      operationId: getLineOfBusiness
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LineOfBusiness'
+    put:
+      tags:
+        - line-of-business-controller
+      summary: Update Line Of Business By ID
+      description: update-line-of-business
+      operationId: updateLineOfBusiness
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LineOfBusinessRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LineOfBusiness'
+    delete:
+      tags:
+        - line-of-business-controller
+      summary: Delete Line Of Business By ID
+      description: delete-line-of-business
+      operationId: deleteLineOfBusiness
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+  /lines-of-business/:
+    get:
+      tags:
+        - line-of-business-controller
+      summary: Get All Lines Of Business
+      description: get-lines-of-business
+      operationId: getLinesOfBusiness
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LineOfBusiness'
+    post:
+      tags:
+        - line-of-business-controller
+      summary: Create New Line Of Business
+      description: create-line-of-business
+      operationId: createLineOfBusiness
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LineOfBusinessRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LineOfBusiness'
+components:
+  schemas:
+    LineOfBusinessRequest:
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+    LineOfBusiness:
+      required:
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string

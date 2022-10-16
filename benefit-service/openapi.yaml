@@ -1,0 +1,304 @@
+openapi: 3.0.1
+info:
+  title: benefit-service
+  version: '1.0'
+  description: This application provides repository access to Benefit and Benefit Package entities.
+servers:
+  - url: http://localhost:8983
+paths:
+  /benefits/{id}:
+    get:
+      tags:
+        - benefit-controller
+      summary: Get Benefit By ID
+      description: get-benefit
+      operationId: getBenefit
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Benefit'
+    put:
+      tags:
+        - benefit-controller
+      summary: Update Benefit By ID
+      description: update-benefit
+      operationId: updateBenefit
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BenefitRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Benefit'
+    delete:
+      tags:
+        - benefit-controller
+      summary: Delete Benefit By ID
+      description: delete-benefit
+      operationId: deleteBenefit
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+  /benefits/benefit-packages/{id}:
+    get:
+      tags:
+        - benefit-package-controller
+      summary: Get Benefit Package By ID
+      description: get-benefit-package
+      operationId: getBenefitPackage
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BenefitPackage'
+    put:
+      tags:
+        - benefit-package-controller
+      summary: Update Benefit Package By ID
+      description: update-benefit-package
+      operationId: updateBenefitPackage
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BenefitPackageRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BenefitPackage'
+    delete:
+      tags:
+        - benefit-package-controller
+      summary: Delete Benefit Package By ID
+      description: delete-benefit-package
+      operationId: deleteBenefitPackage
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+  /benefits/benefit-packages:
+    get:
+      tags:
+        - benefit-package-controller
+      summary: Get All Benefit Packages
+      description: get-benefit-packages
+      operationId: getBenefitPackages
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BenefitPackage'
+    post:
+      tags:
+        - benefit-package-controller
+      summary: Create New Benefit Package
+      description: create-benefit-package
+      operationId: createBenefitPackage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BenefitPackageRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BenefitPackage'
+  /benefits/:
+    get:
+      tags:
+        - benefit-controller
+      summary: Get All Benefits
+      description: get-benefits
+      operationId: getBenefits
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Benefit'
+    post:
+      tags:
+        - benefit-controller
+      summary: Create New Benefit
+      description: create-benefit
+      operationId: createBenefit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BenefitRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Benefit'
+  /benefits/benefit-packages/ids:
+    get:
+      tags:
+        - benefit-package-controller
+      summary: Get All Benefit Packages By ID List
+      description: get-benefit-packages-in-list
+      operationId: getBenefitPackagesByIds
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BenefitPackage'
+  /benefits/benefit-packages/by-name/{name}:
+    get:
+      tags:
+        - benefit-package-controller
+      summary: Get Benefit Package By Name
+      description: get-benefit-package-by-name
+      operationId: getBenefitPackageByName
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BenefitPackage'
+components:
+  schemas:
+    BenefitRequest:
+      required:
+        - code
+        - description
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+    Benefit:
+      required:
+        - code
+        - description
+        - id
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        description:
+          type: string
+    BenefitPackageRequest:
+      required:
+        - benefitsIds
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+        benefitsIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+    BenefitPackage:
+      required:
+        - benefits
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        benefits:
+          type: array
+          items:
+            $ref: '#/components/schemas/Benefit'

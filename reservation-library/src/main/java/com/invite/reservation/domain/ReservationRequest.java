@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 
 import static lombok.AccessLevel.PRIVATE;
 

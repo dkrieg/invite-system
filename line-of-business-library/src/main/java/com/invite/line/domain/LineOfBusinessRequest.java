@@ -8,8 +8,6 @@ import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotBlank;
 
-import java.util.List;
-
 import static lombok.AccessLevel.PRIVATE;
 
 @Data

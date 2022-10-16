@@ -1,0 +1,457 @@
+openapi: 3.0.1
+info:
+  title: membership-service
+  version: '1.0'
+  description: This application provides repository access to Membership entities.
+servers:
+  - url: http://localhost:8983
+paths:
+  /memberships/{id}:
+    get:
+      tags:
+        - membership-controller
+      summary: Get Membership By ID
+      description: get-membership
+      operationId: getMembership
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Membership'
+    put:
+      tags:
+        - membership-controller
+      summary: Update Membership By ID
+      description: update-membership
+      operationId: updateMembership
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MembershipRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Membership'
+    delete:
+      tags:
+        - membership-controller
+      summary: Delete Membership By ID
+      description: delete-membership
+      operationId: deleteMembership
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+  /memberships/:
+    get:
+      tags:
+        - membership-controller
+      summary: Get All Memberships
+      description: get-memberships
+      operationId: getMemberships
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Membership'
+    post:
+      tags:
+        - membership-controller
+      summary: Create New Membership
+      description: create-membership
+      operationId: createMembership
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MembershipRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Membership'
+  /memberships/membership-levels:
+    get:
+      tags:
+        - membership-level-controller
+      summary: Get All Membership Levels
+      description: get-membership-levels
+      operationId: getMembershipLevels
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+    post:
+      tags:
+        - membership-level-controller
+      summary: Create New Membership Level
+      description: create-membership-level
+      operationId: createMembershipLevel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MembershipLevelRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+  /memberships/membership-levels/{id}:
+    get:
+      tags:
+        - membership-level-controller
+      summary: Get Membership Level By ID
+      description: get-membership-level
+      operationId: getMembershipLevel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+    delete:
+      tags:
+        - membership-level-controller
+      summary: Delete Membership Level By ID
+      description: delete-membership-level
+      operationId: deleteMembershipLevel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /memberships/by-member-id/{id}:
+    get:
+      tags:
+        - membership-controller
+      summary: Get Membership By Member ID
+      description: get-membership-by-member-id
+      operationId: getMembershipByMemberId
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Membership'
+components:
+  schemas:
+    MembershipRequest:
+      required:
+        - benefitPackageId
+        - homeClubId
+        - level
+        - memberIds
+      type: object
+      properties:
+        level:
+          type: string
+        memberIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        benefitPackageId:
+          type: integer
+          format: int64
+        homeClubId:
+          type: integer
+          format: int64
+    Address:
+      required:
+        - city
+        - id
+        - line1
+        - state
+        - zipCode
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        line1:
+          type: string
+        line2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipCode:
+          $ref: '#/components/schemas/ZipCode'
+        geoLocation:
+          $ref: '#/components/schemas/GeoLocation'
+    Amenity:
+      required:
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    Benefit:
+      required:
+        - code
+        - description
+        - id
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        description:
+          type: string
+    BenefitPackage:
+      required:
+        - benefits
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        benefits:
+          type: array
+          items:
+            $ref: '#/components/schemas/Benefit'
+    Club:
+      required:
+        - address
+        - id
+        - name
+        - segment
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        phoneNumber:
+          type: string
+        website:
+          type: string
+        markets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Market'
+        communities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Community'
+        providerGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProviderGroup'
+        amenities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Amenity'
+        benefitPackages:
+          type: array
+          items:
+            $ref: '#/components/schemas/BenefitPackage'
+        segment:
+          $ref: '#/components/schemas/ClubSegment'
+        lineOfBusiness:
+          $ref: '#/components/schemas/LineOfBusiness'
+        address:
+          $ref: '#/components/schemas/Address'
+        active:
+          type: boolean
+        owned:
+          type: boolean
+        alliance:
+          type: boolean
+    ClubSegment:
+      required:
+        - color
+        - name
+      type: object
+      properties:
+        color:
+          type: string
+        name:
+          type: string
+    Community:
+      required:
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    GeoLocation:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+    LineOfBusiness:
+      required:
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    Market:
+      required:
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    Member:
+      required:
+        - firstName
+        - homeAddress
+        - id
+        - lastName
+        - loginId
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        loginId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        homeAddress:
+          $ref: '#/components/schemas/Address'
+    Membership:
+      required:
+        - benefitPackage
+        - homeClub
+        - id
+        - level
+        - members
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        level:
+          type: string
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/Member'
+        benefitPackage:
+          $ref: '#/components/schemas/BenefitPackage'
+        homeClub:
+          $ref: '#/components/schemas/Club'
+    ProviderGroup:
+      required:
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    ZipCode:
+      required:
+        - postalCode
+      type: object
+      properties:
+        postalCode:
+          type: string
+        plusFour:
+          type: string
+    MembershipLevelRequest:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string

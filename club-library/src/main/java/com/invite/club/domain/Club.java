@@ -15,7 +15,6 @@ import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
 import java.util.List;
 
 import static lombok.AccessLevel.PRIVATE;

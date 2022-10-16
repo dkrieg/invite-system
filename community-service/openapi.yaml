@@ -1,0 +1,151 @@
+openapi: 3.0.1
+info:
+  title: community-service
+  version: '1.0'
+  description: This application provides repository access to Community entities.
+servers:
+  - url: http://localhost:8983
+paths:
+  /communities/{id}:
+    get:
+      tags:
+        - community-controller
+      summary: Get Community By ID
+      description: get-community
+      operationId: getCommunity
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Community'
+    put:
+      tags:
+        - community-controller
+      summary: Update Community By ID
+      description: update-community
+      operationId: updateCommunity
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommunityRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Community'
+    delete:
+      tags:
+        - community-controller
+      summary: Delete Community By ID
+      description: delete-community
+      operationId: deleteCommunity
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+  /communities/:
+    get:
+      tags:
+        - community-controller
+      summary: Get All Communities
+      description: get-communities
+      operationId: getCommunities
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Community'
+    post:
+      tags:
+        - community-controller
+      summary: Create New Community
+      description: create-community
+      operationId: createCommunity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommunityRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Community'
+  /communities/ids:
+    get:
+      tags:
+        - community-controller
+      summary: Get All Communities By ID List
+      description: get-communities-in-list
+      operationId: getCommunitiesByIds
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Community'
+components:
+  schemas:
+    CommunityRequest:
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+    Community:
+      required:
+        - id
+        - name
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string

@@ -1,6 +1,7 @@
 package com.invite.membership.mapper;
 
 import com.invite.benefit.domain.BenefitPackage;
+import com.invite.club.domain.Club;
 import com.invite.member.domain.Member;
 import com.invite.membership.domain.Membership;
 import com.invite.membership.domain.MembershipRequest;
@@ -9,7 +10,6 @@ import com.invite.membership.entity.MembershipEntity;
 import com.invite.membership.entity.MembershipMemberEntity;
 import com.invite.membership.repository.MembershipBenefitPackageRepository;
 import com.invite.membership.repository.MembershipLevelRepository;
-import com.invite.club.domain.Club;
 import com.invite.membership.repository.MembershipMemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -17,7 +17,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import static lombok.AccessLevel.PRIVATE;

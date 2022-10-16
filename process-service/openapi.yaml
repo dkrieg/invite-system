@@ -1,0 +1,49 @@
+openapi: 3.0.1
+info:
+  title: process-service
+  version: '1.0'
+  description: This application provides access to Process execution.
+servers:
+  - url: http://localhost:8983
+paths:
+  /processes/start/new-reservation/{memberId}/{amenityId}/{clubId}/{reservationDate}:
+    post:
+      tags:
+        - process-controller
+      summary: Start New Reservation Process
+      description: start-new-reservation-process
+      operationId: startReservationProcess
+      parameters:
+        - name: memberId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: amenityId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: clubId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: reservationDate
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+components: {}
