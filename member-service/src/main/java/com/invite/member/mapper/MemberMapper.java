@@ -18,6 +18,7 @@ public class MemberMapper {
     public Member toDomain(MemberEntity entity, Address address) {
         return Member.builder()
                 .id(entity.getId())
+                .loginId(entity.getLoginId())
                 .firstName(entity.getFirstName())
                 .lastName(entity.getLastName())
                 .email(entity.getEmail())
@@ -30,6 +31,7 @@ public class MemberMapper {
     }
 
     public MemberEntity toEntity(MemberEntity entity, MemberRequest request, Address address) {
+        entity.setLoginId(request.getLoginId());
         entity.setFirstName(request.getFirstName());
         entity.setLastName(request.getLastName());
         entity.setEmail(request.getEmail());

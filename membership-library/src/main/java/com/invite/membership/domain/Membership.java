@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import java.util.List;
@@ -25,13 +26,11 @@ public class Membership {
     @NotNull
     Long id;
     @NotBlank
-    String loginId;
-    @NotBlank
     String level;
+    @NotEmpty
+    List<Member> members;
     @NotNull
-    Member member;
-    @NotNull
-    List<BenefitPackage> benefitPackages;
+    BenefitPackage benefitPackage;
     @NotNull
     Club homeClub;
 }

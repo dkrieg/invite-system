@@ -30,6 +30,7 @@ public class MemberEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     Long id;
+    String loginId;
     String firstName;
     String lastName;
     String email;

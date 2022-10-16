@@ -13,6 +13,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @FeignClient("MEMBERSHIP-SERVICE")
 public interface MembershipServiceGateway {
 
-    @GetMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
-    Membership getMembership(@PathVariable("id") Long id);
+    @GetMapping(path = "/by-member-id/{id}", produces = APPLICATION_JSON_VALUE)
+    Membership getMembershipByMemberId(@PathVariable("id") Long id);
 }

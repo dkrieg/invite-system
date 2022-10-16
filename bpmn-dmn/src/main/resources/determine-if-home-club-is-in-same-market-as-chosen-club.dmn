@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="determine-if-home-club-is-in-same-market-as-chosen-club" name="Determine If Home Club Is In Same Market As Chosen Club" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.2.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0">
+  <inputData id="membership" name="Membership" />
+  <inputData id="chosenClub" name="Chosen Club" />
+  <decision id="chosen-club-market-id-list" name="Chosen Club Market ID List">
+    <variable id="InformationItem_04by2wc" name="chosenClubMarketIdList" typeRef="Any" />
+    <informationRequirement id="InformationRequirement_1mk59ee">
+      <requiredInput href="#chosenClub" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_1srbase">
+      <text>chosenClub.markets.id</text>
+    </literalExpression>
+  </decision>
+  <decision id="home-club-market-id-list" name="Home Club Market ID List">
+    <variable id="InformationItem_0mi5wz9" name="homeClubMarketIdList" typeRef="Any" />
+    <informationRequirement id="InformationRequirement_1lq40hu">
+      <requiredInput href="#membership" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_1yydq7k">
+      <text>membership.homeClub.markets.id</text>
+    </literalExpression>
+  </decision>
+  <decision id="home-club-is-in-same-market-as-chosen-club" name="Home Club Is In Same Market As Chosen Club">
+    <variable id="InformationItem_05zyux5" name="homeClubIsInSameMarketAsChosenClub" typeRef="boolean" />
+    <informationRequirement id="InformationRequirement_0kqdbtn">
+      <requiredDecision href="#chosen-club-market-id-list" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1hgnus2">
+      <requiredDecision href="#home-club-market-id-list" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_16ty0tj">
+      <text>some x in chosenClubMarketIdList, y in homeClubMarketIdList satisfies x = y</text>
+    </literalExpression>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape id="DMNShape_06eqgi0" dmnElementRef="membership">
+        <dc:Bounds height="45" width="125" x="387" y="338" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0byyjq0" dmnElementRef="chosenClub">
+        <dc:Bounds height="45" width="125" x="187" y="338" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0r76m5u" dmnElementRef="InformationRequirement_1mk59ee">
+        <di:waypoint x="250" y="338" />
+        <di:waypoint x="250" y="310" />
+        <di:waypoint x="250" y="290" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0ji5ymd" dmnElementRef="chosen-club-market-id-list">
+        <dc:Bounds height="80" width="180" x="160" y="210" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_18sw0nc" dmnElementRef="InformationRequirement_1lq40hu">
+        <di:waypoint x="450" y="338" />
+        <di:waypoint x="450" y="310" />
+        <di:waypoint x="450" y="290" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0nlln1p" dmnElementRef="home-club-market-id-list">
+        <dc:Bounds height="80" width="180" x="360" y="210" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_12g82gk" dmnElementRef="InformationRequirement_0kqdbtn">
+        <di:waypoint x="250" y="210" />
+        <di:waypoint x="320" y="180" />
+        <di:waypoint x="320" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_1yaugwo" dmnElementRef="InformationRequirement_1hgnus2">
+        <di:waypoint x="450" y="210" />
+        <di:waypoint x="380" y="180" />
+        <di:waypoint x="380" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_184cq3n" dmnElementRef="home-club-is-in-same-market-as-chosen-club">
+        <dc:Bounds height="80" width="180" x="260" y="80" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

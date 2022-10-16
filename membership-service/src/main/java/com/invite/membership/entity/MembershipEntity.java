@@ -18,7 +18,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -36,12 +35,13 @@ public class MembershipEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     Long id;
-    String loginId;
-    Long memberId;
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn
-    Set<MembershipBenefitPackageEntity> benefitPackages;
     Long homeClubId;
+
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    Set<MembershipMemberEntity> members;
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    MembershipBenefitPackageEntity benefitPackage;
 
     @ManyToOne(optional = false)
     @JoinColumn(nullable = false)
@@ -71,7 +71,10 @@ public class MembershipEntity {
     public String toString() {
         return new ToStringBuilder(this)
                 .append("id", id)
-                .append("memberId", memberId)
+                .append("homeClubId", homeClubId)
+                .append("members", members)
+                .append("benefitPackage", benefitPackage)
+                .append("level", level)
                 .toString();
     }
 }

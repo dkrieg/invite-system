@@ -7,7 +7,7 @@ import com.invite.domain.service.DomainService;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
-public interface AddressService extends DomainService<Address, AddressRequest, Long> {
+public interface AddressDomainService extends DomainService<Address, AddressRequest, Long> {
 
     Distance calculateDistance(Long start, Long end);
 }

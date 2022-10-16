@@ -48,6 +48,12 @@ public class MembershipController {
         return ResponseEntity.of(service.fetchById(id));
     }
 
+    @GetMapping(path = "/by-member-id/{id}", produces = APPLICATION_JSON_VALUE)
+    @Operation(description = "get-membership-by-member-id", summary = "Get Membership By Member ID")
+    ResponseEntity<Membership> getMembershipByMemberId(@PathVariable("id") Long id) {
+        return ResponseEntity.of(service.fetchByMembersId(id));
+    }
+
     @PutMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @Operation(description = "update-membership", summary = "Update Membership By ID")
     ResponseEntity<Membership> updateMembership(@PathVariable("id") Long id, @RequestBody MembershipRequest request) {

@@ -14,6 +14,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Set;
@@ -35,9 +39,13 @@ public class BenefitPackageEntity {
     @GeneratedValue(strategy = IDENTITY)
     Long id;
     String name;
-    boolean isLocal;
-    boolean isTravel;
-    @OneToMany(fetch = EAGER)
+    @ManyToMany(fetch = EAGER)
+    @JoinTable(name="BENEFIT_PACKAGE_BENEFITS",
+            joinColumns=
+            @JoinColumn(name="BENEFIT_PACKAGE_ID", referencedColumnName="ID"),
+            inverseJoinColumns=
+            @JoinColumn(name="BENEFIT_ID", referencedColumnName="ID")
+    )
     Set<BenefitEntity> benefits;
 
     @Override

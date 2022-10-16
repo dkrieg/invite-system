@@ -21,13 +21,11 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(level = PRIVATE)
 public class MembershipRequest {
     @NotBlank
-    String loginId;
-    @NotBlank
     String level;
     @NotNull
-    Long memberId;
+    List<Long> memberIds;
     @NotNull
-    List<Long> benefitPackageIds;
+    Long benefitPackageId;
     @NotNull
     Long homeClubId;
 }

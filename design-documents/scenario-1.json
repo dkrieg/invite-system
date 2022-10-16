@@ -1,0 +1,98 @@
+{
+  "Clubs": [
+    {
+      "name": "Brookhaven Country Club",
+      "phoneNumber": "972-243-6151",
+      "marketIds": [
+        45
+      ],
+      "communityIds": [
+        9
+      ],
+      "providerGroupIds": [
+        18
+      ],
+      "amenityIds": [
+        1,
+        2,
+        3
+      ],
+      "benefitPackageIds": [
+        1,
+        2
+      ],
+      "segment": "Green",
+      "lineOfBusinessId": 2,
+      "address": {
+        "line1": "3333 Golfing Green Dr",
+        "city": "Farmers Branch",
+        "state": "TX",
+        "zipCode": {
+          "postalCode": "75234"
+        }
+      },
+      "owned": true,
+      "alliance": false,
+      "active": true
+    },
+    {
+      "name": "Trophy Club Country Club",
+      "phoneNumber": "",
+      "marketIds": [
+        45
+      ],
+      "communityIds": [
+        9
+      ],
+      "providerGroupIds": [
+        18
+      ],
+      "amenityIds": [
+        1,
+        2,
+        3
+      ],
+      "benefitPackageIds": [
+        1,
+        2
+      ],
+      "segment": "Yellow",
+      "lineOfBusinessId": 2,
+      "address": {
+        "line1": "500 Trophy Club Dr",
+        "city": "Trophy Club",
+        "state": "TX",
+        "zipCode": {
+          "postalCode": "76262"
+        }
+      },
+      "owned": true,
+      "alliance": false,
+      "active": true
+    }
+  ],
+  "Member": {
+    "loginId": "member1",
+    "firstName": "Alfred",
+    "lastName": "Smith",
+    "email": null,
+    "homeAddress": {
+      "line1": "3307 Chadwell Dr",
+      "city": "Farmers Branch",
+      "state": "TX",
+      "zipCode": {
+        "postalCode": "75234"
+      }
+    }
+  },
+  "Membership": {
+    "level": "GOLD",
+    "memberIds": [
+      1
+    ],
+    "benefitPackageId": 2,
+    "homeClubId": 1
+  },
+  "Reservation": {
+  }
+}

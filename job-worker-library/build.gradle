@@ -24,15 +24,10 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.24'
     compileOnly 'jakarta.validation:jakarta.validation-api:2.0.2'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
-    implementation project(':address-library')
     implementation project(':amenity-library')
-    implementation project(':benefit-library')
-    implementation project(':member-library')
     implementation project(':membership-library')
     implementation project(':club-library')
-    implementation project(':community-library')
-    implementation project(':market-library')
-    implementation project(':provider-group-library')
+    implementation project(':reservation-library')
 }
 test {
     useJUnitPlatform()

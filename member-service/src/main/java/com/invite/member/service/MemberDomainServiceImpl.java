@@ -58,6 +58,11 @@ class MemberDomainServiceImpl implements MemberDomainService {
     }
 
     @Override
+    public Optional<Member> fetchByLoginId(String loginId) {
+        return repository.findByLoginId(loginId).map(e -> mapper.toDomain(e, gateway.getAddress(e.getAddressId())));
+    }
+
+    @Override
     public Optional<Member> fetchById(Long id) {
         return repository.findById(id).map(e -> mapper.toDomain(e, gateway.getAddress(e.getAddressId())));
     }

@@ -7,15 +7,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @OpenAPIDefinition(info = @Info(
-        title = "organization-service",
-        description = "This application provides repository access to ClubEntity entities."
+        title = "reservation-service",
+        description = "This application provides repository access to Reservation entities."
 ))
 @SpringBootApplication
 @EnableFeignClients
-public class OrganizationServiceApplication {
+public class ReservationServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(OrganizationServiceApplication.class, args);
+        SpringApplication.run(ReservationServiceApplication.class, args);
     }
 
 }

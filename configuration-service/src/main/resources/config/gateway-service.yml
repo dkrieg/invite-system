@@ -88,6 +88,12 @@ spring:
             - Path=/provider-groups/**
           filters:
             - RewritePath=/provider-groups/(?<path>.*), /$\{path}
+        - id: reservation-service
+          uri: lb://reservation-service
+          predicates:
+            - Path=/reservations/**
+          filters:
+            - RewritePath=/reservations/(?<path>.*), /$\{path}
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
@@ -114,3 +120,5 @@ springdoc:
         url: /v3/api-docs/processes
       - name: provider-groups
         url: /v3/api-docs/provider-groups
+      - name: reservations
+        url: /v3/api-docs/reservations

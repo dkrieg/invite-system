@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="determine-amenity-type" name="Determine Amenity Type" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.2.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0">
+  <decision id="amenity-type" name="Amenity Type">
+    <informationRequirement id="InformationRequirement_0109k77">
+      <requiredInput href="#amenity" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1gvez5k">
+      <input id="Input_1" label="Amenity">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>amenity.name</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_18a51fm">
+          <text>"GOLF","DINING"</text>
+        </inputValues>
+      </input>
+      <output id="Output_1" label="Is Golf" name="isGolf" typeRef="boolean" biodi:width="192" />
+      <output id="OutputClause_0gr5gln" label="Is Dining" name="isDining" typeRef="boolean" />
+      <output id="OutputClause_1aw3kk5" label="Is Other" name="isOther" typeRef="boolean" />
+      <rule id="DecisionRule_037rgzd">
+        <inputEntry id="UnaryTests_0isncs9">
+          <text>"GOLF"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0hhyifd">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0jup5jt">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1gy7cbr">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ygblut">
+        <inputEntry id="UnaryTests_09ynimv">
+          <text>"DINING"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0domcjg">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1ft8ia1">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1nizxnw">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_10aq9cs">
+        <inputEntry id="UnaryTests_0qab1s5">
+          <text>not("GOLF","DINING")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ew0bdb">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_18nqx9h">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0p2pd75">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="amenity" name="Amenity" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="amenity-type">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1l7gh05" dmnElementRef="amenity">
+        <dc:Bounds height="45" width="125" x="187" y="238" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1lz7057" dmnElementRef="InformationRequirement_0109k77">
+        <di:waypoint x="250" y="238" />
+        <di:waypoint x="250" y="200" />
+        <di:waypoint x="250" y="180" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

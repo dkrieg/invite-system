@@ -48,6 +48,12 @@ public class MemberController {
         return ResponseEntity.of(service.fetchById(id));
     }
 
+    @GetMapping(path = "/by-login-id/{id}", produces = APPLICATION_JSON_VALUE)
+    @Operation(description = "get-member-by-login-id", summary = "Get Member By Login ID")
+    ResponseEntity<Member> getMemberByLoginId(@PathVariable("id") String id) {
+        return ResponseEntity.of(service.fetchByLoginId(id));
+    }
+
     @PutMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     @Operation(description = "update-member", summary = "Update Member By ID")
     ResponseEntity<Member> updateMember(@PathVariable("id") Long id, @RequestBody MemberRequest request) {

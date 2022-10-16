@@ -17,7 +17,7 @@ dependencyManagement {
 
 dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    implementation project(":bpmn-dmn")
+//    implementation project(":bpmn-dmn")
     implementation project(':address-library')
     implementation project(':amenity-library')
     implementation project(':benefit-library')

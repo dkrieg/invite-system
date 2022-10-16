@@ -334,3 +334,4 @@ ASALocalRun/
 target
 /.gradle/
 /build/
+/api_key.txt

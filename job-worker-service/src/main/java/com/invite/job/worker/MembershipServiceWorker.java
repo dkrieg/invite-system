@@ -16,8 +16,8 @@ import static lombok.AccessLevel.PRIVATE;
 public class MembershipServiceWorker {
     MembershipServiceGateway gateway;
 
-    @ZeebeWorker(type = "get-membership-by-id", autoComplete = true)
-    public MembershipVariable handleCreateMembership(@ZeebeVariable Integer membershipId) {
-        return new MembershipVariable(gateway.getMembership(membershipId.longValue()));
+    @ZeebeWorker(type = "get-membership-by-member-id", autoComplete = true)
+    public MembershipVariable handleGetMembershipByMemberId(@ZeebeVariable Integer memberId) {
+        return new MembershipVariable(gateway.getMembershipByMemberId(memberId.longValue()));
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @EnableZeebeClient
-@ZeebeDeployment(resources = {"classpath*:*.bpmn", "classpath*:*.dmn"})
+//@ZeebeDeployment(resources = {"classpath*:*.bpmn", "classpath*:*.dmn"})
 @OpenAPIDefinition(info = @Info(
         title = "process-service",
         description = "This application provides repository access to Process and Task entities."

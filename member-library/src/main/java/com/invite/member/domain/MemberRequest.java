@@ -20,6 +20,8 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(level = PRIVATE)
 public class MemberRequest {
     @NotBlank
+    String loginId;
+    @NotBlank
     String firstName;
     @NotBlank
     String lastName;

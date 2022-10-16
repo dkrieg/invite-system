@@ -7,6 +7,7 @@ services:
       - management.server.port=8080
       - spring.config.import=optional:configserver:http://configuration-service:8980
       - EUREKA_URI=http://discovery-service:8981/eureka
+      - API_KEY=${MY_API_KEY}
     healthcheck:
       test: curl --fail http://localhost:8080/actuator/health || exit 1
       interval: 10s
@@ -143,6 +144,8 @@ services:
       membership-service:
         condition: service_started
       club-service:
+        condition: service_started
+      reservation-service:
         condition: service_started
       process-service:
         condition: service_started
@@ -308,6 +311,26 @@ services:
     image: invite/provider-group-service:latest
     container_name: provider-group-service
     hostname: provider-group-service
+    environment:
+      - management.server.port=8080
+      - spring.config.import=optional:configserver:http://configuration-service:8980
+      - EUREKA_URI=http://discovery-service:8981/eureka
+    healthcheck:
+      test: curl --fail http://localhost:8080/actuator/health || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+    depends_on:
+      configuration-service:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+
+  reservation-service:
+    image: invite/reservation-service:latest
+    container_name: reservation-service
+    hostname: reservation-service
     environment:
       - management.server.port=8080
       - spring.config.import=optional:configserver:http://configuration-service:8980

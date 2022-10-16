@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="determine-if-golf-reservation-is-approved" name="Determine If Golf Reservation Is Approved" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.2.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0">
+  <decision id="reservation-is-approved" name="Reservation Is Approved">
+    <informationRequirement id="InformationRequirement_0gutsuf">
+      <requiredInput href="#additionalRoundIsPermitted" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0gj2b02">
+      <requiredInput href="#bookingIsInAcceptableTime" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0qh2spt">
+      <requiredInput href="#advanceTeeTimeInAcceptableTime" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_09vltar">
+      <requiredInput href="#reservingWithAcceptableDistance" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_10f06st">
+      <requiredInput href="#reservingWithAcceptableSegment" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_06vz5od">
+      <input id="Input_1" label="Additional Round Is Permitted" biodi:width="253">
+        <inputExpression id="InputExpression_1" typeRef="boolean">
+          <text>additionalRoundIsPermitted</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_09xreij" label="Booking Is In Acceptable Time" biodi:width="250">
+        <inputExpression id="LiteralExpression_0p20r5b" typeRef="boolean">
+          <text>bookingIsInAcceptableTime</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1pzw1a5" label="Advance Tee Time In Acceptable Time" biodi:width="313">
+        <inputExpression id="LiteralExpression_19hrhz1" typeRef="boolean">
+          <text>advanceTeeTimeInAcceptableTime</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_048ljfg" label="Reserving With Acceptable Distance" biodi:width="296">
+        <inputExpression id="LiteralExpression_0peo4vz" typeRef="boolean">
+          <text>reservingWithAcceptableDistance</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1wrtn1d" label="Reserving With Acceptable Segment">
+        <inputExpression id="LiteralExpression_1gs57ky" typeRef="boolean">
+          <text>reservingWithAcceptableSegment</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Reservation Is Approved" name="reservationIsApproved" typeRef="boolean" biodi:width="228" />
+      <rule id="DecisionRule_1muszw9">
+        <inputEntry id="UnaryTests_1p1l4mu">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10hthtq">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_098yrp1">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1rnq6hx">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_189tm1s">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1yohc1p">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1e5n3z9">
+        <inputEntry id="UnaryTests_0khtrlg">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0mrd70i">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0englox">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_11xvqcv">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fxb7j8">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0zerhc7">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="additionalRoundIsPermitted" name="Additional Round Is Permitted" />
+  <inputData id="bookingIsInAcceptableTime" name="Booking Is In Acceptable Time" />
+  <inputData id="advanceTeeTimeInAcceptableTime" name="Advance Tee Time In Acceptable Time" />
+  <inputData id="reservingWithAcceptableDistance" name="Reserving With Acceptable Distance" />
+  <inputData id="reservingWithAcceptableSegment" name="Reserving With Acceptable Segment" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="reservation-is-approved">
+        <dc:Bounds height="80" width="180" x="390" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_09t1trv" dmnElementRef="additionalRoundIsPermitted">
+        <dc:Bounds height="45" width="125" x="157" y="238" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0k8jbwh" dmnElementRef="bookingIsInAcceptableTime">
+        <dc:Bounds height="45" width="125" x="288" y="239" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_15m25o8" dmnElementRef="advanceTeeTimeInAcceptableTime">
+        <dc:Bounds height="45" width="125" x="417" y="239" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0xyc0ry" dmnElementRef="reservingWithAcceptableDistance">
+        <dc:Bounds height="45" width="125" x="547" y="239" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_18t15cz" dmnElementRef="reservingWithAcceptableSegment">
+        <dc:Bounds height="45" width="125" x="678" y="240" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_08aaibu" dmnElementRef="InformationRequirement_0gutsuf">
+        <di:waypoint x="220" y="238" />
+        <di:waypoint x="420" y="180" />
+        <di:waypoint x="420" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0guojdo" dmnElementRef="InformationRequirement_0gj2b02">
+        <di:waypoint x="351" y="239" />
+        <di:waypoint x="450" y="180" />
+        <di:waypoint x="450" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_15xbtr6" dmnElementRef="InformationRequirement_0qh2spt">
+        <di:waypoint x="480" y="239" />
+        <di:waypoint x="480" y="180" />
+        <di:waypoint x="480" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_1f73j9p" dmnElementRef="InformationRequirement_09vltar">
+        <di:waypoint x="610" y="239" />
+        <di:waypoint x="510" y="180" />
+        <di:waypoint x="510" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0h90wwa" dmnElementRef="InformationRequirement_10f06st">
+        <di:waypoint x="741" y="240" />
+        <di:waypoint x="540" y="180" />
+        <di:waypoint x="540" y="160" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

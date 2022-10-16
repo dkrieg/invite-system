@@ -22,6 +22,8 @@ public class Member {
     @NotNull
     Long id;
     @NotBlank
+    String loginId;
+    @NotBlank
     String firstName;
     @NotBlank
     String lastName;

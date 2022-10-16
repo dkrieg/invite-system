@@ -24,8 +24,6 @@ public class BenefitPackageMapper {
         return BenefitPackage.builder()
                 .id(entity.getId())
                 .name(entity.getName())
-                .isLocal(entity.isLocal())
-                .isTravel(entity.isTravel())
                 .benefits(entity.getBenefits().stream().map(mapper::toDomain).collect(Collectors.toList()))
                 .build();
     }
@@ -36,8 +34,6 @@ public class BenefitPackageMapper {
 
     public BenefitPackageEntity toEntity(BenefitPackageEntity entity, BenefitPackageRequest request) {
         entity.setName(request.getName());
-        entity.setLocal(request.isLocal());
-        entity.setTravel(request.isTravel());
         entity.setBenefits(Set.copyOf(repository.findAllById(request.getBenefitsIds())));
         return entity;
     }

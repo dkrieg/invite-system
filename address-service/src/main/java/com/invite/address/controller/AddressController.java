@@ -5,8 +5,7 @@ import com.invite.address.domain.AddressRequest;
 import com.invite.address.domain.Distance;
 import com.invite.address.domain.State;
 import com.invite.address.domain.ZipCode;
-import com.invite.address.gateway.GeoLocationGateway;
-import com.invite.address.service.AddressService;
+import com.invite.address.service.AddressDomainService;
 import com.invite.address.service.StateService;
 import com.invite.address.service.ZipCodeService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -34,7 +33,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class AddressController {
     StateService stateService;
     ZipCodeService zipCodeService;
-    AddressService service;
+    AddressDomainService service;
 
     @GetMapping(path = "/states", produces = APPLICATION_JSON_VALUE)
     @Operation(description = "get-states", summary = "Get All States")

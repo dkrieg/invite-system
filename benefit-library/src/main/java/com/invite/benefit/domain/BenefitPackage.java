@@ -22,8 +22,6 @@ public class BenefitPackage {
     Long id;
     @NotBlank
     String name;
-    boolean isLocal;
-    boolean isTravel;
     @NotNull
     List<Benefit> benefits;
 }

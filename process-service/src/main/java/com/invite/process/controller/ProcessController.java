@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -22,19 +23,29 @@ import static lombok.AccessLevel.PRIVATE;
 @RequestMapping(path = "/start")
 public class ProcessController {
     ZeebeClient client;
+    static Set<String> varNames = Set.of("reservationIsApproved", "reservation");
 
-    @PostMapping("/new-reservation/{membershipId}/{amenityId}/{reservationDate}")
+    @PostMapping("/new-reservation/{memberId}/{amenityId}/{clubId}/{reservationDate}")
     @Operation(description = "start-new-reservation-process", summary = "Start New Reservation Process")
-    public ResponseEntity<Map<String, Object>> startReservationProcess(@PathVariable("membershipId") Long membershipId,
+    public ResponseEntity<Map<String, Object>> startReservationProcess(@PathVariable("memberId") Long memberId,
                                                                        @PathVariable("amenityId") Long amenityId,
-                                                                       @PathVariable("reservationDate") LocalDateTime reservationDate) {
+                                                                       @PathVariable("clubId") Long clubId,
+                                                                       @PathVariable("reservationDate") String reservationDate) {
         return ResponseEntity.ok(client.newCreateInstanceCommand()
                 .bpmnProcessId("new-reservation-process")
                 .latestVersion()
-                .variables(Map.of("membershipId", membershipId, "amenityId", amenityId, "reservationDate", reservationDate))
+                .variables(Map.of(
+                        "memberId", memberId,
+                        "amenityId", amenityId,
+                        "chosenClubId", clubId,
+                        "reservationDate", reservationDate))
                 .withResult()
                 .send()
-                .join()
-                .getVariablesAsMap());
+                .join(2, TimeUnit.MINUTES)
+                .getVariablesAsMap()
+                .entrySet()
+                .stream()
+                .filter(e -> varNames.contains(e.getKey()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
     }
 }

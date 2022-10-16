@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.invite'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+ext {
+    set('springCloudVersion', "2021.0.3")
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':amenity-library')
+    implementation project(':member-library')
+    implementation project(':membership-library')
+    implementation project(':club-library')
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    compileOnly 'jakarta.validation:jakarta.validation-api:2.0.2'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+}
+test {
+    useJUnitPlatform()
+}

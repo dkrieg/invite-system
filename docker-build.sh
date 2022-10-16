@@ -13,23 +13,25 @@ docker build -f membership-service/Dockerfile -t invite/membership-service:lates
 docker build -f club-service/Dockerfile -t invite/club-service:latest club-service/.
 docker build -f process-service/Dockerfile -t invite/process-service:latest process-service/.
 docker build -f provider-group-service/Dockerfile -t invite/provider-group-service:latest provider-group-service/.
+docker build -f reservation-service/Dockerfile -t invite/reservation-service:latest reservation-service/.
 
-docker compose up --wait --timeout 60 elasticsearch
-docker compose up --wait --timeout 60 zeebe
-docker compose up --wait --timeout 60 operate
-docker compose up --wait --timeout 60 tasklist
-docker compose up --wait --timeout 60 configuration-service
-docker compose up --wait --timeout 60 discovery-service
-docker compose up --wait --timeout 60 address-service
-docker compose up --wait --timeout 60 amenity-service
-docker compose up --wait --timeout 60 benefit-service
-docker compose up --wait --timeout 60 community-service
-docker compose up --wait --timeout 60 line-of-business-service
-docker compose up --wait --timeout 60 market-service
-docker compose up --wait --timeout 60 provider-group-service
-docker compose up --wait --timeout 60 member-service
-docker compose up --wait --timeout 60 club-service
-docker compose up --wait --timeout 60 membership-service
-docker compose up --wait --timeout 60 job-worker-service
-docker compose up --wait --timeout 60 process-service
-docker compose up --wait --timeout 60 gateway-service
+docker compose --env-file api_key.txt up --wait --timeout 60 elasticsearch
+docker compose --env-file api_key.txt up --wait --timeout 60 zeebe
+docker compose --env-file api_key.txt up --wait --timeout 60 operate
+docker compose --env-file api_key.txt up --wait --timeout 60 tasklist
+docker compose --env-file api_key.txt up --wait --timeout 60 configuration-service
+docker compose --env-file api_key.txt up --wait --timeout 60 discovery-service
+docker compose --env-file api_key.txt up --wait --timeout 60 address-service
+docker compose --env-file api_key.txt up --wait --timeout 60 amenity-service
+docker compose --env-file api_key.txt up --wait --timeout 60 benefit-service
+docker compose --env-file api_key.txt up --wait --timeout 60 community-service
+docker compose --env-file api_key.txt up --wait --timeout 60 line-of-business-service
+docker compose --env-file api_key.txt up --wait --timeout 60 market-service
+docker compose --env-file api_key.txt up --wait --timeout 60 provider-group-service
+docker compose --env-file api_key.txt up --wait --timeout 60 member-service
+docker compose --env-file api_key.txt up --wait --timeout 60 club-service
+docker compose --env-file api_key.txt up --wait --timeout 60 membership-service
+docker compose --env-file api_key.txt up --wait --timeout 60 reservation-service
+docker compose --env-file api_key.txt up --wait --timeout 60 job-worker-service
+docker compose --env-file api_key.txt up --wait --timeout 60 process-service
+docker compose --env-file api_key.txt up --wait --timeout 60 gateway-service

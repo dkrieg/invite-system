@@ -21,7 +21,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = PRIVATE)
-class AddressServiceImpl implements AddressService {
+class AddressDomainServiceImpl implements AddressDomainService {
     AddressRepository repository;
     AddressMapper mapper;
     GeoLocationGateway gateway;

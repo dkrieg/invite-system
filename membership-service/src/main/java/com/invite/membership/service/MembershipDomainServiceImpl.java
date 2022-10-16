@@ -3,6 +3,7 @@ package com.invite.membership.service;
 import com.invite.membership.domain.Membership;
 import com.invite.membership.domain.MembershipRequest;
 import com.invite.membership.entity.MembershipBenefitPackageEntity;
+import com.invite.membership.entity.MembershipMemberEntity;
 import com.invite.membership.gateway.BenefitServiceGateway;
 import com.invite.membership.gateway.MemberServiceGateway;
 import com.invite.membership.gateway.ClubServiceGateway;
@@ -34,14 +35,27 @@ class MembershipDomainServiceImpl implements MembershipDomainService {
         return repository.findAll()
                 .stream()
                 .map(e -> mapper.toDomain(e,
-                        memberServiceGateway.getMember(e.getMemberId()),
-                        benefitServiceGateway.getBenefitPackagesByIds(e.getBenefitPackages()
+                        e.getMembers()
                                 .stream()
-                                .map(MembershipBenefitPackageEntity::getId)
-                                .collect(Collectors.toList())),
+                                .map(MembershipMemberEntity::getId)
+                                .map(memberServiceGateway::getMember)
+                                .collect(Collectors.toList()),
+                        benefitServiceGateway.getBenefitPackage(e.getBenefitPackage().getId()),
                         clubServiceGateway.getClub(e.getHomeClubId()))
                 )
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<Membership> fetchByMembersId(Long memberId) {
+        return repository.findByMembersId(memberId).map(e -> mapper.toDomain(e, e.getMembers()
+                        .stream()
+                        .map(MembershipMemberEntity::getId)
+                        .map(memberServiceGateway::getMember)
+                        .collect(Collectors.toList()),
+                benefitServiceGateway.getBenefitPackage(e.getBenefitPackage().getId()),
+                clubServiceGateway.getClub(e.getHomeClubId()))
+        );
     }
 
     @Override
@@ -49,11 +63,13 @@ class MembershipDomainServiceImpl implements MembershipDomainService {
         return Optional.ofNullable(request)
                 .map(mapper::toEntity)
                 .map(repository::saveAndFlush)
-                .map(e -> mapper.toDomain(e, memberServiceGateway.getMember(e.getMemberId()),
-                        benefitServiceGateway.getBenefitPackagesByIds(e.getBenefitPackages()
+                .map(e -> mapper.toDomain(e,
+                        e.getMembers()
                                 .stream()
-                                .map(MembershipBenefitPackageEntity::getId)
-                                .collect(Collectors.toList())),
+                                .map(MembershipMemberEntity::getId)
+                                .map(memberServiceGateway::getMember)
+                                .collect(Collectors.toList()),
+                        benefitServiceGateway.getBenefitPackage(e.getBenefitPackage().getId()),
                         clubServiceGateway.getClub(e.getHomeClubId()))
                 )
                 .orElseThrow(PersistenceException::new);
@@ -61,11 +77,12 @@ class MembershipDomainServiceImpl implements MembershipDomainService {
 
     @Override
     public Optional<Membership> fetchById(Long id) {
-        return repository.findById(id).map(e -> mapper.toDomain(e, memberServiceGateway.getMember(e.getMemberId()),
-                benefitServiceGateway.getBenefitPackagesByIds(e.getBenefitPackages()
+        return repository.findById(id).map(e -> mapper.toDomain(e, e.getMembers()
                         .stream()
-                        .map(MembershipBenefitPackageEntity::getId)
-                        .collect(Collectors.toList())),
+                        .map(MembershipMemberEntity::getId)
+                        .map(memberServiceGateway::getMember)
+                        .collect(Collectors.toList()),
+                benefitServiceGateway.getBenefitPackage(e.getBenefitPackage().getId()),
                 clubServiceGateway.getClub(e.getHomeClubId()))
         );
     }
@@ -75,11 +92,12 @@ class MembershipDomainServiceImpl implements MembershipDomainService {
         return repository.findById(id)
                 .map(e -> mapper.toEntity(e, request))
                 .map(repository::saveAndFlush)
-                .map(e -> mapper.toDomain(e, memberServiceGateway.getMember(e.getMemberId()),
-                        benefitServiceGateway.getBenefitPackagesByIds(e.getBenefitPackages()
+                .map(e -> mapper.toDomain(e, e.getMembers()
                                 .stream()
-                                .map(MembershipBenefitPackageEntity::getId)
-                                .collect(Collectors.toList())),
+                                .map(MembershipMemberEntity::getId)
+                                .map(memberServiceGateway::getMember)
+                                .collect(Collectors.toList()),
+                        benefitServiceGateway.getBenefitPackage(e.getBenefitPackage().getId()),
                         clubServiceGateway.getClub(e.getHomeClubId()))
                 );
     }

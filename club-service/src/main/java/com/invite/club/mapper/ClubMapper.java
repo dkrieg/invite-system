@@ -27,6 +27,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -81,31 +82,31 @@ public class ClubMapper {
         entity.setAmenities(Optional.ofNullable(request.getAmenityIds())
                 .map(l -> l
                         .stream()
-                        .map(id -> amenityRepository.findById(id).orElseGet(() -> new ClubAmenityEntity(id)))
+                        .map(id -> amenityRepository.findById(id).orElseGet(() -> amenityRepository.saveAndFlush(ClubAmenityEntity.builder().id(id).build())))
                         .collect(Collectors.toSet()))
                 .orElseGet(Set::of));
         entity.setBenefitPackages(Optional.ofNullable(request.getBenefitPackageIds())
                 .map(l -> l
                         .stream()
-                        .map(id -> benefitPackageRepository.findById(id).orElseGet(() -> new ClubBenefitPackageEntity(id)))
+                        .map(id -> benefitPackageRepository.findById(id).orElseGet(() -> benefitPackageRepository.saveAndFlush(ClubBenefitPackageEntity.builder().id(id).build())))
                         .collect(Collectors.toSet()))
                 .orElseGet(Set::of));
         entity.setMarkets(Optional.ofNullable(request.getMarketIds())
                 .map(l -> l
                         .stream()
-                        .map(id -> marketRepository.findById(id).orElseGet(() -> new ClubMarketEntity(id)))
+                        .map(id -> marketRepository.findById(id).orElseGet(() -> marketRepository.saveAndFlush(ClubMarketEntity.builder().id(id).build())))
                         .collect(Collectors.toSet()))
                 .orElseGet(Set::of));
         entity.setProviderGroups(Optional.ofNullable(request.getProviderGroupIds())
                 .map(l -> l
                         .stream()
-                        .map(id -> providerGroupRepository.findById(id).orElseGet(() -> new ClubProviderGroupEntity(id)))
+                        .map(id -> providerGroupRepository.findById(id).orElseGet(() -> providerGroupRepository.saveAndFlush(ClubProviderGroupEntity.builder().id(id).build())))
                         .collect(Collectors.toSet()))
                 .orElseGet(Set::of));
         entity.setCommunities(Optional.ofNullable(request.getCommunityIds())
                 .map(l -> l
                         .stream()
-                        .map(id -> communityRepository.findById(id).orElseGet(() -> new ClubCommunityEntity(id)))
+                        .map(id -> communityRepository.findById(id).orElseGet(() -> communityRepository.saveAndFlush(ClubCommunityEntity.builder().id(id).build())))
                         .collect(Collectors.toSet()))
                 .orElseGet(Set::of));
         entity.setLineOfBusiness(Optional.ofNullable(request.getLineOfBusinessId())

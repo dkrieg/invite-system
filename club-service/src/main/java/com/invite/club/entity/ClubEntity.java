@@ -15,11 +15,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Set;
 
+import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PRIVATE;
 
@@ -42,24 +45,49 @@ public class ClubEntity {
     boolean isOwned;
     boolean isAlliance;
 
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn
+    @ManyToMany(fetch = EAGER)
+    @JoinTable(name = "CLUB_MARKET_CLUBS",
+            joinColumns =
+            @JoinColumn(name = "CLUB_ID", referencedColumnName = "ID"),
+            inverseJoinColumns =
+            @JoinColumn(name = "MARKET_ID", referencedColumnName = "ID")
+    )
     Set<ClubMarketEntity> markets;
 
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn
+    @ManyToMany(fetch = EAGER)
+    @JoinTable(name = "CLUB_COMMUNITY_CLUBS",
+            joinColumns =
+            @JoinColumn(name = "CLUB_ID", referencedColumnName = "ID"),
+            inverseJoinColumns =
+            @JoinColumn(name = "COMMUNITY_ID", referencedColumnName = "ID")
+    )
     Set<ClubCommunityEntity> communities;
 
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn
+    @ManyToMany(fetch = EAGER)
+    @JoinTable(name = "CLUB_PROVIDER_GROUP_CLUBS",
+            joinColumns =
+            @JoinColumn(name = "CLUB_ID", referencedColumnName = "ID"),
+            inverseJoinColumns =
+            @JoinColumn(name = "PROVIDER_GROUP_ID", referencedColumnName = "ID")
+    )
     Set<ClubProviderGroupEntity> providerGroups;
 
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn
+    @ManyToMany(fetch = EAGER)
+    @JoinTable(name = "CLUB_AMENITY_CLUBS",
+            joinColumns =
+            @JoinColumn(name = "CLUB_ID", referencedColumnName = "ID"),
+            inverseJoinColumns =
+            @JoinColumn(name = "AMENITY_ID", referencedColumnName = "ID")
+    )
     Set<ClubAmenityEntity> amenities;
 
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn
+    @ManyToMany(fetch = EAGER)
+    @JoinTable(name = "CLUB_BENEFIT_PACKAGE_CLUBS",
+            joinColumns =
+            @JoinColumn(name = "CLUB_ID", referencedColumnName = "ID"),
+            inverseJoinColumns =
+            @JoinColumn(name = "BENEFIT_PACKAGE_ID", referencedColumnName = "ID")
+    )
     Set<ClubBenefitPackageEntity> benefitPackages;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
