@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="determine-if-reserving-with-acceptable-segment" name="Determine If Reserving With Acceptable Segment" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.2.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0">
+  <decision id="reserving-with-acceptable-segment" name="Reserving With Acceptable Segment">
+    <informationRequirement id="InformationRequirement_1fsah8v">
+      <requiredInput href="#chosenClub" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0i1i3pf">
+      <requiredInput href="#membership" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_19mkip7">
+      <input id="Input_1" label="Home Club Segment">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>membership.homeClub.segment.color</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_08qhmqx">
+          <text>"Blue","Yellow","Green","Orange"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_127mtx9" label="Chosen Club Segment" biodi:width="220">
+        <inputExpression id="LiteralExpression_1c10q8r" typeRef="string">
+          <text>chosenClub.segment.color</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_10z0fbn">
+          <text>"Blue","Yellow","Green","Orange"</text>
+        </inputValues>
+      </input>
+      <output id="Output_1" label="Is Approved" name="isApproved" typeRef="boolean" biodi:width="192" />
+      <rule id="DecisionRule_0g9tjtm">
+        <inputEntry id="UnaryTests_1godmwh">
+          <text>"Blue"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ii93sp">
+          <text>"Blue","Yellow","Green","Orange"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0lels9o">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1fk6ske">
+        <inputEntry id="UnaryTests_1t50919">
+          <text>"Yellow"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pd2939">
+          <text>"Yellow","Green","Orange"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_00nexhc">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0r0gz60">
+        <inputEntry id="UnaryTests_0ge03ll">
+          <text>"Yellow"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0nefkin">
+          <text>"Blue"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0qyqlvi">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0xb0ryq">
+        <inputEntry id="UnaryTests_18zsyrj">
+          <text>"Green"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1bqvspo">
+          <text>"Green","Orange"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ac9zsh">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_007ar27">
+        <inputEntry id="UnaryTests_0wc064h">
+          <text>"Green"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0antwh0">
+          <text>"Blue","Yellow"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0o68dng">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0wkf6oo">
+        <inputEntry id="UnaryTests_050cydo">
+          <text>"Orange"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06235rd">
+          <text>"Orange"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0dkucup">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0br51zh">
+        <inputEntry id="UnaryTests_0jmliru">
+          <text>"Orange"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wssh0t">
+          <text>"Blue","Yellow","Green"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0cby6tj">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="chosenClub" name="Chosen Club" />
+  <inputData id="membership" name="Membership" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="reserving-with-acceptable-segment">
+        <dc:Bounds height="80" width="180" x="210" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_01e5ao0" dmnElementRef="chosenClub">
+        <dc:Bounds height="45" width="125" x="158" y="228" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_08naudh" dmnElementRef="membership">
+        <dc:Bounds height="45" width="125" x="318" y="229" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_10926yj" dmnElementRef="InformationRequirement_1fsah8v">
+        <di:waypoint x="221" y="228" />
+        <di:waypoint x="270" y="180" />
+        <di:waypoint x="270" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_00drmpx" dmnElementRef="InformationRequirement_0i1i3pf">
+        <di:waypoint x="381" y="229" />
+        <di:waypoint x="330" y="180" />
+        <di:waypoint x="330" y="160" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

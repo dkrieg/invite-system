@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="determine-if-additional-round-is-permitted" name="Determine If Additional Round Is Permitted" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.2.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0">
+  <decision id="additional-round-is-permitted" name="Additional Round Is Permitted">
+    <informationRequirement id="InformationRequirement_0dgbfrp">
+      <requiredInput href="#roundsPerPeriod" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1cj5hxn">
+      <requiredInput href="#rounds" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_094ghwj">
+      <requiredInput href="#maxRoundsPerPeriod" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0sev0f6">
+      <requiredInput href="#maxRounds" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0cdxpfc">
+      <requiredInput href="#roundsReservedThisYear" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1n0jwtx">
+      <requiredInput href="#roundsReservedThisMonth" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0d7p2xp">
+      <requiredInput href="#roundsReservedPast12Months" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_18xh0b4">
+      <input id="InputClause_0hcg8br" label="Rounds">
+        <inputExpression id="LiteralExpression_0gmvubz" typeRef="number">
+          <text>rounds</text>
+        </inputExpression>
+      </input>
+      <input id="Input_1" label="Rounds Per Period">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>roundsPerPeriod</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_1xh7k5s">
+          <text>"Month","Year"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_1267qar" label="Max Rounds">
+        <inputExpression id="LiteralExpression_1onha5i" typeRef="number">
+          <text>maxRounds</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0qvfo2y" label="Max Rounds Per Period">
+        <inputExpression id="LiteralExpression_0nwvm49" typeRef="string">
+          <text>maxRoundsPerPeriod</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_1ndvgwo">
+          <text>"Month","Year"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_0qjt07m" label="Rounds Reserved This Month" biodi:width="243">
+        <inputExpression id="LiteralExpression_0b87166" typeRef="number">
+          <text>roundsReservedThisMonth</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_16g0hdh" label="Rounds Reserved This Year" biodi:width="256">
+        <inputExpression id="LiteralExpression_0n5ev1g" typeRef="number">
+          <text>roundsReservedThisYear</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Is Approved" name="isApproved" typeRef="boolean" biodi:width="523" />
+      <rule id="DecisionRule_0pkvr4u">
+        <inputEntry id="UnaryTests_0krh26d">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1rc06ep">
+          <text>"Month"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1musdvm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1l2d17o">
+          <text>"Month"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pjyxfl">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0kai7dj">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_16lgthn">
+          <text>before(roundsReservedThisMonth, [rounds..maxRounds])</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1qyrwca">
+        <inputEntry id="UnaryTests_1lk0fzc">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0g7921h">
+          <text>"Year"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05rz5je">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1kkuod1">
+          <text>"Month"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1n8czp6">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hei7mc">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1v1buxv">
+          <text>roundsReservedThisYear &lt; rounds and roundsReservedThisMonth &lt; maxRounds</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="roundsPerPeriod" name="Rounds Per Period" />
+  <inputData id="rounds" name="Rounds" />
+  <inputData id="maxRoundsPerPeriod" name="Max Rounds Per Period" />
+  <inputData id="maxRounds" name="Max Rounds" />
+  <inputData id="roundsReservedThisYear" name="Rounds Reserved This Year" />
+  <inputData id="roundsReservedThisMonth" name="Rounds Reserved This Month" />
+  <inputData id="roundsReservedPast12Months" name="Rounds Reserved Past 12 Months" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="additional-round-is-permitted">
+        <dc:Bounds height="80" width="180" x="521" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0udqpqe" dmnElementRef="roundsPerPeriod">
+        <dc:Bounds height="45" width="125" x="157" y="228" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0fsmrw5" dmnElementRef="rounds">
+        <dc:Bounds height="45" width="125" x="288" y="229" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1214icj" dmnElementRef="maxRoundsPerPeriod">
+        <dc:Bounds height="45" width="125" x="418" y="229" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_10sfyp8" dmnElementRef="maxRounds">
+        <dc:Bounds height="45" width="125" x="548" y="229" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0xee930" dmnElementRef="roundsReservedThisYear">
+        <dc:Bounds height="45" width="125" x="678" y="230" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_16i3jyp" dmnElementRef="roundsReservedThisMonth">
+        <dc:Bounds height="45" width="125" x="808" y="230" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0c7a80n" dmnElementRef="roundsReservedPast12Months">
+        <dc:Bounds height="45" width="125" x="938" y="230" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0630rn8" dmnElementRef="InformationRequirement_0dgbfrp">
+        <di:waypoint x="220" y="228" />
+        <di:waypoint x="544" y="180" />
+        <di:waypoint x="544" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0lzc37w" dmnElementRef="InformationRequirement_1cj5hxn">
+        <di:waypoint x="351" y="229" />
+        <di:waypoint x="566" y="180" />
+        <di:waypoint x="566" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_03ovsk4" dmnElementRef="InformationRequirement_094ghwj">
+        <di:waypoint x="481" y="229" />
+        <di:waypoint x="589" y="180" />
+        <di:waypoint x="589" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0x2kais" dmnElementRef="InformationRequirement_0sev0f6">
+        <di:waypoint x="611" y="229" />
+        <di:waypoint x="611" y="180" />
+        <di:waypoint x="611" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0detf6y" dmnElementRef="InformationRequirement_0cdxpfc">
+        <di:waypoint x="741" y="230" />
+        <di:waypoint x="634" y="180" />
+        <di:waypoint x="634" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0bv3vj3" dmnElementRef="InformationRequirement_1n0jwtx">
+        <di:waypoint x="871" y="230" />
+        <di:waypoint x="656" y="180" />
+        <di:waypoint x="656" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_1otpann" dmnElementRef="InformationRequirement_0d7p2xp">
+        <di:waypoint x="1001" y="230" />
+        <di:waypoint x="679" y="180" />
+        <di:waypoint x="679" y="160" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

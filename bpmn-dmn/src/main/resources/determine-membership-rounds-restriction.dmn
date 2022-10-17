@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="determine-membership-rounds-restriction" name="Determine Membership Rounds Restriction" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.2.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0">
+  <decision id="membership-rounds-restriction" name="Membership Rounds Restriction">
+    <informationRequirement id="InformationRequirement_0em3xlg">
+      <requiredInput href="#benefitList" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0woah6k">
+      <requiredInput href="#homeClubIsInSameCommunityAsChosenClub" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1771h0p">
+      <requiredInput href="#chosenClubIsHomeClub" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0pjqqcn" hitPolicy="FIRST" biodi:annotationsWidth="523">
+      <input id="InputClause_0vm0lqg" label="Is Home Club" biodi:width="232">
+        <inputExpression id="LiteralExpression_0i2rone" typeRef="boolean">
+          <text>chosenClubIsHomeClub</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1fxw73o" label="Is Community Club" biodi:width="189">
+        <inputExpression id="LiteralExpression_07jp4lb" typeRef="boolean">
+          <text>homeClubIsInSameCommunityAsChosenClub</text>
+        </inputExpression>
+      </input>
+      <input id="Input_1" label="Benefit List" biodi:width="274">
+        <inputExpression id="InputExpression_1" typeRef="Any">
+          <text>benefitList</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Rounds" name="rounds" typeRef="number" />
+      <output id="OutputClause_11pcqjh" label="Rounds Per Period" name="roundsPerPeriod" typeRef="string">
+        <outputValues id="UnaryTests_1q7xwpl">
+          <text>"Month","Year"</text>
+        </outputValues>
+      </output>
+      <output id="OutputClause_1sfxxbn" label="Max Rounds" name="maxRounds" typeRef="number" />
+      <output id="OutputClause_07i4cn6" label="Max Rounds Per Period" name="maxRoundsPerPeriod" typeRef="string">
+        <outputValues id="UnaryTests_0vmf2dp">
+          <text>"Month","Year"</text>
+        </outputValues>
+      </output>
+      <output id="OutputClause_19il9sg" label="Has Rounds Restriction" name="hasRoundsRestriction" typeRef="boolean" />
+      <rule id="DecisionRule_1op2msn">
+        <description>4 rounds per month within the Community, max of 2 per club</description>
+        <inputEntry id="UnaryTests_0k513qx">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0zmjj61">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ggfp2g">
+          <text>list contains(benefitList, "B0001")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0zh5uci">
+          <text>4</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0kb8fii">
+          <text>"Month"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0ifud5l">
+          <text>2</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1i8f5fh">
+          <text>"Month"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0y6rgxr">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_17pr25n">
+        <description>2 rounds per month per club, outside of 100 mile radius from Home Club</description>
+        <inputEntry id="UnaryTests_1xwoedz">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0f7ui7n">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1khts69">
+          <text>list contains(benefitList, "B0003")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0jcxoh9">
+          <text>2</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0l0xfds">
+          <text>"Month"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0e60aug">
+          <text>2</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_008px7h">
+          <text>"Month"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0fbu0cb">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_13mo4of">
+        <description>12 rounds per year with no more that 2 in a month - Access Fee</description>
+        <inputEntry id="UnaryTests_0166771">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0o2eybu">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0m99haa">
+          <text>list contains(benefitList, "B0015")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1xmub1e">
+          <text>12</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0hg9yg0">
+          <text>"Year"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1nfk3wi">
+          <text>2</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0zpjrgq">
+          <text>"Month"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1s86f4l">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0y27ajx">
+        <description>4 rounds per month at Home Club</description>
+        <inputEntry id="UnaryTests_0me5mch">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0bemto5">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1qwuy59">
+          <text>list contains(benefitList, "B0023")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0joecwv">
+          <text>4</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0cz4eif">
+          <text>"Month"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_06j1gto">
+          <text>4</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_113vmo0">
+          <text>"Month"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0ud30tu">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1nam2bf">
+        <description>Does Not Have A Golf Benefit Restriction</description>
+        <inputEntry id="UnaryTests_0mudvk9">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1sic5zh">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ox7bzm">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1dq8cb7">
+          <text>-1</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0l065qx">
+          <text>"Year"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1d790ed">
+          <text>-1</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1h0g778">
+          <text>"Month"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_04xhutr">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="benefitList" name="Benefit List" />
+  <inputData id="homeClubIsInSameCommunityAsChosenClub" name="Home Club Is In Same Community As Chosen Club" />
+  <inputData id="chosenClubIsHomeClub" name="Chosen Club Is Home Club" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="membership-rounds-restriction">
+        <dc:Bounds height="80" width="180" x="230" y="100" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_02hpt2s" dmnElementRef="benefitList">
+        <dc:Bounds height="45" width="125" x="257" y="248" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_19z1jdq" dmnElementRef="InformationRequirement_0em3xlg">
+        <di:waypoint x="320" y="248" />
+        <di:waypoint x="320" y="200" />
+        <di:waypoint x="320" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_136cp0z" dmnElementRef="homeClubIsInSameCommunityAsChosenClub">
+        <dc:Bounds height="45" width="125" x="118" y="249" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_10zvhl5" dmnElementRef="InformationRequirement_0woah6k">
+        <di:waypoint x="181" y="249" />
+        <di:waypoint x="275" y="200" />
+        <di:waypoint x="275" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_19zp8ls" dmnElementRef="chosenClubIsHomeClub">
+        <dc:Bounds height="45" width="125" x="408" y="249" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1124she" dmnElementRef="InformationRequirement_1771h0p">
+        <di:waypoint x="471" y="249" />
+        <di:waypoint x="365" y="200" />
+        <di:waypoint x="365" y="180" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
