@@ -109,7 +109,7 @@ public class ClubMapper {
                         .collect(Collectors.toSet()))
                 .orElseGet(Set::of));
         entity.setLineOfBusiness(Optional.ofNullable(request.getLineOfBusinessId())
-                .map(id -> lineOfBusinessRepository.findById(id).orElseGet(() -> new ClubLineOfBusinessEntity(id)))
+                .map(id -> lineOfBusinessRepository.findById(id).orElseGet(() -> lineOfBusinessRepository.saveAndFlush(new ClubLineOfBusinessEntity(id))))
                 .orElse(null));
         entity.setSegment(Optional.ofNullable(request.getSegment()).map(segmentRepository::getReferenceById).orElse(null));
         entity.setAddressId(address.getId());

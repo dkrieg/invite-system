@@ -1,0 +1,661 @@
+---
+Amenities:
+  - id: 1
+    name: DINING
+  - id: 2
+    name: COURT
+  - id: 3
+    name: GOLF
+BenefitPackages:
+  - id: 1
+    name: Access Advantage Standard Programming
+    benefits:
+      - id: 2
+        code: B0002
+        description: Sunday Noon - Friday Noon; 7 Day advance tee times
+      - id: 23
+        code: B0023
+        description: 4 rounds per month at Home Club
+  - id: 2
+    name: Dine & Play Away Standard Programming
+    benefits:
+      - id: 3
+        code: B0003
+        description: 2 rounds per month per club, outside of 100 mile radius from Home Club
+      - id: 4
+        code: B0004
+        description: Clubs block one morning and one afternoon time slot each day for Play Away access
+      - id: 5
+        code: B0005
+        description: 30 Day advance tee times
+      - id: 6
+        code: B0006
+        description: Tiered Play rates (in addition to regular cart fee) based on Home club and Destination Club segmentation
+      - id: 7
+        code: B0007
+        description: 50% off Home club dining, some clubs with peak time restrictions
+      - id: 8
+        code: B0008
+        description: Dining access for all Play Away members at all clubs (Community & Travel)
+      - id: 9
+        code: B0009
+        description: 25% off evening dining at all City & Stadium clubs
+  - id: 3
+    name: Xlife Social Standard Programming
+    benefits:
+      - id: 11
+        code: B0011
+        description: No Community Golf
+      - id: 12
+        code: B0012
+        description: Dining access at all clubs
+      - id: 7
+        code: B0007
+        description: 50% off Home club dining, some clubs with peak time restrictions
+      - id: 9
+        code: B0009
+        description: 25% off evening dining at all City & Stadium clubs
+      - id: 10
+        code: B0010
+        description: 4 home club off peak golf rounds (Cart fee only) each year
+  - id: 4
+    name: Xlife Stadium
+    benefits:
+      - id: 13
+        code: B0013
+        description: Home Club access to all Stadium clubs with 50% off dining (not through Network benefits)
+      - id: 14
+        code: B0014
+        description: Access to Full price dining at all Golf & City Clubs
+      - id: 15
+        code: B0015
+        description: 12 rounds per year with no more that 2 in a month - Access Fee
+      - id: 16
+        code: B0016
+        description: Excludes clubs within a 50-mile radius of members home address
+      - id: 17
+        code: B0017
+        description: 25 day advance tee times
+      - id: 24
+        code: B0024
+        description: Specific club set available for play
+LinesOfBusiness:
+  - id: 1
+    name: City Club
+  - id: 2
+    name: Golf Club
+  - id: 3
+    name: Stadium Club
+  - id: 4
+    name: Country Club
+Communities:
+  - id: 1
+    name: Austin
+  - id: 2
+    name: Bay Area
+  - id: 3
+    name: Birmingham
+  - id: 4
+    name: Capital (DC)
+  - id: 5
+    name: Charleston
+  - id: 6
+    name: Charlotte
+  - id: 7
+    name: Chicago
+  - id: 8
+    name: Coachella
+  - id: 9
+    name: Dallas Fort Worth
+  - id: 10
+    name: Denver
+  - id: 11
+    name: Detroit
+  - id: 12
+    name: Greenville SC
+  - id: 13
+    name: Hampton Roads (Norfolk)
+  - id: 14
+    name: Houston
+  - id: 15
+    name: Indianapolis
+  - id: 16
+    name: Jacksonville
+  - id: 17
+    name: Las Vegas
+  - id: 18
+    name: Los Angeles
+  - id: 19
+    name: Mid-Atlantic (Philly/Jersey)
+  - id: 20
+    name: Minneapolis/St. Paul
+  - id: 21
+    name: Myrtle Beach
+  - id: 22
+    name: Nashville
+  - id: 23
+    name: New England (Boston)
+  - id: 24
+    name: New Orleans
+  - id: 25
+    name: New York
+  - id: 26
+    name: North Coast (Cleveland/Akron)
+  - id: 27
+    name: Oklahoma City
+  - id: 28
+    name: Orange County
+  - id: 29
+    name: Phoenix
+  - id: 30
+    name: Pittsburgh
+  - id: 31
+    name: Puget Sound (Seattle)
+  - id: 32
+    name: River (Cincinnati/Dayton)
+  - id: 33
+    name: San Diego
+  - id: 34
+    name: San Antonio
+  - id: 35
+    name: South Coast (Miami/Ft. Lauderdale)
+  - id: 36
+    name: Tampa Bay
+  - id: 37
+    name: Toledo
+  - id: 38
+    name: Triangle (Raleigh/Durham)
+  - id: 39
+    name: Tucson
+  - id: 40
+    name: Waco
+  - id: 41
+    name: Winston Salem
+Markets:
+  - id: 1
+    name: Abilene
+  - id: 2
+    name: Aiken
+  - id: 3
+    name: Albany
+  - id: 4
+    name: Albuquerque
+  - id: 5
+    name: Amarillo
+  - id: 6
+    name: Anniston
+  - id: 7
+    name: Asheville
+  - id: 8
+    name: Aspen
+  - id: 9
+    name: Astoria
+  - id: 10
+    name: Atlanta
+  - id: 11
+    name: Atlantic City
+  - id: 12
+    name: Auburn
+  - id: 13
+    name: Augusta
+  - id: 14
+    name: Austin
+  - id: 15
+    name: Bakersfield
+  - id: 16
+    name: Baltimore
+  - id: 17
+    name: Beijing
+  - id: 18
+    name: Biloxi
+  - id: 19
+    name: Birmingham
+  - id: 20
+    name: Blacksburg
+  - id: 21
+    name: Boston
+  - id: 22
+    name: Bowling Green
+  - id: 23
+    name: Bozeman
+  - id: 24
+    name: Bridgeport
+  - id: 25
+    name: Brighton
+  - id: 26
+    name: Butte
+  - id: 27
+    name: Cancun
+  - id: 28
+    name: Caribbean
+  - id: 29
+    name: Cedar Falls
+  - id: 30
+    name: Champaign
+  - id: 31
+    name: Charleston, SC
+  - id: 32
+    name: Charleston, WV
+  - id: 33
+    name: Charlotte
+  - id: 34
+    name: Charlottesville
+  - id: 35
+    name: Chattanooga
+  - id: 36
+    name: Chicago
+  - id: 37
+    name: China
+  - id: 38
+    name: Cincinnati/Dayton
+  - id: 39
+    name: Cleveland
+  - id: 40
+    name: Colorado Springs
+  - id: 41
+    name: Columbia
+  - id: 42
+    name: Columbus
+  - id: 43
+    name: Corpus Christi
+  - id: 44
+    name: Cozumel
+  - id: 45
+    name: Dallas
+  - id: 46
+    name: Danville
+  - id: 47
+    name: Davenport
+  - id: 48
+    name: Dayton
+  - id: 49
+    name: Denver
+  - id: 50
+    name: Denver/Colorado Springs
+  - id: 51
+    name: Des Moines
+  - id: 52
+    name: Destin
+  - id: 53
+    name: Detroit
+  - id: 54
+    name: Dominican Republic
+  - id: 55
+    name: East Texas
+  - id: 56
+    name: Eau Claire
+  - id: 57
+    name: England
+  - id: 58
+    name: Erie
+  - id: 59
+    name: Evansville
+  - id: 60
+    name: Fargo
+  - id: 61
+    name: Flagstaff/Sedona
+  - id: 62
+    name: Fort Collins
+  - id: 63
+    name: Fort Wayne
+  - id: 64
+    name: Fort Worth
+  - id: 65
+    name: France
+  - id: 66
+    name: Frankfurt
+  - id: 67
+    name: Ft. Lauderdale
+  - id: 68
+    name: Gainesville
+  - id: 69
+    name: Grand Rapids
+  - id: 70
+    name: Granger
+  - id: 71
+    name: Green Bay
+  - id: 72
+    name: Greenville
+  - id: 73
+    name: Hanoi
+  - id: 74
+    name: Harrisburg
+  - id: 75
+    name: Hartford
+  - id: 76
+    name: Hattiesburg (MS)
+  - id: 77
+    name: Hawaii (Kuai)
+  - id: 78
+    name: Hawaii (Oahu)
+  - id: 79
+    name: Healdsburg
+  - id: 80
+    name: Hilton Head Island
+  - id: 81
+    name: Hot Springs
+  - id: 82
+    name: Houston
+  - id: 83
+    name: Huntsville
+  - id: 84
+    name: Idaho Falls
+  - id: 85
+    name: Indianapolis
+  - id: 86
+    name: Jackson
+  - id: 87
+    name: Jacksonville
+  - id: 88
+    name: Jakarta
+  - id: 89
+    name: Johannesburg
+  - id: 90
+    name: Joplin
+  - id: 91
+    name: Kansas City
+  - id: 92
+    name: Kiawah
+  - id: 93
+    name: Knoxville
+  - id: 94
+    name: La Crosse
+  - id: 95
+    name: Lake Charles
+  - id: 96
+    name: Lake Powell
+  - id: 97
+    name: Las Vegas
+  - id: 98
+    name: Los Angeles
+  - id: 99
+    name: Lousville
+  - id: 100
+    name: Lubbock
+  - id: 101
+    name: Madison
+  - id: 102
+    name: Maui
+  - id: 103
+    name: McAlester
+  - id: 104
+    name: Medford
+  - id: 105
+    name: Memphis
+  - id: 106
+    name: Miami
+  - id: 107
+    name: Miami/Palm Beach
+  - id: 108
+    name: Midland
+  - id: 109
+    name: Midtown
+  - id: 110
+    name: Milwaukee
+  - id: 111
+    name: Minneapolis
+  - id: 112
+    name: Missoula
+  - id: 113
+    name: Mobile
+  - id: 114
+    name: Monterey
+  - id: 115
+    name: Montgomery
+  - id: 116
+    name: Montreal
+  - id: 117
+    name: Myrtle Beach
+  - id: 118
+    name: Napa/Santa Rosa
+  - id: 119
+    name: Naples
+  - id: 120
+    name: Nashville
+  - id: 121
+    name: National
+  - id: 122
+    name: New Dehli
+  - id: 123
+    name: New Haven
+  - id: 124
+    name: New Orleans
+  - id: 125
+    name: New York
+  - id: 126
+    name: New York City
+  - id: 127
+    name: Norfolk
+  - id: 128
+    name: Oahu
+  - id: 129
+    name: Oklahoma City
+  - id: 130
+    name: Omaha
+  - id: 131
+    name: Ontario
+  - id: 132
+    name: Orange County
+  - id: 133
+    name: Oregon
+  - id: 134
+    name: Orlando
+  - id: 135
+    name: Ottowa
+  - id: 136
+    name: Outer Banks
+  - id: 137
+    name: Ozarks
+  - id: 138
+    name: Palm Beach
+  - id: 139
+    name: Palm Desert
+  - id: 140
+    name: Palm Springs
+  - id: 141
+    name: Panama City
+  - id: 142
+    name: Paris
+  - id: 143
+    name: Park City
+  - id: 144
+    name: Pensacola
+  - id: 145
+    name: Peoria
+  - id: 146
+    name: Philadephia
+  - id: 147
+    name: Phoenix
+  - id: 148
+    name: Pine Bluff
+  - id: 149
+    name: Pittsburgh
+  - id: 150
+    name: Ponca City
+  - id: 151
+    name: Portland
+  - id: 152
+    name: Portsmouth
+  - id: 153
+    name: Providence
+  - id: 154
+    name: Puerto Vallerta
+  - id: 155
+    name: Quebec
+  - id: 156
+    name: Raleigh Durham
+  - id: 157
+    name: Rapid City
+  - id: 158
+    name: Rehoboth Beach
+  - id: 159
+    name: Reno
+  - id: 160
+    name: Richmond
+  - id: 161
+    name: Riverside
+  - id: 162
+    name: Roanoke
+  - id: 163
+    name: Rochester
+  - id: 164
+    name: Rockford
+  - id: 165
+    name: Rogers/Fayetteville
+  - id: 166
+    name: Sacramento
+  - id: 167
+    name: Salt Lake City
+  - id: 168
+    name: San Angelo
+  - id: 169
+    name: San Antonio
+  - id: 170
+    name: San Diego
+  - id: 171
+    name: San Francisco
+  - id: 172
+    name: San Jose
+  - id: 173
+    name: Santa Fe
+  - id: 174
+    name: Sarasota
+  - id: 175
+    name: Savannah
+  - id: 176
+    name: Scotland
+  - id: 177
+    name: Scottland
+  - id: 178
+    name: Seattle
+  - id: 179
+    name: Sedona
+  - id: 180
+    name: Singapore
+  - id: 181
+    name: SoCal
+  - id: 182
+    name: South Texas
+  - id: 183
+    name: Springfield
+  - id: 184
+    name: St. Louis
+  - id: 185
+    name: Stamford
+  - id: 186
+    name: Stockholm
+  - id: 187
+    name: Sulphur Springs
+  - id: 188
+    name: Tahoe
+  - id: 189
+    name: Tampa
+  - id: 190
+    name: Terre Haute
+  - id: 191
+    name: Texarkana
+  - id: 192
+    name: Toledo
+  - id: 193
+    name: Toronto
+  - id: 194
+    name: Tucson
+  - id: 195
+    name: Tulsa
+  - id: 196
+    name: Vail
+  - id: 197
+    name: Vancouver
+  - id: 198
+    name: Vero Beach
+  - id: 199
+    name: Victoria
+  - id: 200
+    name: Waco
+  - id: 201
+    name: Washington, DC
+  - id: 202
+    name: West Lafayette
+  - id: 203
+    name: Wichita
+  - id: 204
+    name: Winston-Salem
+  - id: 205
+    name: Yosemite
+  - id: 206
+    name: Zurich
+ProviderGroups:
+  - id: 1
+    name: Golf Clubs Private Owned
+  - id: 2
+    name: Golf Clubs Private Alliance
+  - id: 3
+    name: Golf Clubs Semi-Private Owned
+  - id: 4
+    name: Golf Clubs Semi-Private Alliance
+  - id: 5
+    name: Golf Clubs Daily Fee Owned
+  - id: 6
+    name: Golf Clubs Daily Fee Alliance
+  - id: 7
+    name: Golf Clubs Private Preferred Rates Owned
+  - id: 8
+    name: Golf Clubs Private Preferred Rates Alliance
+  - id: 9
+    name: Golf Clubs Semi-Private Preferred Rates Owned
+  - id: 10
+    name: Golf Clubs Semi-Private Preferred Rates Alliance
+  - id: 11
+    name: Golf Clubs Daily Fee Preferred Rates Owned
+  - id: 12
+    name: Golf Clubs Daily Fee Preferred Rates Alliance
+  - id: 13
+    name: City Clubs
+  - id: 14
+    name: City Clubs Access Only Owned
+  - id: 15
+    name: City Clubs Access Only Alliance
+  - id: 16
+    name: City Clubs Discounts Apply
+  - id: 17
+    name: Stadium Clubs
+  - id: 18
+    name: XLife Dine & Play Away Golf Owned
+  - id: 19
+    name: XLife Dine & Play Away Golf Alliance
+  - id: 20
+    name: XLife Dine & Play Away Golf Preferred Rates Owned
+  - id: 21
+    name: XLife Dine & Play Away Golf Preferred Rates Alliance
+  - id: 22
+    name: XLife Dine & Play Away Golf City Clubs Owned
+  - id: 23
+    name: XLife Dine & Play Away Golf City Clubs Alliance
+  - id: 24
+    name: XLife Dine & Play Away Golf City Clubs Discounts Apply Owned
+  - id: 25
+    name: XLife Dine & Play Away Golf City Clubs Discounts Apply Alliance
+  - id: 26
+    name: XLife Dine & Play Away Golf City Clubs Access Only Owned
+  - id: 27
+    name: XLife Dine & Play Away Golf City Clubs Access Only Alliance
+  - id: 28
+    name: XLife Dine & Play Away Golf Stadium Clubs Owned
+  - id: 29
+    name: XLife Dine & Play Away Golf Stadium Clubs Alliance
+  - id: 30
+    name: XLife Dine & Play Away Golf Stadium Clubs Discounts Apply Owned
+  - id: 31
+    name: XLife Dine & Play Away Golf Stadium Clubs Discounts Apply Alliance
+  - id: 32
+    name: XLife Dine & Play Away Golf Sports Clubs Owned
+  - id: 33
+    name: XLife Dine & Play Away Golf Sports Clubs Alliance
+  - id: 34
+    name: XLife Dine & Play Away Golf Sports Clubs Discounts Apply Owned
+  - id: 35
+    name: XLife Dine & Play Away Golf Sports Clubs Discounts Apply Alliance
+  - id: 36
+    name: XLife Dine & Play Away Golf Sports Clubs Access Only Owned
+  - id: 37
+    name: XLife Dine & Play Away Golf Sports Clubs Access Only Alliance
