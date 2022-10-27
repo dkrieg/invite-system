@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -25,11 +27,11 @@ public class ProcessController {
     ZeebeClient client;
     static Set<String> varNames = Set.of("reservationIsApproved", "reservation");
 
-    @PostMapping("/new-reservation/{memberId}/{amenityId}/{clubId}/{reservationDate}")
+    @PostMapping("/new-reservation/{memberId}/{amenityId}/{chosenClubId}/{reservationDate}")
     @Operation(description = "start-new-reservation-process", summary = "Start New Reservation Process")
     public ResponseEntity<Map<String, Object>> startReservationProcess(@PathVariable("memberId") Long memberId,
                                                                        @PathVariable("amenityId") Long amenityId,
-                                                                       @PathVariable("clubId") Long clubId,
+                                                                       @PathVariable("chosenClubId") Long chosenClubId,
                                                                        @PathVariable("reservationDate") String reservationDate) {
         return ResponseEntity.ok(client.newCreateInstanceCommand()
                 .bpmnProcessId("new-reservation-process")
@@ -37,9 +39,10 @@ public class ProcessController {
                 .variables(Map.of(
                         "memberId", memberId,
                         "amenityId", amenityId,
-                        "chosenClubId", clubId,
+                        "chosenClubId", chosenClubId,
                         "reservationDate", reservationDate))
                 .withResult()
+                .requestTimeout(Duration.of(2, ChronoUnit.MINUTES))
                 .send()
                 .join(2, TimeUnit.MINUTES)
                 .getVariablesAsMap()
