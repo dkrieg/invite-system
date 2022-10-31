@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import static java.util.Objects.*;
 import static lombok.AccessLevel.PRIVATE;
 
 @RequiredArgsConstructor
@@ -25,13 +27,13 @@ import static lombok.AccessLevel.PRIVATE;
 @RequestMapping(path = "/start")
 public class ProcessController {
     ZeebeClient client;
-    static Set<String> varNames = Set.of("reservationIsApproved", "reservation");
+    static Set<String> varNames = Set.of("reservationIsApproved", "reservationDeclineReason");
 
-    @PostMapping("/new-reservation/{memberId}/{amenityId}/{chosenClubId}/{reservationDate}")
+    @PostMapping("/new-reservation/{memberId}/{amenityId}/{serviceClubId}/{reservationDate}")
     @Operation(description = "start-new-reservation-process", summary = "Start New Reservation Process")
     public ResponseEntity<Map<String, Object>> startReservationProcess(@PathVariable("memberId") Long memberId,
                                                                        @PathVariable("amenityId") Long amenityId,
-                                                                       @PathVariable("chosenClubId") Long chosenClubId,
+                                                                       @PathVariable("serviceClubId") Long serviceClubId,
                                                                        @PathVariable("reservationDate") String reservationDate) {
         return ResponseEntity.ok(client.newCreateInstanceCommand()
                 .bpmnProcessId("new-reservation-process")
@@ -39,7 +41,7 @@ public class ProcessController {
                 .variables(Map.of(
                         "memberId", memberId,
                         "amenityId", amenityId,
-                        "chosenClubId", chosenClubId,
+                        "serviceClubId", serviceClubId,
                         "reservationDate", reservationDate))
                 .withResult()
                 .requestTimeout(Duration.of(2, ChronoUnit.MINUTES))
@@ -48,7 +50,7 @@ public class ProcessController {
                 .getVariablesAsMap()
                 .entrySet()
                 .stream()
-                .filter(e -> varNames.contains(e.getKey()))
+                .filter(e -> varNames.contains(e.getKey()) && nonNull(e.getValue()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
     }
 }

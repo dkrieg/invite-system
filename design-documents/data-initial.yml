@@ -902,11 +902,11 @@ Clubs:
     phoneNumber:
     website:
     markets:
-      - id: 82
-        name: Houston
+      - id: 45
+        name: Dallas
     communities:
-      - id: 14
-        name: Houston
+      - id: 9
+        name: Dallas Fort Worth
     providerGroups:
       - id: 18
         name: XLife Dine & Play Away Golf Owned

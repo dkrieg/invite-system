@@ -2,10 +2,10 @@
 <definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="determine-if-dining-reservation-is-approved" name="Determine If Dining Reservation Is Approved" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.2.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0">
   <decision id="dining-reservation-approval" name="Dining Reservation Approval">
     <informationRequirement id="InformationRequirement_1b4xplz">
-      <requiredInput href="#homeClubIsInSameCommunityAsChosenClub" />
+      <requiredInput href="#isInSameCommunity" />
     </informationRequirement>
     <informationRequirement id="InformationRequirement_1x41efv">
-      <requiredInput href="#chosenClub" />
+      <requiredInput href="#serviceClub" />
     </informationRequirement>
     <informationRequirement id="InformationRequirement_1jotezl">
       <requiredInput href="#benefitList" />
@@ -13,20 +13,21 @@
     <decisionTable id="DecisionTable_03r2csd" hitPolicy="FIRST">
       <input id="Input_1" label="Line Of Business" biodi:width="227">
         <inputExpression id="InputExpression_1" typeRef="string">
-          <text>chosenClub.lineOfBusiness.name</text>
+          <text>serviceClub.lineOfBusiness.name</text>
         </inputExpression>
       </input>
-      <input id="InputClause_0lobzkp" label="Home Club Is In Same Community As Chosen Club" biodi:width="418">
+      <input id="InputClause_0lobzkp" label="Is In Same Community" biodi:width="221">
         <inputExpression id="LiteralExpression_12fbdin" typeRef="boolean">
-          <text>homeClubIsInSameCommunityAsChosenClub</text>
+          <text>isInSameCommunity</text>
         </inputExpression>
       </input>
-      <input id="InputClause_1y2u5ci" label="Benefit List" biodi:width="488">
+      <input id="InputClause_1y2u5ci" label="Benefit List" biodi:width="253">
         <inputExpression id="LiteralExpression_1xz1te5" typeRef="Any">
           <text>benefitList</text>
         </inputExpression>
       </input>
       <output id="Output_1" label="Is Approved" name="isApproved" typeRef="boolean" />
+      <output id="OutputClause_0cl610s" label="Decline Reason" name="declineReason" typeRef="string" biodi:width="240" />
       <rule id="DecisionRule_18lbr5u">
         <description>50% off Home club dining, some clubs with peak time restrictions</description>
         <inputEntry id="UnaryTests_1p2nwy7">
@@ -40,6 +41,9 @@
         </inputEntry>
         <outputEntry id="LiteralExpression_1wllvuq">
           <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1smcq9b">
+          <text>null</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1nin1rt">
@@ -56,6 +60,9 @@
         <outputEntry id="LiteralExpression_1ss85ll">
           <text>true</text>
         </outputEntry>
+        <outputEntry id="LiteralExpression_0rbjg8g">
+          <text>null</text>
+        </outputEntry>
       </rule>
       <rule id="DecisionRule_0bfrs19">
         <description>25% off evening dining at all City &amp; Stadium clubs</description>
@@ -70,6 +77,9 @@
         </inputEntry>
         <outputEntry id="LiteralExpression_0pcdgnb">
           <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0m8ktbl">
+          <text>null</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1rm8m1t">
@@ -86,6 +96,9 @@
         <outputEntry id="LiteralExpression_09uiif3">
           <text>true</text>
         </outputEntry>
+        <outputEntry id="LiteralExpression_06a3n73">
+          <text>null</text>
+        </outputEntry>
       </rule>
       <rule id="DecisionRule_1vq7xs5">
         <description>Dining Access Play Away Member All Clubs</description>
@@ -101,6 +114,9 @@
         <outputEntry id="LiteralExpression_1o9ur5n">
           <text>true</text>
         </outputEntry>
+        <outputEntry id="LiteralExpression_0sq2akl">
+          <text>null</text>
+        </outputEntry>
       </rule>
       <rule id="DecisionRule_0t13bl7">
         <inputEntry id="UnaryTests_1devihx">
@@ -115,18 +131,21 @@
         <outputEntry id="LiteralExpression_1k3rhoo">
           <text>false</text>
         </outputEntry>
+        <outputEntry id="LiteralExpression_1dxm5wn">
+          <text>"Does Not Have a Dining Benefit"</text>
+        </outputEntry>
       </rule>
     </decisionTable>
   </decision>
-  <inputData id="homeClubIsInSameCommunityAsChosenClub" name="Home Club Is In Same Community As Chosen Club" />
-  <inputData id="chosenClub" name="Chosen Club" />
+  <inputData id="isInSameCommunity" name="Is In Same Community" />
+  <inputData id="serviceClub" name="Service Club" />
   <inputData id="benefitList" name="Benefit List" />
   <dmndi:DMNDI>
     <dmndi:DMNDiagram>
       <dmndi:DMNShape dmnElementRef="dining-reservation-approval">
         <dc:Bounds height="80" width="180" x="260" y="120" />
       </dmndi:DMNShape>
-      <dmndi:DMNShape id="DMNShape_1loewx2" dmnElementRef="homeClubIsInSameCommunityAsChosenClub">
+      <dmndi:DMNShape id="DMNShape_1loewx2" dmnElementRef="isInSameCommunity">
         <dc:Bounds height="45" width="125" x="157" y="268" />
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="DMNEdge_0se4c2c" dmnElementRef="InformationRequirement_1b4xplz">
@@ -134,7 +153,7 @@
         <di:waypoint x="305" y="220" />
         <di:waypoint x="305" y="200" />
       </dmndi:DMNEdge>
-      <dmndi:DMNShape id="DMNShape_1c48bjj" dmnElementRef="chosenClub">
+      <dmndi:DMNShape id="DMNShape_1c48bjj" dmnElementRef="serviceClub">
         <dc:Bounds height="45" width="125" x="287" y="269" />
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="DMNEdge_1otp9wa" dmnElementRef="InformationRequirement_1x41efv">

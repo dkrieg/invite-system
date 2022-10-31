@@ -13,8 +13,9 @@ import static lombok.AccessLevel.PRIVATE;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = PRIVATE)
-public class RoundsReservedVariable {
-    int roundsReservedPast12Months;
-    int roundsReservedThisMonth;
-    int roundsReservedThisYear;
+public class RoundsRestriction {
+    int maxRounds;
+    RoundsPerPeriod maxRoundsPerPeriod;
+    RestrictionAppliesTo appliesTo;
+    String declineReason;
 }

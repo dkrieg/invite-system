@@ -19,6 +19,7 @@ dependencies {
     implementation project(':address-library')
     implementation project(':amenity-library')
     implementation project(':benefit-library')
+    implementation project(':community-library')
     implementation project(':job-worker-library')
     implementation project(':member-library')
     implementation project(':membership-library')

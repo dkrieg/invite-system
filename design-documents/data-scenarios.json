@@ -105,10 +105,10 @@
     {
       "name": "Stonebriar Country Club",
       "marketIds": [
-        82
+        45
       ],
       "communityIds": [
-        14
+        9
       ],
       "providerGroupIds": [
         18
@@ -201,37 +201,37 @@
     {
       "memberId": 1,
       "amenityId": 1,
-      "chosenClubId": 2,
-      "reservationDate": "2022-10-25T13:30:00"
+      "serviceClubId": 2,
+      "reservationDate": "2022-11-10T13:30:00"
     },
     {
       "memberId": 2,
       "amenityId": 1,
-      "chosenClubId": 3,
-      "reservationDate": "2022-10-26T13:30:00"
+      "serviceClubId": 3,
+      "reservationDate": "2022-11-10T13:30:00"
     },
     {
       "memberId": 1,
       "amenityId": 3,
-      "chosenClubId": 4,
-      "reservationDate": "2022-10-26T13:30:00"
+      "serviceClubId": 4,
+      "reservationDate": "2022-11-10T13:30:00"
     },
     {
       "memberId": 1,
       "amenityId": 3,
-      "chosenClubId": 2,
-      "reservationDate": "2022-10-27T13:30:00"
+      "serviceClubId": 2,
+      "reservationDate": "2022-11-10T13:30:00"
     },
     {
       "memberId": 2,
       "amenityId": 3,
-      "chosenClubId": 2,
-      "reservationDate": "2022-10-28T13:30:00"
+      "serviceClubId": 2,
+      "reservationDate": "2022-11-10T13:30:00"
     },
     {
       "memberId": 1,
       "amenityId": 3,
-      "chosenClubId": 2,
+      "serviceClubId": 2,
       "reservationDate": "2022-10-29T13:30:00"
     }
   ]

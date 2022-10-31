@@ -2,12 +2,20 @@
 <definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="determine-if-reserving-with-acceptable-segment" name="Determine If Reserving With Acceptable Segment" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.2.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0">
   <decision id="reserving-with-acceptable-segment" name="Reserving With Acceptable Segment">
     <informationRequirement id="InformationRequirement_1fsah8v">
-      <requiredInput href="#chosenClub" />
+      <requiredInput href="#serviceClub" />
     </informationRequirement>
     <informationRequirement id="InformationRequirement_0i1i3pf">
       <requiredInput href="#membership" />
     </informationRequirement>
-    <decisionTable id="DecisionTable_19mkip7">
+    <informationRequirement id="InformationRequirement_01htcf6">
+      <requiredInput href="#isInSameCommunity" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_19mkip7" biodi:annotationsWidth="444">
+      <input id="InputClause_0t5bheq" label="Is In Same Community">
+        <inputExpression id="LiteralExpression_0bm65s4" typeRef="boolean">
+          <text>isInSameCommunity</text>
+        </inputExpression>
+      </input>
       <input id="Input_1" label="Home Club Segment">
         <inputExpression id="InputExpression_1" typeRef="string">
           <text>membership.homeClub.segment.color</text>
@@ -16,16 +24,38 @@
           <text>"Blue","Yellow","Green","Orange"</text>
         </inputValues>
       </input>
-      <input id="InputClause_127mtx9" label="Chosen Club Segment" biodi:width="220">
+      <input id="InputClause_127mtx9" label="Service Club Segment" biodi:width="220">
         <inputExpression id="LiteralExpression_1c10q8r" typeRef="string">
-          <text>chosenClub.segment.color</text>
+          <text>serviceClub.segment.color</text>
         </inputExpression>
         <inputValues id="UnaryTests_10z0fbn">
           <text>"Blue","Yellow","Green","Orange"</text>
         </inputValues>
       </input>
       <output id="Output_1" label="Is Approved" name="isApproved" typeRef="boolean" biodi:width="192" />
+      <output id="OutputClause_02c6oip" label="Decline Reason" name="declineReason" typeRef="string" biodi:width="994" />
+      <rule id="DecisionRule_05ni766">
+        <description>"Club Segmentation Restrictions Do Not Apply To Community Clubs"</description>
+        <inputEntry id="UnaryTests_0ae6cz4">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_09z7dde">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1x9jb90">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_04onnmp">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0m42w6i">
+          <text>null</text>
+        </outputEntry>
+      </rule>
       <rule id="DecisionRule_0g9tjtm">
+        <inputEntry id="UnaryTests_0v2r4ie">
+          <text>false</text>
+        </inputEntry>
         <inputEntry id="UnaryTests_1godmwh">
           <text>"Blue"</text>
         </inputEntry>
@@ -35,8 +65,14 @@
         <outputEntry id="LiteralExpression_0lels9o">
           <text>true</text>
         </outputEntry>
+        <outputEntry id="LiteralExpression_0kpf9mq">
+          <text>null</text>
+        </outputEntry>
       </rule>
       <rule id="DecisionRule_1fk6ske">
+        <inputEntry id="UnaryTests_1ingvs0">
+          <text>false</text>
+        </inputEntry>
         <inputEntry id="UnaryTests_1t50919">
           <text>"Yellow"</text>
         </inputEntry>
@@ -46,19 +82,14 @@
         <outputEntry id="LiteralExpression_00nexhc">
           <text>true</text>
         </outputEntry>
-      </rule>
-      <rule id="DecisionRule_0r0gz60">
-        <inputEntry id="UnaryTests_0ge03ll">
-          <text>"Yellow"</text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0nefkin">
-          <text>"Blue"</text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_0qyqlvi">
-          <text>false</text>
+        <outputEntry id="LiteralExpression_0fypkpg">
+          <text>null</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0xb0ryq">
+        <inputEntry id="UnaryTests_00v7moz">
+          <text>false</text>
+        </inputEntry>
         <inputEntry id="UnaryTests_18zsyrj">
           <text>"Green"</text>
         </inputEntry>
@@ -68,19 +99,14 @@
         <outputEntry id="LiteralExpression_1ac9zsh">
           <text>true</text>
         </outputEntry>
-      </rule>
-      <rule id="DecisionRule_007ar27">
-        <inputEntry id="UnaryTests_0wc064h">
-          <text>"Green"</text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0antwh0">
-          <text>"Blue","Yellow"</text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_0o68dng">
-          <text>false</text>
+        <outputEntry id="LiteralExpression_1bkcsw0">
+          <text>null</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0wkf6oo">
+        <inputEntry id="UnaryTests_00samte">
+          <text>false</text>
+        </inputEntry>
         <inputEntry id="UnaryTests_050cydo">
           <text>"Orange"</text>
         </inputEntry>
@@ -90,8 +116,48 @@
         <outputEntry id="LiteralExpression_0dkucup">
           <text>true</text>
         </outputEntry>
+        <outputEntry id="LiteralExpression_1xflpqg">
+          <text>null</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0r0gz60">
+        <inputEntry id="UnaryTests_0m09m7s">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ge03ll">
+          <text>"Yellow"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0nefkin">
+          <text>"Blue"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0qyqlvi">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0o0dz9a">
+          <text>"Travel reservations for " + membership.homeClub.segment.color + " segmented club cannot reserve at a " + serviceClub.segment.color + " segmented club"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_007ar27">
+        <inputEntry id="UnaryTests_0rjmys9">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wc064h">
+          <text>"Green"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0antwh0">
+          <text>"Blue","Yellow"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0o68dng">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0gw8sq6">
+          <text>"Travel reservations for " + membership.homeClub.segment.color + " segmented club cannot reserve at a " + serviceClub.segment.color + " segmented club"</text>
+        </outputEntry>
       </rule>
       <rule id="DecisionRule_0br51zh">
+        <inputEntry id="UnaryTests_07wcxel">
+          <text>false</text>
+        </inputEntry>
         <inputEntry id="UnaryTests_0jmliru">
           <text>"Orange"</text>
         </inputEntry>
@@ -101,31 +167,43 @@
         <outputEntry id="LiteralExpression_0cby6tj">
           <text>false</text>
         </outputEntry>
+        <outputEntry id="LiteralExpression_0ss1dl0">
+          <text>"Travel reservations for " + membership.homeClub.segment.color + " segmented club cannot reserve at a " + serviceClub.segment.color + " segmented club"</text>
+        </outputEntry>
       </rule>
     </decisionTable>
   </decision>
-  <inputData id="chosenClub" name="Chosen Club" />
+  <inputData id="serviceClub" name="Service Club" />
   <inputData id="membership" name="Membership" />
+  <inputData id="isInSameCommunity" name="Is In Same Community" />
   <dmndi:DMNDI>
     <dmndi:DMNDiagram>
       <dmndi:DMNShape dmnElementRef="reserving-with-acceptable-segment">
-        <dc:Bounds height="80" width="180" x="210" y="80" />
+        <dc:Bounds height="80" width="180" x="260" y="80" />
       </dmndi:DMNShape>
-      <dmndi:DMNShape id="DMNShape_01e5ao0" dmnElementRef="chosenClub">
-        <dc:Bounds height="45" width="125" x="158" y="228" />
+      <dmndi:DMNShape id="DMNShape_01e5ao0" dmnElementRef="serviceClub">
+        <dc:Bounds height="45" width="125" x="287" y="228" />
       </dmndi:DMNShape>
       <dmndi:DMNShape id="DMNShape_08naudh" dmnElementRef="membership">
-        <dc:Bounds height="45" width="125" x="318" y="229" />
+        <dc:Bounds height="45" width="125" x="418" y="229" />
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="DMNEdge_10926yj" dmnElementRef="InformationRequirement_1fsah8v">
-        <di:waypoint x="221" y="228" />
-        <di:waypoint x="270" y="180" />
-        <di:waypoint x="270" y="160" />
+        <di:waypoint x="350" y="228" />
+        <di:waypoint x="350" y="180" />
+        <di:waypoint x="350" y="160" />
       </dmndi:DMNEdge>
       <dmndi:DMNEdge id="DMNEdge_00drmpx" dmnElementRef="InformationRequirement_0i1i3pf">
-        <di:waypoint x="381" y="229" />
-        <di:waypoint x="330" y="180" />
-        <di:waypoint x="330" y="160" />
+        <di:waypoint x="481" y="229" />
+        <di:waypoint x="395" y="180" />
+        <di:waypoint x="395" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0ph3k4e" dmnElementRef="isInSameCommunity">
+        <dc:Bounds height="45" width="125" x="158" y="230" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_18czhg7" dmnElementRef="InformationRequirement_01htcf6">
+        <di:waypoint x="221" y="230" />
+        <di:waypoint x="305" y="180" />
+        <di:waypoint x="305" y="160" />
       </dmndi:DMNEdge>
     </dmndi:DMNDiagram>
   </dmndi:DMNDI>

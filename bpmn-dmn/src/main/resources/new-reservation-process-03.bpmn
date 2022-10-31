@@ -6,7 +6,7 @@
         <zeebe:ioMapping>
           <zeebe:output source="=amenityId" target="amenityId" />
           <zeebe:output source="=reservationDate" target="reservationDate" />
-          <zeebe:output source="=chosenClubId" target="chosenClubId" />
+          <zeebe:output source="=serviceClubId" target="serviceClubId" />
           <zeebe:output source="=memberId" target="memberId" />
         </zeebe:ioMapping>
       </bpmn:extensionElements>
@@ -43,12 +43,12 @@
       <bpmn:incoming>Flow_0mx0ul6</bpmn:incoming>
       <bpmn:outgoing>Flow_1ynf5i3</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_0isc6eb" name="Get Chosen Club By ID">
+    <bpmn:serviceTask id="Activity_0isc6eb" name="Get Service Club By ID">
       <bpmn:extensionElements>
         <zeebe:taskDefinition type="get-club-by-id" />
         <zeebe:ioMapping>
-          <zeebe:input source="=chosenClubId" target="clubId" />
-          <zeebe:output source="=club" target="chosenClub" />
+          <zeebe:input source="=serviceClubId" target="clubId" />
+          <zeebe:output source="=club" target="serviceClub" />
         </zeebe:ioMapping>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0dbcz4u</bpmn:incoming>
@@ -87,18 +87,18 @@
       <bpmn:incoming>Flow_0u7ul9y</bpmn:incoming>
       <bpmn:outgoing>Flow_1gmbako</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:sequenceFlow id="Flow_1ihhiii" sourceRef="determine-if-home-club-is-in-same-market-as-chosen-club" targetRef="Gateway_01lll3r" />
+    <bpmn:sequenceFlow id="Flow_1ihhiii" sourceRef="determine-if-is-in-same-market" targetRef="Gateway_01lll3r" />
     <bpmn:parallelGateway id="Gateway_0wvmsze">
       <bpmn:incoming>Flow_1osjs5s</bpmn:incoming>
       <bpmn:outgoing>Flow_0f1kowr</bpmn:outgoing>
       <bpmn:outgoing>Flow_13s5tdm</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:sequenceFlow id="Flow_0f1kowr" sourceRef="Gateway_0wvmsze" targetRef="determine-if-home-club-is-in-same-community-as-chosen-club" />
-    <bpmn:sequenceFlow id="Flow_13s5tdm" sourceRef="Gateway_0wvmsze" targetRef="determine-if-home-club-is-in-same-market-as-chosen-club" />
+    <bpmn:sequenceFlow id="Flow_0f1kowr" sourceRef="Gateway_0wvmsze" targetRef="determine-if-is-in-same-community" />
+    <bpmn:sequenceFlow id="Flow_13s5tdm" sourceRef="Gateway_0wvmsze" targetRef="determine-if-is-in-same-market" />
     <bpmn:sequenceFlow id="Flow_17scndr" name="GOLF" sourceRef="Gateway_10cc4x3" targetRef="Activity_1u5x7qv">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=isGolf</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0u7ul9y" sourceRef="determine-if-home-club-is-in-same-community-as-chosen-club" targetRef="Gateway_01lll3r" />
+    <bpmn:sequenceFlow id="Flow_0u7ul9y" sourceRef="determine-if-is-in-same-community" targetRef="Gateway_01lll3r" />
     <bpmn:sequenceFlow id="Flow_1o50n0s" name="DINING" sourceRef="Gateway_10cc4x3" targetRef="determine-if-dining-reservation-is-approved">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=isDining</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -106,34 +106,34 @@
     <bpmn:sequenceFlow id="Flow_0ckwu0c" sourceRef="determine-amenity-type" targetRef="Gateway_10cc4x3" />
     <bpmn:businessRuleTask id="determine-amenity-type" name="Determine Amenity Type">
       <bpmn:extensionElements>
-        <zeebe:calledDecision decisionId="amenity-type" resultVariable="amenityType" />
+        <zeebe:calledDecision decisionId="amenity-type" resultVariable="result" />
         <zeebe:ioMapping>
           <zeebe:input source="=amenity" target="amenity" />
-          <zeebe:output source="=amenityType.isGolf" target="isGolf" />
-          <zeebe:output source="=amenityType.isDining" target="isDining" />
-          <zeebe:output source="=amenityType.isOther" target="isOther" />
+          <zeebe:output source="=result.isGolf" target="isGolf" />
+          <zeebe:output source="=result.isDining" target="isDining" />
+          <zeebe:output source="=result.isOther" target="isOther" />
         </zeebe:ioMapping>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1gmbako</bpmn:incoming>
       <bpmn:outgoing>Flow_0ckwu0c</bpmn:outgoing>
     </bpmn:businessRuleTask>
-    <bpmn:businessRuleTask id="determine-if-home-club-is-in-same-market-as-chosen-club" name="Determine If Home Club Is In Same Market As Chosen Club">
+    <bpmn:businessRuleTask id="determine-if-is-in-same-market" name="Determine If Is In Same Market">
       <bpmn:extensionElements>
-        <zeebe:calledDecision decisionId="home-club-is-in-same-market-as-chosen-club" resultVariable="homeClubIsInSameMarketAsChosenClub" />
+        <zeebe:calledDecision decisionId="is-in-same-market" resultVariable="isInSameMarket" />
         <zeebe:ioMapping>
-          <zeebe:input source="=chosenClub" target="chosenClub" />
+          <zeebe:input source="=serviceClub" target="serviceClub" />
           <zeebe:input source="=membership" target="membership" />
         </zeebe:ioMapping>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_13s5tdm</bpmn:incoming>
       <bpmn:outgoing>Flow_1ihhiii</bpmn:outgoing>
     </bpmn:businessRuleTask>
-    <bpmn:businessRuleTask id="determine-if-home-club-is-in-same-community-as-chosen-club" name="Determine If Home Club Is In Same Community As Chosen Club">
+    <bpmn:businessRuleTask id="determine-if-is-in-same-community" name="Determine If Is In Same Community">
       <bpmn:extensionElements>
-        <zeebe:calledDecision decisionId="home-club-is-in-same-community-as-chosen-club" resultVariable="homeClubIsInSameCommunityAsChosenClub" />
+        <zeebe:calledDecision decisionId="is-in-same-community" resultVariable="isInSameCommunity" />
         <zeebe:ioMapping>
           <zeebe:input source="=membership" target="membership" />
-          <zeebe:input source="=chosenClub" target="chosenClub" />
+          <zeebe:input source="=serviceClub" target="serviceClub" />
         </zeebe:ioMapping>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0f1kowr</bpmn:incoming>
@@ -141,11 +141,13 @@
     </bpmn:businessRuleTask>
     <bpmn:businessRuleTask id="determine-if-dining-reservation-is-approved" name="Determine If Dining Reservation Is Approved">
       <bpmn:extensionElements>
-        <zeebe:calledDecision decisionId="dining-reservation-approval" resultVariable="reservationIsApproved" />
+        <zeebe:calledDecision decisionId="dining-reservation-approval" resultVariable="result" />
         <zeebe:ioMapping>
-          <zeebe:input source="=homeClubIsInSameCommunityAsChosenClub" target="homeClubIsInSameCommunityAsChosenClub" />
-          <zeebe:input source="=chosenClub" target="chosenClub" />
+          <zeebe:input source="=isInSameCommunity" target="isInSameCommunity" />
+          <zeebe:input source="=serviceClub" target="serviceClub" />
           <zeebe:input source="=membership.benefitPackage.benefits.code" target="benefitList" />
+          <zeebe:output source="=result.isApproved" target="reservationIsApproved" />
+          <zeebe:output source="=result.declineReason" target="reservationDeclineReason" />
         </zeebe:ioMapping>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1o50n0s</bpmn:incoming>
@@ -177,7 +179,7 @@
           <zeebe:input source="=memberId" target="memberId" />
           <zeebe:input source="=membership.id" target="membershipId" />
           <zeebe:input source="=amenityId" target="amenityId" />
-          <zeebe:input source="=chosenClubId" target="chosenClubId" />
+          <zeebe:input source="=serviceClubId" target="serviceClubId" />
           <zeebe:input source="=reservationDate" target="reservationDate" />
           <zeebe:output source="=reservation" target="reservation" />
         </zeebe:ioMapping>
@@ -206,10 +208,13 @@
     <bpmn:sequenceFlow id="Flow_06bi9gz" sourceRef="Gateway_1wxrule" targetRef="determine-if-reserving-with-acceptable-segment" />
     <bpmn:businessRuleTask id="determine-if-reserving-with-acceptable-segment" name="Determine If Reserving With Acceptable Segment">
       <bpmn:extensionElements>
-        <zeebe:calledDecision decisionId="reserving-with-acceptable-segment" resultVariable="reservingWithAcceptableSegment" />
+        <zeebe:calledDecision decisionId="reserving-with-acceptable-segment" resultVariable="result" />
         <zeebe:ioMapping>
-          <zeebe:input source="=chosenClub" target="chosenClub" />
+          <zeebe:input source="=serviceClub" target="serviceClub" />
           <zeebe:input source="=membership" target="membership" />
+          <zeebe:input source="=isInSameCommunity" target="isInSameCommunity" />
+          <zeebe:output source="=result.isApproved" target="segmentApproved" />
+          <zeebe:output source="=result.declineReason" target="segmentDeclinedReason" />
         </zeebe:ioMapping>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_06bi9gz</bpmn:incoming>
@@ -218,68 +223,50 @@
     <bpmn:sequenceFlow id="Flow_1oi2umg" sourceRef="Gateway_1wxrule" targetRef="determine-membership-rounds-restriction" />
     <bpmn:businessRuleTask id="determine-membership-rounds-restriction" name="Determine Membership Rounds Restriction">
       <bpmn:extensionElements>
-        <zeebe:calledDecision decisionId="membership-rounds-restriction" resultVariable="restriction" />
+        <zeebe:calledDecision decisionId="membership-rounds-restriction" resultVariable="roundsRestrictionList" />
         <zeebe:ioMapping>
           <zeebe:input source="=membership.benefitPackage.benefits.code" target="benefitList" />
-          <zeebe:input source="=homeClubIsInSameCommunityAsChosenClub" target="homeClubIsInSameCommunityAsChosenClub" />
-          <zeebe:input source="=chosenClub.id = membership.homeClub.id" target="chosenClubIsHomeClub" />
-          <zeebe:output source="=restriction.hasRoundsRestriction" target="hasRoundsRestriction" />
-          <zeebe:output source="=restriction.rounds" target="rounds" />
-          <zeebe:output source="=restriction.roundsPerPeriod" target="roundsPerPeriod" />
-          <zeebe:output source="=restriction.maxRounds" target="maxRounds" />
-          <zeebe:output source="=restriction.maxRoundsPerPeriod" target="maxRoundsPerPeriod" />
+          <zeebe:input source="=isInSameCommunity" target="isInSameCommunity" />
+          <zeebe:input source="=membership.homeClub.id = serviceClub.id" target="isHomeClub" />
         </zeebe:ioMapping>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1oi2umg</bpmn:incoming>
-      <bpmn:outgoing>Flow_1d5t92v</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0xxb7jq</bpmn:outgoing>
     </bpmn:businessRuleTask>
     <bpmn:sequenceFlow id="Flow_0ldj9x8" sourceRef="determine-if-reserving-with-acceptable-segment" targetRef="Gateway_0nefedj" />
     <bpmn:parallelGateway id="Gateway_0nefedj">
       <bpmn:incoming>Flow_0ldj9x8</bpmn:incoming>
-      <bpmn:incoming>Flow_1d909yl</bpmn:incoming>
+      <bpmn:incoming>Flow_1egluwo</bpmn:incoming>
       <bpmn:outgoing>Flow_157uhrx</bpmn:outgoing>
     </bpmn:parallelGateway>
-    <bpmn:businessRuleTask id="Activity_17c0mph" name="Determine Rounds Reserved">
-      <bpmn:extensionElements>
-        <zeebe:taskDefinition type="determine-rounds-reserved" />
-        <zeebe:ioMapping>
-          <zeebe:input source="=reservations" target="reservations" />
-          <zeebe:output source="=roundsReservedThisMonth" target="roundsReservedThisMonth" />
-          <zeebe:output source="=roundsReservedThisYear" target="roundsReservedThisYear" />
-          <zeebe:output source="=roundsReservedPast12Months" target="roundsReservedPast12Months" />
-        </zeebe:ioMapping>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_13jqzbh</bpmn:incoming>
-      <bpmn:outgoing>Flow_01xpjic</bpmn:outgoing>
-    </bpmn:businessRuleTask>
-    <bpmn:sequenceFlow id="Flow_01xpjic" sourceRef="Activity_17c0mph" targetRef="determine-if-additional-round-is-permitted" />
     <bpmn:businessRuleTask id="determine-if-additional-round-is-permitted" name="Determine If Additional Round Is Permitted">
       <bpmn:extensionElements>
-        <zeebe:calledDecision decisionId="additional-round-is-permitted" resultVariable="additionalRoundIsPermitted" />
         <zeebe:ioMapping>
-          <zeebe:input source="=roundsReservedPast12Months" target="roundsReservedPast12Months" />
-          <zeebe:input source="=roundsReservedThisMonth" target="roundsReservedThisMonth" />
-          <zeebe:input source="=roundsReservedThisYear" target="roundsReservedThisYear" />
-          <zeebe:input source="=maxRounds" target="maxRounds" />
-          <zeebe:input source="=maxRoundsPerPeriod" target="maxRoundsPerPeriod" />
-          <zeebe:input source="=rounds" target="rounds" />
-          <zeebe:input source="=roundsPerPeriod" target="roundsPerPeriod" />
+          <zeebe:input source="=roundsRestrictionList" target="roundsRestrictionList" />
+          <zeebe:input source="=reservations" target="reservations" />
+          <zeebe:input source="=serviceClub" target="serviceClub" />
+          <zeebe:input source="=membership" target="membership" />
+          <zeebe:input source="=reservationDate" target="reservationDate" />
+          <zeebe:output source="=declineReason" target="additionalRoundDeclinedReason" />
+          <zeebe:output source="=approved" target="additionalRoundApproved" />
         </zeebe:ioMapping>
+        <zeebe:taskDefinition type="determine-if-additional-round-is-permitted" />
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_01xpjic</bpmn:incoming>
+      <bpmn:incoming>Flow_0xxb7jq</bpmn:incoming>
       <bpmn:outgoing>Flow_1egluwo</bpmn:outgoing>
     </bpmn:businessRuleTask>
-    <bpmn:sequenceFlow id="Flow_1egluwo" sourceRef="determine-if-additional-round-is-permitted" targetRef="Gateway_0a9row6" />
+    <bpmn:sequenceFlow id="Flow_1egluwo" sourceRef="determine-if-additional-round-is-permitted" targetRef="Gateway_0nefedj" />
     <bpmn:sequenceFlow id="Flow_157uhrx" sourceRef="Gateway_0nefedj" targetRef="determine-if-golf-reservation-is-approved" />
     <bpmn:businessRuleTask id="determine-if-golf-reservation-is-approved" name="Determine If Golf Reservation Is Approved">
       <bpmn:extensionElements>
-        <zeebe:calledDecision decisionId="golf-reservation-is-approved" resultVariable="reservationIsApproved" />
+        <zeebe:calledDecision decisionId="golf-reservation-is-approved" resultVariable="result" />
         <zeebe:ioMapping>
-          <zeebe:input source="=hasRoundsRestriction and additionalRoundIsPermitted" target="additionalRoundIsPermitted" />
-          <zeebe:input source="=reservingWithAcceptableSegment" target="reservingWithAcceptableSegment" />
-          <zeebe:input source="=true" target="bookingIsInAcceptableTime" />
-          <zeebe:input source="=true" target="advanceTeeTimeInAcceptableTime" />
-          <zeebe:input source="=true" target="reservingWithAcceptableDistance" />
+          <zeebe:input source="=segmentDeclinedReason" target="segmentDeclinedReason" />
+          <zeebe:input source="=segmentApproved" target="segmentApproved" />
+          <zeebe:input source="=additionalRoundDeclinedReason" target="additionalRoundDeclinedReason" />
+          <zeebe:input source="=additionalRoundApproved" target="additionalRoundApproved" />
+          <zeebe:output source="=result.isApproved" target="reservationIsApproved" />
+          <zeebe:output source="=result.declineReason" target="reservationDeclineReason" />
         </zeebe:ioMapping>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_157uhrx</bpmn:incoming>
@@ -297,24 +284,7 @@
     <bpmn:sequenceFlow id="Flow_0kfu2v1" name="No" sourceRef="Gateway_18i2arr" targetRef="Event_1p38xxg">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=not(reservationIsApproved)</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:exclusiveGateway id="Gateway_1qvvyuq" name="Has Rounds Restriction?">
-      <bpmn:incoming>Flow_1d5t92v</bpmn:incoming>
-      <bpmn:outgoing>Flow_13jqzbh</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0nt8wta</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_1d5t92v" sourceRef="determine-membership-rounds-restriction" targetRef="Gateway_1qvvyuq" />
-    <bpmn:sequenceFlow id="Flow_13jqzbh" name="Yes" sourceRef="Gateway_1qvvyuq" targetRef="Activity_17c0mph">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=hasRoundsRestriction</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0nt8wta" name="No" sourceRef="Gateway_1qvvyuq" targetRef="Gateway_0a9row6">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=not(hasRoundsRestriction)</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:exclusiveGateway id="Gateway_0a9row6">
-      <bpmn:incoming>Flow_0nt8wta</bpmn:incoming>
-      <bpmn:incoming>Flow_1egluwo</bpmn:incoming>
-      <bpmn:outgoing>Flow_1d909yl</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_1d909yl" sourceRef="Gateway_0a9row6" targetRef="Gateway_0nefedj" />
+    <bpmn:sequenceFlow id="Flow_0xxb7jq" sourceRef="determine-membership-rounds-restriction" targetRef="determine-if-additional-round-is-permitted" />
   </bpmn:process>
   <bpmn:message id="Message_32evmfa" name="approvedToMakeReservation">
     <bpmn:extensionElements>
@@ -329,7 +299,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_18k004h_di" bpmnElement="Flow_18k004h">
         <di:waypoint x="1385" y="170" />
-        <di:waypoint x="2130" y="170" />
+        <di:waypoint x="2010" y="170" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1769" y="152" width="18" height="14" />
         </bpmndi:BPMNLabel>
@@ -337,8 +307,8 @@
       <bpmndi:BPMNEdge id="Flow_01dnn13_di" bpmnElement="Flow_01dnn13">
         <di:waypoint x="1360" y="145" />
         <di:waypoint x="1360" y="80" />
-        <di:waypoint x="2310" y="80" />
-        <di:waypoint x="2310" y="152" />
+        <di:waypoint x="2190" y="80" />
+        <di:waypoint x="2190" y="152" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1698" y="89" width="15" height="14" />
         </bpmndi:BPMNLabel>
@@ -431,31 +401,31 @@
         <di:waypoint x="1465" y="380" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_157uhrx_di" bpmnElement="Flow_157uhrx">
-        <di:waypoint x="2075" y="380" />
-        <di:waypoint x="2130" y="380" />
+        <di:waypoint x="1955" y="380" />
+        <di:waypoint x="2010" y="380" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0e67xny_di" bpmnElement="Flow_0e67xny">
-        <di:waypoint x="2230" y="170" />
-        <di:waypoint x="2292" y="170" />
+        <di:waypoint x="2110" y="170" />
+        <di:waypoint x="2172" y="170" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0kfu2v1_di" bpmnElement="Flow_0kfu2v1">
-        <di:waypoint x="2205" y="280" />
-        <di:waypoint x="2310" y="280" />
-        <di:waypoint x="2310" y="188" />
+        <di:waypoint x="2085" y="280" />
+        <di:waypoint x="2190" y="280" />
+        <di:waypoint x="2190" y="188" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="2250" y="262" width="15" height="14" />
+          <dc:Bounds x="2130" y="262" width="15" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1ds40ua_di" bpmnElement="Flow_1ds40ua">
-        <di:waypoint x="2180" y="255" />
-        <di:waypoint x="2180" y="210" />
+        <di:waypoint x="2060" y="255" />
+        <di:waypoint x="2060" y="210" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="2186" y="226" width="18" height="14" />
+          <dc:Bounds x="2066" y="226" width="18" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0ptitn1_di" bpmnElement="Flow_0ptitn1">
-        <di:waypoint x="2180" y="340" />
-        <di:waypoint x="2180" y="305" />
+        <di:waypoint x="2060" y="340" />
+        <di:waypoint x="2060" y="305" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_06bi9gz_di" bpmnElement="Flow_06bi9gz">
         <di:waypoint x="1515" y="380" />
@@ -468,38 +438,16 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0ldj9x8_di" bpmnElement="Flow_0ldj9x8">
         <di:waypoint x="1670" y="380" />
-        <di:waypoint x="2025" y="380" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1d5t92v_di" bpmnElement="Flow_1d5t92v">
-        <di:waypoint x="1670" y="490" />
-        <di:waypoint x="1755" y="490" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1d909yl_di" bpmnElement="Flow_1d909yl">
-        <di:waypoint x="1965" y="490" />
-        <di:waypoint x="2050" y="490" />
-        <di:waypoint x="2050" y="405" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_13jqzbh_di" bpmnElement="Flow_13jqzbh">
-        <di:waypoint x="1780" y="515" />
-        <di:waypoint x="1780" y="580" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1786" y="547" width="18" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_01xpjic_di" bpmnElement="Flow_01xpjic">
-        <di:waypoint x="1830" y="620" />
-        <di:waypoint x="1890" y="620" />
+        <di:waypoint x="1905" y="380" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1egluwo_di" bpmnElement="Flow_1egluwo">
-        <di:waypoint x="1940" y="580" />
-        <di:waypoint x="1940" y="515" />
+        <di:waypoint x="1850" y="490" />
+        <di:waypoint x="1930" y="490" />
+        <di:waypoint x="1930" y="405" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0nt8wta_di" bpmnElement="Flow_0nt8wta">
-        <di:waypoint x="1805" y="490" />
-        <di:waypoint x="1915" y="490" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1853" y="472" width="15" height="14" />
-        </bpmndi:BPMNLabel>
+      <bpmndi:BPMNEdge id="Flow_0xxb7jq_di" bpmnElement="Flow_0xxb7jq">
+        <di:waypoint x="1670" y="490" />
+        <di:waypoint x="1750" y="490" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="179" y="362" width="36" height="36" />
@@ -535,11 +483,13 @@
         <dc:Bounds x="1010" y="340" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0kve0sz_di" bpmnElement="determine-if-home-club-is-in-same-market-as-chosen-club">
+      <bpmndi:BPMNShape id="Activity_0kve0sz_di" bpmnElement="determine-if-is-in-same-market">
         <dc:Bounds x="760" y="340" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0asikzb_di" bpmnElement="determine-if-home-club-is-in-same-community-as-chosen-club">
+      <bpmndi:BPMNShape id="Activity_0asikzb_di" bpmnElement="determine-if-is-in-same-community">
         <dc:Bounds x="760" y="450" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1bs79pu_di" bpmnElement="determine-if-dining-reservation-is-approved">
         <dc:Bounds x="1160" y="130" width="100" height="80" />
@@ -561,21 +511,6 @@
           <dc:Bounds x="1176" y="535" width="71" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0uweh79_di" bpmnElement="Activity_1k4bsj6">
-        <dc:Bounds x="2130" y="130" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1p38xxg_di" bpmnElement="Event_1p38xxg">
-        <dc:Bounds x="2292" y="152" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2465" y="145" width="71" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0rqcro1_di" bpmnElement="determine-if-golf-reservation-is-approved">
-        <dc:Bounds x="2130" y="340" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_18i2arr_di" bpmnElement="Gateway_18i2arr" isMarkerVisible="true">
-        <dc:Bounds x="2155" y="255" width="50" height="50" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0ogwxxw_di" bpmnElement="Gateway_1wxrule">
         <dc:Bounds x="1465" y="355" width="50" height="50" />
       </bpmndi:BPMNShape>
@@ -585,24 +520,26 @@
       <bpmndi:BPMNShape id="Activity_1ns1sov_di" bpmnElement="determine-membership-rounds-restriction">
         <dc:Bounds x="1570" y="450" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_1223fih_di" bpmnElement="Gateway_0nefedj">
-        <dc:Bounds x="2025" y="355" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0eysp9m_di" bpmnElement="Activity_17c0mph">
-        <dc:Bounds x="1730" y="580" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1hbltxv_di" bpmnElement="determine-if-additional-round-is-permitted">
-        <dc:Bounds x="1890" y="580" width="100" height="80" />
+        <dc:Bounds x="1750" y="450" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_1qvvyuq_di" bpmnElement="Gateway_1qvvyuq" isMarkerVisible="true">
-        <dc:Bounds x="1755" y="465" width="50" height="50" />
+      <bpmndi:BPMNShape id="Activity_0uweh79_di" bpmnElement="Activity_1k4bsj6">
+        <dc:Bounds x="2010" y="130" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1p38xxg_di" bpmnElement="Event_1p38xxg">
+        <dc:Bounds x="2172" y="152" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1751" y="435" width="61" height="27" />
+          <dc:Bounds x="2465" y="145" width="71" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_0a9row6_di" bpmnElement="Gateway_0a9row6" isMarkerVisible="true">
-        <dc:Bounds x="1915" y="465" width="50" height="50" />
+      <bpmndi:BPMNShape id="Activity_0rqcro1_di" bpmnElement="determine-if-golf-reservation-is-approved">
+        <dc:Bounds x="2010" y="340" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_18i2arr_di" bpmnElement="Gateway_18i2arr" isMarkerVisible="true">
+        <dc:Bounds x="2035" y="255" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1223fih_di" bpmnElement="Gateway_0nefedj">
+        <dc:Bounds x="1905" y="355" width="50" height="50" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

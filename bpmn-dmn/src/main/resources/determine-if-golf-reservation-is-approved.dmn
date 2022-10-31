@@ -1,75 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="determine-if-golf-reservation-is-approved" name="Determine If Golf Reservation Is Approved" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.2.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0">
-  <inputData id="additionalRoundIsPermitted" name="Additional Round Is Permitted" />
-  <inputData id="bookingIsInAcceptableTime" name="Booking Is In Acceptable Time" />
-  <inputData id="advanceTeeTimeInAcceptableTime" name="Advance Tee Time In Acceptable Time" />
-  <inputData id="reservingWithAcceptableDistance" name="Reserving With Acceptable Distance" />
-  <inputData id="reservingWithAcceptableSegment" name="Reserving With Acceptable Segment" />
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="determine-if-golf-reservation-is-approved" name="Determine If Golf Reservation Is Approved" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.2.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0">
+  <inputData id="additionalRoundApproved" name="Additional Round Approved" />
+  <inputData id="segmentApproved" name="Segment Approved" />
+  <inputData id="additionalRoundDeclinedReason" name="Additional Round Declined Reason" />
+  <inputData id="segmentDeclinedReason" name="Segment Declined Reason" />
   <decision id="golf-reservation-is-approved" name="Golf Reservation Is Approved">
-    <variable id="InformationItem_006443g" name="reservationIsApproved" typeRef="boolean" />
     <informationRequirement id="InformationRequirement_0gutsuf">
-      <requiredInput href="#additionalRoundIsPermitted" />
-    </informationRequirement>
-    <informationRequirement id="InformationRequirement_0gj2b02">
-      <requiredInput href="#bookingIsInAcceptableTime" />
-    </informationRequirement>
-    <informationRequirement id="InformationRequirement_0qh2spt">
-      <requiredInput href="#advanceTeeTimeInAcceptableTime" />
-    </informationRequirement>
-    <informationRequirement id="InformationRequirement_09vltar">
-      <requiredInput href="#reservingWithAcceptableDistance" />
+      <requiredInput href="#additionalRoundApproved" />
     </informationRequirement>
     <informationRequirement id="InformationRequirement_10f06st">
-      <requiredInput href="#reservingWithAcceptableSegment" />
+      <requiredInput href="#segmentApproved" />
     </informationRequirement>
-    <literalExpression id="LiteralExpression_1b8vq03">
-      <text>additionalRoundIsPermitted and bookingIsInAcceptableTime and advanceTeeTimeInAcceptableTime and reservingWithAcceptableDistance and reservingWithAcceptableSegment</text>
-    </literalExpression>
+    <informationRequirement id="InformationRequirement_17zamoe">
+      <requiredInput href="#additionalRoundDeclinedReason" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0abvqvg">
+      <requiredInput href="#segmentDeclinedReason" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_181gyfp" hitPolicy="FIRST">
+      <input id="InputClause_0f51bwn" label="Additional Round Approved" biodi:width="248">
+        <inputExpression id="LiteralExpression_1n8fdmm" typeRef="boolean">
+          <text>additionalRoundApproved</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0xtjkr5" label="Additional Round Declined Reason" biodi:width="278">
+        <inputExpression id="LiteralExpression_0zpwsul" typeRef="string">
+          <text>additionalRoundDeclinedReason</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0gcgwso" label="Segment Approved">
+        <inputExpression id="LiteralExpression_18zy1ks" typeRef="boolean">
+          <text>segmentApproved</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1gubguj" label="Segment Declined Reason" biodi:width="267">
+        <inputExpression id="LiteralExpression_0ts9qnz" typeRef="string">
+          <text>segmentDeclinedReason</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_00c2s5q" label="Is Approved" name="isApproved" typeRef="boolean" />
+      <output id="OutputClause_0cd6vbu" label="Decline Reason" name="declineReason" typeRef="string" biodi:width="280" />
+      <rule id="DecisionRule_0710jkw">
+        <inputEntry id="UnaryTests_0jdalvq">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1g7pbjy">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ykixh9">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ctl7s3">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1mj4q4f">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0h4eymj">
+          <text>additionalRoundDeclinedReason</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1yjnrvv">
+        <inputEntry id="UnaryTests_1jb4h6y">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1bn5t48">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0377z3o">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gprlk6">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1otqrxd">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1xc08k5">
+          <text>segmentDeclinedReason</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1sydpwv">
+        <inputEntry id="UnaryTests_1v9z4qq">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1e8n6t4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0hvmpzk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1nss4gc">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0n039xd">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_01767ur">
+          <text>null</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
   </decision>
   <dmndi:DMNDI>
     <dmndi:DMNDiagram>
-      <dmndi:DMNShape id="DMNShape_09t1trv" dmnElementRef="additionalRoundIsPermitted">
+      <dmndi:DMNShape id="DMNShape_09t1trv" dmnElementRef="additionalRoundApproved">
         <dc:Bounds height="45" width="125" x="157" y="238" />
       </dmndi:DMNShape>
-      <dmndi:DMNShape id="DMNShape_0k8jbwh" dmnElementRef="bookingIsInAcceptableTime">
-        <dc:Bounds height="45" width="125" x="288" y="239" />
-      </dmndi:DMNShape>
-      <dmndi:DMNShape id="DMNShape_15m25o8" dmnElementRef="advanceTeeTimeInAcceptableTime">
-        <dc:Bounds height="45" width="125" x="417" y="239" />
-      </dmndi:DMNShape>
-      <dmndi:DMNShape id="DMNShape_0xyc0ry" dmnElementRef="reservingWithAcceptableDistance">
-        <dc:Bounds height="45" width="125" x="547" y="239" />
-      </dmndi:DMNShape>
-      <dmndi:DMNShape id="DMNShape_18t15cz" dmnElementRef="reservingWithAcceptableSegment">
-        <dc:Bounds height="45" width="125" x="678" y="240" />
+      <dmndi:DMNShape id="DMNShape_18t15cz" dmnElementRef="segmentApproved">
+        <dc:Bounds height="45" width="125" x="437" y="238" />
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="DMNEdge_08aaibu" dmnElementRef="InformationRequirement_0gutsuf">
         <di:waypoint x="220" y="238" />
-        <di:waypoint x="420" y="180" />
-        <di:waypoint x="420" y="160" />
-      </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="DMNEdge_0guojdo" dmnElementRef="InformationRequirement_0gj2b02">
-        <di:waypoint x="351" y="239" />
-        <di:waypoint x="450" y="180" />
-        <di:waypoint x="450" y="160" />
-      </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="DMNEdge_15xbtr6" dmnElementRef="InformationRequirement_0qh2spt">
-        <di:waypoint x="480" y="239" />
-        <di:waypoint x="480" y="180" />
-        <di:waypoint x="480" y="160" />
-      </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="DMNEdge_1f73j9p" dmnElementRef="InformationRequirement_09vltar">
-        <di:waypoint x="610" y="239" />
-        <di:waypoint x="510" y="180" />
-        <di:waypoint x="510" y="160" />
+        <di:waypoint x="386" y="180" />
+        <di:waypoint x="386" y="160" />
       </dmndi:DMNEdge>
       <dmndi:DMNEdge id="DMNEdge_0h90wwa" dmnElementRef="InformationRequirement_10f06st">
-        <di:waypoint x="741" y="240" />
-        <di:waypoint x="540" y="180" />
-        <di:waypoint x="540" y="160" />
+        <di:waypoint x="500" y="238" />
+        <di:waypoint x="458" y="180" />
+        <di:waypoint x="458" y="160" />
       </dmndi:DMNEdge>
-      <dmndi:DMNShape id="DMNShape_0j90e0n" dmnElementRef="golf-reservation-is-approved">
-        <dc:Bounds height="80" width="180" x="390" y="80" />
+      <dmndi:DMNShape id="DMNShape_1mtzt3y" dmnElementRef="additionalRoundDeclinedReason">
+        <dc:Bounds height="45" width="125" x="298" y="239" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_01w7svt" dmnElementRef="InformationRequirement_17zamoe">
+        <di:waypoint x="361" y="239" />
+        <di:waypoint x="422" y="180" />
+        <di:waypoint x="422" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1fh20y4" dmnElementRef="segmentDeclinedReason">
+        <dc:Bounds height="45" width="125" x="578" y="239" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_08ki2td" dmnElementRef="InformationRequirement_0abvqvg">
+        <di:waypoint x="641" y="239" />
+        <di:waypoint x="494" y="180" />
+        <di:waypoint x="494" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0xvudzs" dmnElementRef="golf-reservation-is-approved">
+        <dc:Bounds height="80" width="180" x="350" y="80" />
       </dmndi:DMNShape>
     </dmndi:DMNDiagram>
   </dmndi:DMNDI>
