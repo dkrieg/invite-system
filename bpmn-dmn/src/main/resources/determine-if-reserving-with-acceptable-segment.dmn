@@ -7,12 +7,12 @@
     <informationRequirement id="InformationRequirement_0i1i3pf">
       <requiredInput href="#membership" />
     </informationRequirement>
-    <informationRequirement id="InformationRequirement_01htcf6">
-      <requiredInput href="#isInSameCommunity" />
+    <informationRequirement id="InformationRequirement_0x7m4zo">
+      <requiredInput href="#isSameCommunity" />
     </informationRequirement>
     <decisionTable id="DecisionTable_19mkip7" biodi:annotationsWidth="444">
-      <input id="InputClause_0t5bheq" label="Is In Same Community">
-        <inputExpression id="LiteralExpression_0bm65s4" typeRef="boolean">
+      <input id="InputClause_14m6n64" label="Is Same Community">
+        <inputExpression id="LiteralExpression_1c0aars" typeRef="boolean">
           <text>isInSameCommunity</text>
         </inputExpression>
       </input>
@@ -36,7 +36,7 @@
       <output id="OutputClause_02c6oip" label="Decline Reason" name="declineReason" typeRef="string" biodi:width="994" />
       <rule id="DecisionRule_05ni766">
         <description>"Club Segmentation Restrictions Do Not Apply To Community Clubs"</description>
-        <inputEntry id="UnaryTests_0ae6cz4">
+        <inputEntry id="UnaryTests_0tl6hsj">
           <text>true</text>
         </inputEntry>
         <inputEntry id="UnaryTests_09z7dde">
@@ -53,7 +53,7 @@
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0g9tjtm">
-        <inputEntry id="UnaryTests_0v2r4ie">
+        <inputEntry id="UnaryTests_0xok9r6">
           <text>false</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1godmwh">
@@ -70,7 +70,7 @@
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1fk6ske">
-        <inputEntry id="UnaryTests_1ingvs0">
+        <inputEntry id="UnaryTests_1jc7n0s">
           <text>false</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1t50919">
@@ -87,7 +87,7 @@
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0xb0ryq">
-        <inputEntry id="UnaryTests_00v7moz">
+        <inputEntry id="UnaryTests_0uozedi">
           <text>false</text>
         </inputEntry>
         <inputEntry id="UnaryTests_18zsyrj">
@@ -104,7 +104,7 @@
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0wkf6oo">
-        <inputEntry id="UnaryTests_00samte">
+        <inputEntry id="UnaryTests_10oc9xu">
           <text>false</text>
         </inputEntry>
         <inputEntry id="UnaryTests_050cydo">
@@ -121,7 +121,7 @@
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0r0gz60">
-        <inputEntry id="UnaryTests_0m09m7s">
+        <inputEntry id="UnaryTests_0ntwmz6">
           <text>false</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0ge03ll">
@@ -138,7 +138,7 @@
         </outputEntry>
       </rule>
       <rule id="DecisionRule_007ar27">
-        <inputEntry id="UnaryTests_0rjmys9">
+        <inputEntry id="UnaryTests_0dpmzsl">
           <text>false</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0wc064h">
@@ -155,7 +155,7 @@
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0br51zh">
-        <inputEntry id="UnaryTests_07wcxel">
+        <inputEntry id="UnaryTests_08qixg2">
           <text>false</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0jmliru">
@@ -175,7 +175,7 @@
   </decision>
   <inputData id="serviceClub" name="Service Club" />
   <inputData id="membership" name="Membership" />
-  <inputData id="isInSameCommunity" name="Is In Same Community" />
+  <inputData id="isSameCommunity" name="Is In Same Community" />
   <dmndi:DMNDI>
     <dmndi:DMNDiagram>
       <dmndi:DMNShape dmnElementRef="reserving-with-acceptable-segment">
@@ -197,11 +197,11 @@
         <di:waypoint x="395" y="180" />
         <di:waypoint x="395" y="160" />
       </dmndi:DMNEdge>
-      <dmndi:DMNShape id="DMNShape_0ph3k4e" dmnElementRef="isInSameCommunity">
-        <dc:Bounds height="45" width="125" x="158" y="230" />
+      <dmndi:DMNShape id="DMNShape_0988tlm" dmnElementRef="isSameCommunity">
+        <dc:Bounds height="45" width="125" x="158" y="229" />
       </dmndi:DMNShape>
-      <dmndi:DMNEdge id="DMNEdge_18czhg7" dmnElementRef="InformationRequirement_01htcf6">
-        <di:waypoint x="221" y="230" />
+      <dmndi:DMNEdge id="DMNEdge_1qovzzd" dmnElementRef="InformationRequirement_0x7m4zo">
+        <di:waypoint x="221" y="229" />
         <di:waypoint x="305" y="180" />
         <di:waypoint x="305" y="160" />
       </dmndi:DMNEdge>
