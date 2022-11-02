@@ -82,7 +82,7 @@ public class AddressController {
                 : ResponseEntity.notFound().build();
     }
 
-    @GetMapping(path = "/calculate-distance")
+    @GetMapping(path = "/calculate-distance/{start}/{end}")
     @Operation(description = "calculate-distance", summary = "Calculate Distance Between 2 Addresses")
     ResponseEntity<Distance> calculateDistance(@RequestParam("start") Long startId, @RequestParam("end") Long endId) {
         return ResponseEntity.ok(service.calculateDistance(startId, endId));

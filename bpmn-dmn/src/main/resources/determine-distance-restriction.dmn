@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="determine-distance-restriction" name="Determine Distance Restriction" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.2.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0">
+  <decision id="distance-restriction" name="Distance Restriction">
+    <informationRequirement id="InformationRequirement_1ct8oh0">
+      <requiredInput href="#isInSameCommunity" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_15cxskj">
+      <requiredInput href="#benefitList" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_00xqik3" hitPolicy="FIRST" biodi:annotationsWidth="505">
+      <input id="Input_1" label="Is In Same Community">
+        <inputExpression id="InputExpression_1" typeRef="boolean">
+          <text>isInSameCommunity</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0bii08c" label="Benefit List" biodi:width="294">
+        <inputExpression id="LiteralExpression_1p3u41a" typeRef="Any">
+          <text>benefitList</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Has Distance Restriction" name="hasDistanceRestriction" typeRef="boolean" biodi:width="242" />
+      <output id="OutputClause_0dirjbs" label="Minimum Distance" name="minimumDistance" typeRef="number" />
+      <output id="OutputClause_1dnr01o" label="Reason" name="reason" typeRef="string" biodi:width="448" />
+      <output id="OutputClause_0nz4otp" label="Applies To" name="appliesTo" typeRef="string">
+        <outputValues id="UnaryTests_0ouofll">
+          <text>"Home Club","Member"</text>
+        </outputValues>
+      </output>
+      <rule id="DecisionRule_1mnymeu">
+        <description>2 rounds per month per club, outside of 100 mile radius from Home Club</description>
+        <inputEntry id="UnaryTests_13k2bei">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01bxm15">
+          <text>list contains(benefitList, "B0003")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ba7wbq">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_046n27d">
+          <text>100</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1x42g5h">
+          <text>"Must be outside of 100-mile radius from Home Club"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0qcuf2o">
+          <text>"Home Club"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1o5y4e1">
+        <description>Excludes clubs within a 50-mile radius of members home address</description>
+        <inputEntry id="UnaryTests_165uhvg">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0h18t3w">
+          <text>list contains(benefitList, "B0016")</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_04feipm">
+          <text>true</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_171puxu">
+          <text>50</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0s47zu7">
+          <text>"Must be outside of 50-mile radius of members home address"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0tsbfu8">
+          <text>"Member"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_11dag62">
+        <description>Distance Restrictions Not Applied</description>
+        <inputEntry id="UnaryTests_1lh69db">
+          <text>-</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xynrt6">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_04qhabp">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0exmx9p">
+          <text>0</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1r7xhq8">
+          <text>null</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1y06c1c">
+          <text>null</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="isInSameCommunity" name="Is In Same Community" />
+  <inputData id="benefitList" name="Benefit List" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="distance-restriction">
+        <dc:Bounds height="80" width="180" x="220" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0skbofz" dmnElementRef="isInSameCommunity">
+        <dc:Bounds height="45" width="125" x="158" y="218" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1m3koc2" dmnElementRef="benefitList">
+        <dc:Bounds height="45" width="125" x="318" y="219" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0sg8dkm" dmnElementRef="InformationRequirement_1ct8oh0">
+        <di:waypoint x="221" y="218" />
+        <di:waypoint x="280" y="180" />
+        <di:waypoint x="280" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_1hmb9mr" dmnElementRef="InformationRequirement_15cxskj">
+        <di:waypoint x="381" y="219" />
+        <di:waypoint x="340" y="180" />
+        <di:waypoint x="340" y="160" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

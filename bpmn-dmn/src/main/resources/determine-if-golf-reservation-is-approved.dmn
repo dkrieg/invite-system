@@ -17,6 +17,12 @@
     <informationRequirement id="InformationRequirement_0abvqvg">
       <requiredInput href="#segmentDeclinedReason" />
     </informationRequirement>
+    <informationRequirement id="InformationRequirement_0n907aj">
+      <requiredInput href="#distanceApproved" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_07jt5wz">
+      <requiredInput href="#distanceDeclinedReason" />
+    </informationRequirement>
     <decisionTable id="DecisionTable_181gyfp" hitPolicy="FIRST">
       <input id="InputClause_0f51bwn" label="Additional Round Approved" biodi:width="248">
         <inputExpression id="LiteralExpression_1n8fdmm" typeRef="boolean">
@@ -38,6 +44,16 @@
           <text>segmentDeclinedReason</text>
         </inputExpression>
       </input>
+      <input id="InputClause_01839j4" label="Distance Approved">
+        <inputExpression id="LiteralExpression_1vtpb64" typeRef="boolean">
+          <text>distanceApproved</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_049x2g0" label="Distance Declined Reason" biodi:width="223">
+        <inputExpression id="LiteralExpression_1du5nv7" typeRef="string">
+          <text>distanceDeclinedReason</text>
+        </inputExpression>
+      </input>
       <output id="OutputClause_00c2s5q" label="Is Approved" name="isApproved" typeRef="boolean" />
       <output id="OutputClause_0cd6vbu" label="Decline Reason" name="declineReason" typeRef="string" biodi:width="280" />
       <rule id="DecisionRule_0710jkw">
@@ -51,6 +67,12 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0ctl7s3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0bcr02m">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_07bsxk9">
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1mj4q4f">
@@ -73,11 +95,43 @@
         <inputEntry id="UnaryTests_1gprlk6">
           <text></text>
         </inputEntry>
+        <inputEntry id="UnaryTests_09dk0fs">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1mnjnr7">
+          <text></text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_1otqrxd">
           <text>false</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1xc08k5">
           <text>segmentDeclinedReason</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_07c9g5j">
+        <inputEntry id="UnaryTests_0cstg5n">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0e5jtp3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1oh4g7a">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0106of5">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1amzg6t">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1s113vc">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0s3pptp">
+          <text>false</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0q7m5zs">
+          <text>distanceDeclinedReason</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1sydpwv">
@@ -93,6 +147,12 @@
         <inputEntry id="UnaryTests_1nss4gc">
           <text></text>
         </inputEntry>
+        <inputEntry id="UnaryTests_17n0ddy">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17wy3qo">
+          <text></text>
+        </inputEntry>
         <outputEntry id="LiteralExpression_0n039xd">
           <text>true</text>
         </outputEntry>
@@ -102,6 +162,8 @@
       </rule>
     </decisionTable>
   </decision>
+  <inputData id="distanceApproved" name="Distance Approved" />
+  <inputData id="distanceDeclinedReason" name="Distance Declined Reason" />
   <dmndi:DMNDI>
     <dmndi:DMNDiagram>
       <dmndi:DMNShape id="DMNShape_09t1trv" dmnElementRef="additionalRoundApproved">
@@ -112,33 +174,49 @@
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="DMNEdge_08aaibu" dmnElementRef="InformationRequirement_0gutsuf">
         <di:waypoint x="220" y="238" />
-        <di:waypoint x="386" y="180" />
-        <di:waypoint x="386" y="160" />
+        <di:waypoint x="509" y="180" />
+        <di:waypoint x="509" y="160" />
       </dmndi:DMNEdge>
       <dmndi:DMNEdge id="DMNEdge_0h90wwa" dmnElementRef="InformationRequirement_10f06st">
         <di:waypoint x="500" y="238" />
-        <di:waypoint x="458" y="180" />
-        <di:waypoint x="458" y="160" />
+        <di:waypoint x="560" y="180" />
+        <di:waypoint x="560" y="160" />
       </dmndi:DMNEdge>
       <dmndi:DMNShape id="DMNShape_1mtzt3y" dmnElementRef="additionalRoundDeclinedReason">
         <dc:Bounds height="45" width="125" x="298" y="239" />
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="DMNEdge_01w7svt" dmnElementRef="InformationRequirement_17zamoe">
         <di:waypoint x="361" y="239" />
-        <di:waypoint x="422" y="180" />
-        <di:waypoint x="422" y="160" />
+        <di:waypoint x="534" y="180" />
+        <di:waypoint x="534" y="160" />
       </dmndi:DMNEdge>
       <dmndi:DMNShape id="DMNShape_1fh20y4" dmnElementRef="segmentDeclinedReason">
         <dc:Bounds height="45" width="125" x="578" y="239" />
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="DMNEdge_08ki2td" dmnElementRef="InformationRequirement_0abvqvg">
         <di:waypoint x="641" y="239" />
-        <di:waypoint x="494" y="180" />
-        <di:waypoint x="494" y="160" />
+        <di:waypoint x="586" y="180" />
+        <di:waypoint x="586" y="160" />
       </dmndi:DMNEdge>
       <dmndi:DMNShape id="DMNShape_0xvudzs" dmnElementRef="golf-reservation-is-approved">
-        <dc:Bounds height="80" width="180" x="350" y="80" />
+        <dc:Bounds height="80" width="180" x="483" y="80" />
       </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1c9ylt1" dmnElementRef="distanceApproved">
+        <dc:Bounds height="45" width="125" x="718" y="239" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1at66wm" dmnElementRef="InformationRequirement_0n907aj">
+        <di:waypoint x="781" y="239" />
+        <di:waypoint x="612" y="180" />
+        <di:waypoint x="612" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1s3tx6o" dmnElementRef="distanceDeclinedReason">
+        <dc:Bounds height="45" width="125" x="858" y="239" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_024l3zq" dmnElementRef="InformationRequirement_07jt5wz">
+        <di:waypoint x="921" y="239" />
+        <di:waypoint x="637" y="180" />
+        <di:waypoint x="637" y="160" />
+      </dmndi:DMNEdge>
     </dmndi:DMNDiagram>
   </dmndi:DMNDI>
 </definitions>

@@ -176,6 +176,19 @@
           "postalCode": "77339"
         }
       }
+    },
+    {
+      "loginId": "member4",
+      "firstName": "Mark",
+      "lastName": "Anthony",
+      "homeAddress": {
+        "line1": "3350 South Cotswold Manor Drive",
+        "city": "Kingwood",
+        "state": "TX",
+        "zipCode": {
+          "postalCode": "77339"
+        }
+      }
     }
   ],
   "Memberships": [
@@ -195,44 +208,65 @@
       ],
       "benefitPackageId": 1,
       "homeClubId": 3
+    },
+    {
+      "level": "GOLD",
+      "memberIds": [
+        4
+      ],
+      "benefitPackageId": 4,
+      "homeClubId": 1
     }
   ],
   "Reservations": [
     {
+      "description": "Alfred Smith from Farmers Branch, TX has shared membership with Alisha Smith at Brookhaven Country Club makes Dining reservation at Trophy Club Country Club",
       "memberId": 1,
       "amenityId": 1,
       "serviceClubId": 2,
       "reservationDate": "2022-11-10T13:30:00"
     },
     {
+      "description": "Alisha Smith from Farmers Branch, TX has shared membership with Alfred Smith at Brookhaven Country Club makes Dining reservation at The Clubs of Kingwood",
       "memberId": 2,
       "amenityId": 1,
       "serviceClubId": 3,
       "reservationDate": "2022-11-10T13:30:00"
     },
     {
+      "description": "Alfred Smith from Farmers Branch, TX has membership at Brookhaven Country Club makes Golf reservation at Stonebriar Country Club",
       "memberId": 1,
       "amenityId": 3,
       "serviceClubId": 4,
       "reservationDate": "2022-11-10T13:30:00"
     },
     {
+      "description": "Alfred Smith from Farmers Branch, TX has membership at Brookhaven Country Club makes Golf reservation at Trophy Club Country Club",
       "memberId": 1,
       "amenityId": 3,
       "serviceClubId": 2,
       "reservationDate": "2022-11-10T13:30:00"
     },
     {
+      "description": "Alisha Smith from Farmers Branch, TX has membership at Brookhaven Country Club makes Golf reservation at Trophy Club Country Club",
       "memberId": 2,
       "amenityId": 3,
       "serviceClubId": 2,
       "reservationDate": "2022-11-10T13:30:00"
     },
     {
-      "memberId": 1,
+      "description": "Bob Jones from Kingwood, TX has membership at The Clubs of Kingwood makes Golf reservation at Trophy Club Country Club",
+      "memberId": 3,
       "amenityId": 3,
       "serviceClubId": 2,
-      "reservationDate": "2022-10-29T13:30:00"
+      "reservationDate": "2022-11-10T13:30:00"
+    },
+    {
+      "description": "Mark Anthony from Kingwood, TX has membership at Brookhaven Country Club makes Golf reservation at The Clubs of Kingwood",
+      "memberId": 4,
+      "amenityId": 3,
+      "serviceClubId": 3,
+      "reservationDate": "2022-11-10T13:30:00"
     }
   ]
 }

@@ -65,7 +65,7 @@
       <rule id="DecisionRule_1op2msn">
         <description>4 rounds per month within the Community, max of 2 per club</description>
         <inputEntry id="UnaryTests_1tvwtxo">
-          <text>false</text>
+          <text>-</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0zmjj61">
           <text>-</text>
@@ -89,7 +89,7 @@
       <rule id="DecisionRule_17pr25n">
         <description>2 rounds per month per club, outside of 100 mile radius from Home Club</description>
         <inputEntry id="UnaryTests_0dlafd2">
-          <text>false</text>
+          <text>-</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0f7ui7n">
           <text>-</text>
@@ -113,7 +113,7 @@
       <rule id="DecisionRule_13mo4of">
         <description>12 rounds per year with no more that 2 in a month - Access Fee</description>
         <inputEntry id="UnaryTests_1l6q6w7">
-          <text>false</text>
+          <text>-</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0o2eybu">
           <text></text>
@@ -137,7 +137,7 @@
       <rule id="DecisionRule_1ifb1q1">
         <description>12 rounds per year with no more that 2 in a month - Access Fee</description>
         <inputEntry id="UnaryTests_0u6ixot">
-          <text>false</text>
+          <text>-</text>
         </inputEntry>
         <inputEntry id="UnaryTests_15icevz">
           <text></text>

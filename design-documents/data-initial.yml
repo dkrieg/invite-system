@@ -1028,6 +1028,23 @@ Members:
       geoLocation:
         latitude: 30.0353877
         longitude: -95.20746071890034
+  - id: 4
+    loginId: member4
+    firstName: Mark
+    lastName: Anthony
+    email:
+    homeAddress:
+      id: 8
+      line1: 3350 South Cotswold Manor Drive
+      line2:
+      city: Kingwood
+      state: TX
+      zipCode:
+        postalCode: '77339'
+        plusFour:
+      geoLocation:
+        latitude: 30.0353877
+        longitude: -95.20746071890034
 Memberships:
   - id: 1
     level: GOLD
@@ -1072,26 +1089,22 @@ Memberships:
       benefits:
         - id: 3
           code: B0003
-          description: 2 rounds per month per club, outside of 100 mile radius from Home
-            Club
+          description: 2 rounds per month per club, outside of 100 mile radius from Home Club
         - id: 4
           code: B0004
-          description: Clubs block one morning and one afternoon time slot each day for
-            Play Away access
+          description: Clubs block one morning and one afternoon time slot each day for Play Away access
         - id: 5
           code: B0005
           description: 30 Day advance tee times
         - id: 6
           code: B0006
-          description: Tiered Play rates (in addition to regular cart fee) based on Home
-            club and Destination Club segmentation
+          description: Tiered Play rates (in addition to regular cart fee) based on Home club and Destination Club segmentation
         - id: 7
           code: B0007
           description: 50% off Home club dining, some clubs with peak time restrictions
         - id: 8
           code: B0008
-          description: Dining access for all Play Away members at all clubs (Community
-            & Travel)
+          description: Dining access for all Play Away members at all clubs (Community & Travel)
         - id: 9
           code: B0009
           description: 25% off evening dining at all City & Stadium clubs
@@ -1285,3 +1298,126 @@ Memberships:
       active: true
       owned: true
       alliance: false
+  - id: 3
+    level: GOLD
+    members:
+      - id: 4
+        loginId: member4
+        firstName: Mark
+        lastName: Anthony
+        email:
+        homeAddress:
+          id: 8
+          line1: 3350 South Cotswold Manor Drive
+          line2:
+          city: Kingwood
+          state: TX
+          zipCode:
+            postalCode: '77339'
+            plusFour:
+          geoLocation:
+            latitude: 30.0353877
+            longitude: -95.20746071890034
+    benefitPackage:
+      id: 4
+      name: Xlife Stadium
+      benefits:
+        - id: 13
+          code: B0013
+          description: Home Club access to all Stadium clubs with 50% off dining (not through Network benefits)
+        - id: 14
+          code: B0014
+          description: Access to Full price dining at all Golf & City Clubs
+        - id: 15
+          code: B0015
+          description: 12 rounds per year with no more that 2 in a month - Access Fee
+        - id: 16
+          code: B0016
+          description: Excludes clubs within a 50-mile radius of members home address
+        - id: 17
+          code: B0017
+          description: 25 day advance tee times
+        - id: 24
+          code: B0024
+          description: Specific club set available for play
+    homeClub:
+      id: 1
+      name: Brookhaven Country Club
+      phoneNumber:
+      website:
+      markets:
+        - id: 45
+          name: Dallas
+      communities:
+        - id: 9
+          name: Dallas Fort Worth
+      providerGroups:
+        - id: 18
+          name: XLife Dine & Play Away Golf Owned
+      amenities:
+        - id: 1
+          name: DINING
+        - id: 2
+          name: COURT
+        - id: 3
+          name: GOLF
+      benefitPackages:
+        - id: 1
+          name: Access Advantage Standard Programming
+          benefits:
+            - id: 2
+              code: B0002
+              description: Sunday Noon - Friday Noon; 7 Day advance tee times
+            - id: 23
+              code: B0023
+              description: 4 rounds per month at Home Club
+        - id: 2
+          name: Dine & Play Away Standard Programming
+          benefits:
+            - id: 3
+              code: B0003
+              description: 2 rounds per month per club, outside of 100 mile radius from Home
+                Club
+            - id: 4
+              code: B0004
+              description: Clubs block one morning and one afternoon time slot each day for
+                Play Away access
+            - id: 5
+              code: B0005
+              description: 30 Day advance tee times
+            - id: 6
+              code: B0006
+              description: Tiered Play rates (in addition to regular cart fee) based on Home
+                club and Destination Club segmentation
+            - id: 7
+              code: B0007
+              description: 50% off Home club dining, some clubs with peak time restrictions
+            - id: 8
+              code: B0008
+              description: Dining access for all Play Away members at all clubs (Community
+                & Travel)
+            - id: 9
+              code: B0009
+              description: 25% off evening dining at all City & Stadium clubs
+      segment:
+        color: Green
+        name: Select
+      lineOfBusiness:
+        id: 2
+        name: Golf Club
+      address:
+        id: 1
+        line1: 3333 Golfing Green Dr
+        line2:
+        city: Farmers Branch
+        state: TX
+        zipCode:
+          postalCode: '75234'
+          plusFour:
+        geoLocation:
+          latitude: 32.93752775
+          longitude: -96.8639805513445
+      owned: true
+      alliance: false
+      active: true
+

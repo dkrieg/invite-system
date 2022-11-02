@@ -13,12 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import static java.util.Objects.*;
+import static java.util.Objects.nonNull;
 import static lombok.AccessLevel.PRIVATE;
 
 @RequiredArgsConstructor
@@ -27,7 +26,7 @@ import static lombok.AccessLevel.PRIVATE;
 @RequestMapping(path = "/start")
 public class ProcessController {
     ZeebeClient client;
-    static Set<String> varNames = Set.of("reservationIsApproved", "reservationDeclineReason");
+    static Set<String> varNames = Set.of("reservationApproved", "reservationDeclineReason");
 
     @PostMapping("/new-reservation/{memberId}/{amenityId}/{serviceClubId}/{reservationDate}")
     @Operation(description = "start-new-reservation-process", summary = "Start New Reservation Process")

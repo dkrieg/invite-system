@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -30,7 +31,7 @@ public class DetermineIfAdditionalRoundIsPermitted {
     public AdditionalRoundPermittedResult handleDetermineIfAdditionalRoundIsPermitted(@ZeebeVariablesAsType AdditionalRoundPermittedVariables variables) {
         final LocalDateTime reservationDate = LocalDateTime.parse(variables.getReservationDate());
         final List<Reservation> reservations = variables.getReservations();
-        final List<RoundsRestriction> roundsRestrictionList = variables.getRoundsRestrictionList();
+        final List<RoundsRestriction> roundsRestrictionList = Optional.ofNullable(variables.getRoundsRestrictionList()).orElseGet(List::of);
 
         for (RoundsRestriction roundsRestriction : roundsRestrictionList) {
             Predicate<Reservation> monthOrYear = Month.equals(roundsRestriction.getMaxRoundsPerPeriod())

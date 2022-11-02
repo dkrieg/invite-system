@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="determine-if-distance-is-approved" name="Determine If Distance Is Approved" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.2.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.0.0">
+  <inputData id="miles" name="Miles" />
+  <inputData id="minimumDistance" name="Minimum Distance" />
+  <decision id="distance-approved" name="Distance Approved">
+    <variable id="InformationItem_0vv8pps" name="distanceApproved" typeRef="boolean" />
+    <informationRequirement id="InformationRequirement_051m6b4">
+      <requiredInput href="#minimumDistance" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_13kv82d">
+      <requiredInput href="#miles" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_17jo4s0">
+      <text>miles &gt;= minimumDistance</text>
+    </literalExpression>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape id="DMNShape_01ys91m" dmnElementRef="miles">
+        <dc:Bounds height="45" width="125" x="158" y="228" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1y2sgum" dmnElementRef="minimumDistance">
+        <dc:Bounds height="45" width="125" x="328" y="229" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1yfcbyy" dmnElementRef="InformationRequirement_051m6b4">
+        <di:waypoint x="391" y="229" />
+        <di:waypoint x="340" y="180" />
+        <di:waypoint x="340" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_1n26zjv" dmnElementRef="InformationRequirement_13kv82d">
+        <di:waypoint x="221" y="228" />
+        <di:waypoint x="280" y="180" />
+        <di:waypoint x="280" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_03bo6jg" dmnElementRef="distance-approved">
+        <dc:Bounds height="80" width="180" x="220" y="80" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
