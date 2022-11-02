@@ -76,7 +76,7 @@ export class ReserveclubComponent implements OnInit {
     })
   }
   memberSelection(event:any){
-    debugger;
+    //debugger;
     var id = this.reserveClubForm.controls['memberName'].value;
     this.service.GetMember().subscribe((data:any)=>{
       if(data){
@@ -94,7 +94,6 @@ export class ReserveclubComponent implements OnInit {
           this.service.getMembership(id).subscribe((data:any)=>{
             if(data){
               //check below line is required during original code merged
-              data = data[id];
               this.reserveClubForm.get("userHomeClub")!.setValue(data.homeClub.name);
               this.selectedHomeClubAddress = data.homeClub.address.line1;
               this.selectedHomeClubAddrID = data.homeClub.address.id;
@@ -136,7 +135,7 @@ export class ReserveclubComponent implements OnInit {
 
   }
   clubSelection(event:any){
-    debugger;
+    //debugger;
     const memberId = this.reserveClubForm.controls['memberName'].value;
     const clubId = this.reserveClubForm.controls['reservingClub'].value;
     this.service.GetClubInfo(clubId).subscribe((data:any)=>{
@@ -197,7 +196,7 @@ export class ReserveclubComponent implements OnInit {
     return this.reserveClubForm.get('totalAmenities') as FormArray
   }
   selectedAmenities(event:any){
-    debugger;
+    //debugger;
     if(event)
     {
       this.selectedAmenityID = event.value;
@@ -210,24 +209,22 @@ export class ReserveclubComponent implements OnInit {
     let bps=this.benefitPkgs.map(e=>{
       return {'BPId':e.id}
     });
-    debugger;
+    //debugger;
     var memberId = this.reserveClubForm.controls['memberName'].value;
     var reserveclubid = this.reserveClubForm.controls['reservingClub'].value;
     var amenityID = this.selectedAmenityID;
     var bookingDate = this.reserveClubForm.controls['bookingDate'].value;
-
-    this.service.postReservation(memberId,reserveclubid,amenityID,bookingDate, memberId).subscribe((data:any)=>{
+    let date = new Date(bookingDate);
+    var bp = date.toISOString();
+    this.service.postReservation(memberId,reserveclubid,amenityID,bp, memberId).subscribe((data:any)=>{
       if(data){
-        data = data[1];
-        if(!data.reservationIsApproved)
-        {
-        if(confirm("Reservation denied \n"+data.reservationDeclineReason)) {
+        if(!data.reservationApproved) {
+            if(confirm("Reservation denied \n"+data.reservationDeclineReason)) {
           
-        };
-      }
-        else
+            };
+        } else {
           alert ("Reserved");
-
+        }
       }
     });
 

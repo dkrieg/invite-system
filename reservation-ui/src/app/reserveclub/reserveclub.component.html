@@ -6,7 +6,7 @@
                     <mat-select (mouseover)="tooltipStatus=true" placeholder="Members" formControlName="memberName" class=".tooltip-inner"
                     matTooltip= "{{this.selectedMemberAddress +'\n'+ this.selectedMemGeoLoc||' '}}" (selectionChange)="memberSelection($event)">
 
-                        <mat-option *ngFor="let item of members" [value]="item.id">{{item.firstName+", "+item.lastName}}</mat-option>
+                        <mat-option *ngFor="let item of members" [value]="item.id">{{item.firstName+" "+item.lastName}}</mat-option>
                     </mat-select>
             </mat-form-field>
         </div>
@@ -39,13 +39,13 @@
     <div class="row">
         <div class="col-lg-6">
             <mat-form-field>
-                <mat-label>Distance from member home address to reserveclub </mat-label>
+                <mat-label>Distance from member home address to service club </mat-label>
                 <input matInput formControlName="distanceMHRC" placeholder="" readonly value="{{this.selectedMHRCDistance}}">
             </mat-form-field>
         </div>
         <div class="col-lg-6">
             <mat-form-field>
-                <mat-label>Distance from member home club to reserveclub </mat-label>
+                <mat-label>Distance from member home club to service club </mat-label>
                 <input matInput formControlName="distanceHCRC" placeholder="" readonly value="{{this.selectedHCRCDistance}}">
             </mat-form-field>
         </div>

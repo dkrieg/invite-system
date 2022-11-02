@@ -11,7 +11,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -40,7 +42,7 @@ public class ReservationMapper {
         entity.setMembershipId(request.getMembershipId());
         entity.setAmenityId(request.getAmenityId());
         entity.setClubId(request.getClubId());
-        entity.setReservationDate(LocalDateTime.parse(request.getReservationDate()));
+        entity.setReservationDate(Instant.parse(request.getReservationDate()).atZone(ZoneId.systemDefault()).toLocalDateTime());
         return entity;
     }
 }

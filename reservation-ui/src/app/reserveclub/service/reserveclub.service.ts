@@ -28,16 +28,14 @@ export class ReserveclubService {
     return this.httpClient.get(environment.apiUrl+environment.getClub);
   }
 
-  public postDistance(stat:string, end:string)
+  public postDistance(start:string, end:string)
   {
-    //return this .httpClient.post(environment.apiUrl+environment.postDistance+start+'/'+end,request);
-    return this .httpClient.get(environment.apiUrl+environment.postDistance);
+    return this .httpClient.get(environment.apiUrl+environment.postDistance+'?start='+start+'&end='+end);
   }
 
-  public postReservation(memberid:string,chosenclubId:string,amenityId:string,reservationdate:string, request: any)
+  public postReservation(memberId:string,serviceClubId:string,amenityId:string,reservationDate:string, request: any)
   {
-   // return this .httpClient.post(environment.apiUrl+environment.postReservation+memberid+'/'+amenityId+'/'+chosenclubId+'/'+reservationdate,request);
-   return this .httpClient.get(environment.apiUrl+environment.postReservation+memberid,request);
+   return this .httpClient.post(environment.apiUrl+environment.postReservation+memberId+'/'+amenityId+'/'+serviceClubId+'/'+reservationDate, request);
 
   }
 

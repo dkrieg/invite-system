@@ -335,3 +335,6 @@ target
 /.gradle/
 /build/
 /api_key.txt
+/reservation-ui/.angular/
+/reservation-ui/dist/
+/reservation-ui/.vscode/

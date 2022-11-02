@@ -135,6 +135,40 @@
       "owned": true,
       "alliance": false,
       "active": true
+    },
+    {
+      "name": "Canyon Creek Country Club",
+      "marketIds": [
+        45
+      ],
+      "communityIds": [
+        9
+      ],
+      "providerGroupIds": [
+        18
+      ],
+      "amenityIds": [
+        1,
+        2,
+        3
+      ],
+      "benefitPackageIds": [
+        1,
+        2
+      ],
+      "segment": "Green",
+      "lineOfBusinessId": 4,
+      "address": {
+        "line1": "625 W Lookout Dr",
+        "city": "Richardson",
+        "state": "TX",
+        "zipCode": {
+          "postalCode": "75080"
+        }
+      },
+      "owned": true,
+      "alliance": false,
+      "active": true
     }
   ],
   "Members": [
@@ -182,11 +216,24 @@
       "firstName": "Mark",
       "lastName": "Anthony",
       "homeAddress": {
-        "line1": "3350 South Cotswold Manor Drive",
+        "line1": "3351 South Cotswold Manor Drive",
         "city": "Kingwood",
         "state": "TX",
         "zipCode": {
           "postalCode": "77339"
+        }
+      }
+    },
+    {
+      "loginId": "member5",
+      "firstName": "Bob",
+      "lastName": "Thomas",
+      "homeAddress": {
+        "line1": "3306 Chadwell Dr",
+        "city": "Farmers Branch",
+        "state": "TX",
+        "zipCode": {
+          "postalCode": "75234"
         }
       }
     }
@@ -198,7 +245,7 @@
         1,
         2
       ],
-      "benefitPackageId": 2,
+      "benefitPackageId": 1,
       "homeClubId": 1
     },
     {
@@ -206,7 +253,7 @@
       "memberIds": [
         3
       ],
-      "benefitPackageId": 1,
+      "benefitPackageId": 2,
       "homeClubId": 3
     },
     {
@@ -215,6 +262,14 @@
         4
       ],
       "benefitPackageId": 4,
+      "homeClubId": 1
+    },
+    {
+      "level": "GOLD",
+      "memberIds": [
+        5
+      ],
+      "benefitPackageId": 2,
       "homeClubId": 1
     }
   ],

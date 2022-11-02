@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient("ADDRESS-SERVICE")
 public interface AddressServiceGateway {
-    @GetMapping(path = "/calculate-distance/{start}/{end}")
+    @GetMapping(path = "/calculate-distance")
     Distance calculateDistance(@RequestParam("start") Long startId, @RequestParam("end") Long endId);
 }

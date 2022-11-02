@@ -12,7 +12,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -29,7 +31,7 @@ public class DetermineIfAdditionalRoundIsPermitted {
 
     @ZeebeWorker(type = "determine-if-additional-round-is-permitted", autoComplete = true)
     public AdditionalRoundPermittedResult handleDetermineIfAdditionalRoundIsPermitted(@ZeebeVariablesAsType AdditionalRoundPermittedVariables variables) {
-        final LocalDateTime reservationDate = LocalDateTime.parse(variables.getReservationDate());
+        final LocalDateTime reservationDate = Instant.parse(variables.getReservationDate()).atZone(ZoneId.systemDefault()).toLocalDateTime();
         final List<Reservation> reservations = variables.getReservations();
         final List<RoundsRestriction> roundsRestrictionList = Optional.ofNullable(variables.getRoundsRestrictionList()).orElseGet(List::of);
 

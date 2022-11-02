@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
  // apiUrl: "https://invitedreapi.azurewebsites.net/api",
-  apiUrl: "http://localhost:3000",
-  getClub:"/clubs",
-  getMembers:"/members",
-  getMembership:"/memberships/",
-  postReservation: "/processes/",
-  postDistance:"/distance"
+  apiUrl: "http://localhost:8983",
+  getClub:"/clubs/",
+  getMembers:"/members/",
+  getMembership:"/memberships/by-member-id/",
+  postReservation: "/processes/start/new-reservation/",
+  postDistance:"/addresses/calculate-distance"
 };
 
 /*
