@@ -1,0 +1,17 @@
+.readonlyInput .mat-form-field-underline  {
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+    transform: scale3d(1, 1.0001, 1);
+    display: none;
+}
+
+::ng-deep .mat-tooltip {
+    font-size: 10px;
+    max-width: 350px !important;
+}
+
+.tooltip-inner {
+    white-space: pre-line;
+    white-space: pre-wrap;
+}

@@ -1,0 +1,86 @@
+<form [formGroup]="reserveClubForm" (ngSubmit)="submitreserveClub()">
+    <div class="row">
+        <div class="col-lg-6">
+            <mat-form-field>
+                    <mat-label>Member Name</mat-label>
+                    <mat-select (mouseover)="tooltipStatus=true" placeholder="Members" formControlName="memberName" class=".tooltip-inner"
+                    matTooltip= "{{this.selectedMemberAddress +'\n'+ this.selectedMemGeoLoc||' '}}" (selectionChange)="memberSelection($event)">
+
+                        <mat-option *ngFor="let item of members" [value]="item.id">{{item.firstName+", "+item.lastName}}</mat-option>
+                    </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-lg-6">
+            <mat-form-field>
+                <mat-label>Reserve Club</mat-label>
+                <mat-select (mouseover)="tooltipStatus=true" placeholder="Clubs" formControlName="reservingClub"
+                class=".tooltip-inner" matTooltip= "{{this.selectedReserveClubAddress +'\n'+ this.selectedReserveClubSegment+'\n'+this.selectedReserveClubGeo||' '}}" 
+                (selectionChange)="clubSelection($event)" >
+                    <mat-option *ngFor="let item of clubs" [value]="item.id">{{item.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-lg-6 ">
+            <mat-form-field appearance="fill">
+                <mat-label>User Home Club </mat-label>
+                <input matInput (mouseover)="tooltipStatus=true" formControlName="userHomeClub" readonly placeholder=""
+                class=".tooltip-inner" matTooltip= "{{this.selectedHomeClubAddress +'\n'+ this.selectedHomeClubSegment+'\n'+this.selectedHomeClubGeo||' '}}" >               
+            </mat-form-field>
+        </div>    
+        <div class="col-lg-6">
+            <mat-form-field appearance="fill">
+                <mat-label>Booking Date</mat-label>
+                <input matInput formControlName="bookingDate" [matDatepicker]="picker" placeholder="">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>             
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <mat-form-field>
+                <mat-label>Distance from member home address to reserveclub </mat-label>
+                <input matInput formControlName="distanceMHRC" placeholder="" readonly value="{{this.selectedMHRCDistance}}">
+            </mat-form-field>
+        </div>
+        <div class="col-lg-6">
+            <mat-form-field>
+                <mat-label>Distance from member home club to reserveclub </mat-label>
+                <input matInput formControlName="distanceHCRC" placeholder="" readonly value="{{this.selectedHCRCDistance}}">
+            </mat-form-field>
+        </div>
+        
+        
+    </div>
+    <div class="row">   
+       
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <mat-label class="d-block">Member Benefit Package {{"-"+this.selectedBenefitPackage.name||' '}} </mat-label>
+            <div class="checkbox-container">
+                <ol formArrayName="benefitPackage">               
+                    <li *ngFor="let item of benefitPkgs; let i =index" class="pt-2">
+                             {{item.description}}                        
+                         </li>
+                </ol>   
+            </div>         
+        </div>
+        <div class="col-lg-6">
+            <mat-label class="d-block">Reserve club available Amenities </mat-label>
+            <div class="checkbox-container">
+                <mat-radio-group formControlName = "totalAmenities">
+                    <mat-radio-button *ngFor="let item of amenities; let i =index" [value]="item.id" (change)="selectedAmenities($event)"> {{item.name}}</mat-radio-button>
+            </mat-radio-group>
+            </div>
+            
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col-lg-12" align="right">
+            <button mat-flat-button color="primary" [disabled]="reserveClubForm.invalid">Reserve Club</button>
+        </div>
+    </div>
+</form>
+

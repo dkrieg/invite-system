@@ -1,0 +1,264 @@
+@media (max-width: 1024px) {
+    .header_wrp {
+        width: 100%;
+        margin-left: 0%;
+        .logo img {
+            margin: 0 25px;
+        }
+    }
+    .main_cnt_wrp {
+        width: 100%;
+        margin-left: 0%;
+    }
+    .dialog-overlay-md {
+        width: 90vw;
+        height: 90vh;
+    }
+    .mat-flat-button {
+        &.mat-primary{
+            &.btn-next {
+                min-width: 160px;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .banner_bg {
+        height: 50vh;
+    }
+    .home_cnt {
+        height: auto;
+        min-height: 50vh;
+        padding-bottom: 90px;
+        .home_logo {
+            padding: 60px 0 35px;
+            img {
+                width: 33%;
+            }
+        }
+    }
+    .footer_wrp {
+        ul {
+            margin: 0;
+        }
+    }
+    .header_wrp {
+        .logo {
+            text-align: center;
+            img {
+                width: 20%;
+            }
+        }
+    }
+    .main_cnt_wrp {
+        .main_cnt {
+            .cnt_area {
+                max-height: 100%;
+                padding: 40px 40px 80px 40px;
+            }
+        }
+    }
+    .side_wrp {
+        min-height: auto;
+        padding: 25px 0;
+        .contact {
+            margin-top: 30px;
+            li {
+                margin-right: 0px !important;
+            }
+        }
+    }
+    .mobile_down {
+        display: block !important;
+    }
+    .fixed_side {
+        display: none;
+    }
+    .footer_wrp {
+        &.mobile {
+            position: fixed;
+            bottom: 0;
+            display: block;
+            padding: 10px 30px;
+            background: #f9f9f9;
+            z-index: 999;
+        }
+    }
+    .dialog-overlay, .dialog-overlay-md {
+        width: 90vw;
+        height: 90vh;
+        &.id-scan-modal {
+            max-width: 70vw !important;
+            h4 {
+                color: $body_text;
+            }
+            .mat-dialog-actions {
+                display: none;
+            }
+        }
+    }
+    .mat-flat-button {
+        &.mat-primary{
+            &.btn-next {
+                min-width: 154px;
+            }
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .main_cnt_wrp {
+        .main_cnt {
+            .cnt_area {
+                max-height: 100%;
+                padding: 25px 25px 40px 25px;
+            }
+        }
+    }
+    .home_cnt {
+        .home_logo {
+            padding: 40px 0 25px;
+            img {
+                width: 50%;
+            }
+        }
+    }
+    .dialog-overlay, .dialog-overlay-md {
+        width: 98vw;
+        &.id-scan-modal {
+            max-width: 98vw !important;
+            h4 {
+                color: $body_text;
+            }
+            .mat-dialog-actions {
+                display: none;
+            }
+        }
+    }
+    .mat-flat-button {
+        &.btn-icon-append {
+            .mat-icon {
+                margin-left: 10px;
+            }
+        }
+        &.mat-primary{
+            &.btn-next {
+                min-width: calc(100% - 107px);
+            }
+        }
+    }   
+    .business-parties-container {
+        .table-container {
+            .mat-column-name {
+                line-height: 12px;
+                span {
+                    display: inline;
+                    font-size: 10px;
+                }
+            }
+            .mat-column-ownership {
+                width: unset;
+            }
+            .mat-column-controller {
+                width: unset;
+            }
+            .mat-column-options {
+                width: 5%;
+                .mat-icon-button {
+                    padding: 0px !important;
+                    width: 25px;
+                    .material-icons {
+                        font-size: 17px;
+                    }
+                }
+            }
+            .mat-column-email {
+                display: none;
+            }
+            
+            tr {
+                &.mat-header-row {
+                    height: 30px;
+                }
+                .mat-header-cell {
+                    font-size: 10px;
+                    color: #555;
+                    padding-bottom: 0px;
+                    &:last-of-type {
+                        padding-right: 5px;
+                    }
+                    &:first-of-type {
+                        padding-left: 8px;
+                    }
+                }
+                .mat-cell {
+                    font-size: 11px;
+                    &:last-of-type {
+                        padding-right: 5px;
+                    }
+                    &:first-of-type {
+                        padding-left: 8px;
+                    }
+                }
+                .mat-footer-cell {
+                    font-size: 11px;
+                    &:last-of-type {
+                        padding-right: 5px;
+                    }
+                    &:first-of-type {
+                        padding-left: 8px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 359px) {
+    .home_cnt {
+        .home_logo {
+            padding: 10px 0;
+            img {
+                width: 40%;
+            }
+        }
+        .home_btn {
+            width: 90%;
+        }
+    }
+    .footer_wrp { 
+        .ftr_logo {
+            height: 18px;
+        }
+    }
+}
+
+@media only screen and (min-device-width: 280px) and (max-device-width: 280px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    .welcome-bg {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    .home_cnt {
+        .home_btn {
+            width: 100%;
+        }
+    }
+    .contact {
+        ul {
+            li {
+                width: 100%;
+                a {
+                    white-space: nowrap;
+                    overflow: hidden !important;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+    }
+    .footer_wrp { 
+        .ftr_logo {
+            height: 13px;
+        }
+    }
+}

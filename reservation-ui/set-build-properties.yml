@@ -1,0 +1,25 @@
+#this yaml template contains the script to set the build properties in our build pipelines
+
+#this step uses the branch name to generate the build name
+steps:
+- task: PowerShell@2
+  displayName: 'Set Build Number'
+  inputs:
+    targetType: 'inline'
+    script: |
+      $branchName = "$(Build.SourceBranch)" -replace "refs/heads/", "" -replace "refs/tags/", "" -replace "/", "-"
+      $buildName = "$branchName.$(revision)"
+      Write-Host "Setting the name of the build to '$buildName'."
+      Write-Host "##vso[build.updatebuildnumber]$buildName"
+
+#this step adds the 'release' tag to the build if it was generated from a commit that was tagged for release
+- task: PowerShell@2
+  displayName: 'Set Build Tags'
+  inputs:
+    targetType: 'inline'
+    script: |
+      $tagName = "$(Build.SourceBranch)" -replace "refs/tags/", ""
+      If ($tagName.StartsWith("release-")) {
+        Write-Host "Adding release tag to the build."
+        Write-Host "##vso[build.addbuildtag]release"
+      }

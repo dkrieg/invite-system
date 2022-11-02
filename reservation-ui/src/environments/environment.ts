@@ -3,7 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+ // apiUrl: "https://invitedreapi.azurewebsites.net/api",
+  apiUrl: "http://localhost:3000",
+  getClub:"/clubs",
+  getMembers:"/members",
+  getMembership:"/memberships/",
+  postReservation: "/processes/",
+  postDistance:"/distance"
 };
 
 /*

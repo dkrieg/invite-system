@@ -1,0 +1,48 @@
+---
+trigger:
+  branches:
+    include:
+      - '*'
+  tags:
+    include:
+      - release-*
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  revision: $[counter(variables['Build.SourceBranch'], 0)]
+  buildConfiguration: 'Release'
+
+stages:
+- stage: Build
+  displayName: Build stage
+  jobs:
+  - job: BuildJob
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - template: 'set-build-properties.yml'
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '17.x'
+      displayName: 'Install Node.js'
+
+    - script: |
+        cp  package.json .
+        npm install -g @angular/cli
+        npm install
+        npm run build
+      displayName: 'npm install and build'
+      workingDirectory: '$(System.DefaultWorkingDirectory)'
+      
+    - task: PublishBuildArtifacts@1
+      inputs:
+        # pathToPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        pathToPublish: 'dist'
+        artifactName: 'buildfilestarget'
+        # publishLocation: 'Container'
+
+ 
+          
+

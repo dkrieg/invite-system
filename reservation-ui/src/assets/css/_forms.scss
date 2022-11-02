@@ -1,0 +1,148 @@
+/* Buttons */
+
+.mat-button,
+.mat-stroked-button,
+.mat-flat-button {
+    padding: 0.263rem 1rem !important;
+    @include border-radius(6px !important);
+    .mat-button-focus-overlay {
+        background: unset;
+        border: 4px solid #000000;
+    }
+}
+
+.mat-flat-button {
+    &:hover {
+        &:enabled {
+            filter: brightness(110%);
+        }
+    }
+    &.mat-primary {
+        background-color: $highlighter !important;
+        color: #ffffff !important;
+        &.mat-button-disabled {
+            background-color: $primary_color !important;
+            cursor: not-allowed !important;
+        }
+        &.btn-next {
+            min-width: 200px;
+        }
+    }
+    &.mat-secondary {
+        background-color: $secondary_color;
+        color: $body_text;
+        &:hover {
+            filter: brightness(98%);
+        }
+        &.btn-back {
+            min-width: 90px;
+        }
+    }
+    &.btn-icon-append {
+        max-width: 100%;
+        white-space: normal !important;
+        .mat-icon {
+            font-size: 20px;
+            margin-left: 33px;
+        }
+    }
+    .material-icons {
+        font-size: 20px
+    }
+}
+
+
+/* Inputs */
+
+
+.mat-form-field {
+    width: 100% !important;
+    line-height: 1.25;
+    .mat-form-field-label {
+        color: $label_color !important;
+        opacity: 0.79;
+        font-size: 0.86rem;
+    }
+}
+
+.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    opacity: 1;
+    transform: translateY(-1.28125em) scale(0.8) perspective(100px) translateZ(0.001px) !important;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color: $input_border !important;
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: $primary_color !important;
+}
+
+.custom_label {
+    color: $label_color;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+
+
+/* Select */
+
+.mat-option-long {
+    &.mat-option {
+        height: unset !important;
+    }
+    .mat-option-text {
+        white-space: normal !important;
+        line-height: 20px;
+        padding: 10px 0;
+    }
+}
+
+/* Checkbox */
+
+.mat-checkbox-checked {
+    .mat-checkbox-background {
+        background-color: $primary_color !important;
+    }
+}
+
+
+.mat-checkbox-label {
+    white-space: normal;
+}
+
+.mat-checkbox-disabled {
+    cursor: not-allowed !important;
+}
+
+.mat-select-value {
+    color: $body_text;
+}
+
+
+/* Label */
+
+.bold_text {
+    color: $body_text;
+    font-weight: 500;
+}
+
+
+/* Error */
+
+.mat-error {
+    color: $error-text-color;
+    .material-icons {
+        font-size: 12px;
+    }
+}
+
+
+/* Datepicker */
+
+.mat-datepicker-toggle {
+    .mat-icon-button {
+        padding: 0 !important;
+    }
+}
