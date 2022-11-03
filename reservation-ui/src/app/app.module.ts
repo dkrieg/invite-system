@@ -17,7 +17,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { NgxMatDatetimePickerModule, NgxMatNativeDateModule,NgxMatTimepickerModule } from '@angular-material-components/datetime-picker'
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
-
+import { NgxLoadingModule } from 'ngx-loading';
 import { AppComponent } from './app.component';
 import { AngularDualListBoxModule } from 'angular-dual-listbox';
 import { SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
@@ -53,7 +53,8 @@ import { ReserveclubComponent } from './reserveclub/reserveclub.component';
     NgxMatDatetimePickerModule,
     NgxMatNativeDateModule,
     SweetAlert2Module,
-    MatDialogModule
+    MatDialogModule,
+    NgxLoadingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

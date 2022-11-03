@@ -17,6 +17,7 @@ export class ReserveclubComponent implements OnInit {
   reserveClubForm: FormGroup;
   @ViewChildren('tooltip') tooltips: { _results: any[]; };
   tooltipStatus: boolean;
+  loading = false;
   amenities=[{"id":0,"name":'No Amenities'}];
   benefitPkgs=[{"id":0,"description":'Benefits',"tooltip":'nothing loaded'}];
   members =  [{"id":1,"loginId":"Member1","firstName":"","lastName":""}];
@@ -216,8 +217,10 @@ export class ReserveclubComponent implements OnInit {
     var bookingDate = this.reserveClubForm.controls['bookingDate'].value;
     let date = new Date(bookingDate);
     var bp = date.toISOString();
+    this.loading = true;
     this.service.postReservation(memberId,reserveclubid,amenityID,bp, memberId).subscribe((data:any)=>{
       if(data){
+      this.loading = false;
         if(!data.reservationApproved) {
             if(confirm("Reservation denied \n"+data.reservationDeclineReason)) {
           
