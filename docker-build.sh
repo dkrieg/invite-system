@@ -14,6 +14,7 @@ docker build -f club-service/Dockerfile -t invite/club-service:latest club-servi
 docker build -f process-service/Dockerfile -t invite/process-service:latest process-service/.
 docker build -f provider-group-service/Dockerfile -t invite/provider-group-service:latest provider-group-service/.
 docker build -f reservation-service/Dockerfile -t invite/reservation-service:latest reservation-service/.
+docker build -f reservation-ui/Dockerfile -t invite/reservation-ui:latest reservation-ui/.
 
 docker compose --env-file api_key.txt up --wait --timeout 60 elasticsearch
 docker compose --env-file api_key.txt up --wait --timeout 60 zeebe
@@ -35,3 +36,4 @@ docker compose --env-file api_key.txt up --wait --timeout 60 reservation-service
 docker compose --env-file api_key.txt up --wait --timeout 60 job-worker-service
 docker compose --env-file api_key.txt up --wait --timeout 60 process-service
 docker compose --env-file api_key.txt up --wait --timeout 60 gateway-service
+docker compose --env-file api_key.txt up --wait --timeout 60 reservation-ui

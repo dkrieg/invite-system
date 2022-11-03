@@ -347,6 +347,16 @@ services:
       discovery-service:
         condition: service_started
 
+  reservation-ui:
+    image: invite/reservation-ui:latest
+    container_name: reservation-ui
+    hostname: reservation-ui
+    ports:
+      - "4200:80"
+    depends_on:
+      gateway-service:
+        condition: service_healthy
+
   zeebe: # https://docs.camunda.io/docs/self-managed/platform-deployment/docker/#zeebe
     image: camunda/zeebe:${CAMUNDA_PLATFORM_VERSION:-8.0.6}
     container_name: zeebe
