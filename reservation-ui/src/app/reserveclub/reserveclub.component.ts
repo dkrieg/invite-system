@@ -89,7 +89,7 @@ export class ReserveclubComponent implements OnInit {
           }
           this.selectedMemberAddress += '\n'+memData.homeAddress.city+','
                                         +memData.homeAddress.state +' '+memData.homeAddress.zipCode.postalCode;
-          this.selectedMemGeoLoc = "Longitude: " + memData.homeAddress.geoLocation.longitude +"\nLatitude: "+memData.homeAddress.geoLocation.latitude;
+          this.selectedMemGeoLoc = "lon: " + memData.homeAddress.geoLocation.longitude +"\nlat: "+memData.homeAddress.geoLocation.latitude;
           this.selectedMemberAddressID = memData.homeAddress.id;
           this.service.getMembership(id).subscribe((data:any)=>{
             if(data){
@@ -102,7 +102,7 @@ export class ReserveclubComponent implements OnInit {
                 this.selectedHomeClubAddress += '\n'+data.homeClub.address.line2;
               }
               this.selectedHomeClubAddress += '\n'+data.homeClub.address.city+','+data.homeClub.address.state +' '+data.homeClub.address.zipCode.postalCode;
-              this.selectedHomeClubGeo = "Longitude: " + data.homeClub.address.geoLocation.longitude +"\nLatitude: "
+              this.selectedHomeClubGeo = "lon: " + data.homeClub.address.geoLocation.longitude +"\nlat: "
                                           +data.homeClub.address.geoLocation.latitude;
               this.selectedHomeClubSegment ="Segment: "+ data.homeClub.segment.color ;
                this.benefitPkgs = data.benefitPackage.benefits;
@@ -154,7 +154,7 @@ export class ReserveclubComponent implements OnInit {
                 this.selectedReserveClubAddress += '\n'+data.address.line2;
               }
               this.selectedReserveClubAddress += '\n'+data.address.city+','+data.address.state+' '+data.address.zipCode.postalCode;
-              this.selectedReserveClubGeo = "Longitude: " + data.address.geoLocation.longitude +"\nLatitude: " +data.address.geoLocation.latitude;
+              this.selectedReserveClubGeo = "lon: " + data.address.geoLocation.longitude +"\nlat: " +data.address.geoLocation.latitude;
               this.selectedReserveClubSegment ="Segment: "+ data.segment.color;
               // this.selectedMHRCDistance = 
               if(this.selectedReservedClubAddrID && this.selectedMemberAddressID)
