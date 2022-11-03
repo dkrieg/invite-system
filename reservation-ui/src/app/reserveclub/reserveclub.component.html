@@ -4,7 +4,7 @@
             <mat-form-field>
                     <mat-label>Member Name</mat-label>
                     <mat-select (mouseover)="tooltipStatus=true" placeholder="Members" formControlName="memberName" class=".tooltip-inner"
-                    matTooltip= "{{this.selectedMemberAddress +'\n'+ this.selectedMemGeoLoc||' '}}" (selectionChange)="memberSelection($event)">
+                    matTooltip="{{this.selectedMemberAddress+'\n'+ this.selectedMemGeoLoc||' '}}" (selectionChange)="memberSelection($event)">
 
                         <mat-option *ngFor="let item of members" [value]="item.id">{{item.firstName+" "+item.lastName}}</mat-option>
                     </mat-select>
@@ -12,7 +12,7 @@
         </div>
         <div class="col-lg-6">
             <mat-form-field>
-                <mat-label>Reserve Club</mat-label>
+                <mat-label>Service Club</mat-label>
                 <mat-select (mouseover)="tooltipStatus=true" placeholder="Clubs" formControlName="reservingClub"
                 class=".tooltip-inner" matTooltip= "{{this.selectedReserveClubAddress +'\n'+ this.selectedReserveClubSegment+'\n'+this.selectedReserveClubGeo||' '}}" 
                 (selectionChange)="clubSelection($event)" >
@@ -58,7 +58,7 @@
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <mat-label class="d-block">Member Benefit Package {{"-"+this.selectedBenefitPackage.name||' '}} </mat-label>
+            <mat-label class="d-block">Member Benefits</mat-label>
             <div class="checkbox-container">
                 <ol formArrayName="benefitPackage">               
                     <li *ngFor="let item of benefitPkgs; let i =index" class="pt-2">
@@ -68,7 +68,7 @@
             </div>         
         </div>
         <div class="col-lg-6">
-            <mat-label class="d-block">Reserve club available Amenities </mat-label>
+            <mat-label class="d-block">Service Club Amenities </mat-label>
             <div class="checkbox-container">
                 <mat-radio-group formControlName = "totalAmenities">
                     <mat-radio-button *ngFor="let item of amenities; let i =index" [value]="item.id" (change)="selectedAmenities($event)"> {{item.name}}</mat-radio-button>

@@ -89,7 +89,7 @@ export class ReserveclubComponent implements OnInit {
           }
           this.selectedMemberAddress += '\n'+memData.homeAddress.city+','
                                         +memData.homeAddress.state +' '+memData.homeAddress.zipCode.postalCode;
-          this.selectedMemGeoLoc = JSON.stringify(memData.homeAddress.geoLocation);
+          this.selectedMemGeoLoc = "Longitude: " + memData.homeAddress.geoLocation.longitude +"\nLatitude: "+memData.homeAddress.geoLocation.latitude;
           this.selectedMemberAddressID = memData.homeAddress.id;
           this.service.getMembership(id).subscribe((data:any)=>{
             if(data){
@@ -101,12 +101,11 @@ export class ReserveclubComponent implements OnInit {
               {
                 this.selectedHomeClubAddress += '\n'+data.homeClub.address.line2;
               }
-              this.selectedHomeClubAddress += '\n'+data.homeClub.address.city+','+data.homeClub.address.state 
-                                            +' '+data.homeClub.address.zipCode.postalCode;
-              this.selectedHomeClubGeo = "Longitude: " + data.homeClub.address.geoLocation.longitude +" Latitude: "
+              this.selectedHomeClubAddress += '\n'+data.homeClub.address.city+','+data.homeClub.address.state +' '+data.homeClub.address.zipCode.postalCode;
+              this.selectedHomeClubGeo = "Longitude: " + data.homeClub.address.geoLocation.longitude +"\nLatitude: "
                                           +data.homeClub.address.geoLocation.latitude;
-              this.selectedHomeClubSegment ="Color: "+ data.homeClub.segment.color +" name: "+data.homeClub.segment.color;
-                           this.benefitPkgs = data.benefitPackage.benefits;
+              this.selectedHomeClubSegment ="Segment: "+ data.homeClub.segment.color ;
+               this.benefitPkgs = data.benefitPackage.benefits;
               this.benefitPkgs[0].tooltip = JSON.stringify(data.benefitPackage);
               this.selectedBenefitPackage.id = data.benefitPackage.id;
               this.selectedBenefitPackage.name = data.benefitPackage.name;
@@ -151,15 +150,12 @@ export class ReserveclubComponent implements OnInit {
         })
         this.selectedReserveClubAddress = data.address.line1;
         this.selectedReservedClubAddrID = data.address.id;
-              if(data.address.line2!=null)
-              {
+              if(data.address.line2!=null) {
                 this.selectedReserveClubAddress += '\n'+data.address.line2;
               }
-              this.selectedReserveClubAddress += '\n'+data.address.city+','+data.address.state 
-                                            +' '+data.address.zipCode.postalCode;
-              this.selectedReserveClubGeo = "Longitude: " + data.address.geoLocation.longitude +" Latitude: "
-                                          +data.address.geoLocation.latitude;
-              this.selectedReserveClubSegment ="Color: "+ data.segment.color +" name: "+data.segment.name;
+              this.selectedReserveClubAddress += '\n'+data.address.city+','+data.address.state+' '+data.address.zipCode.postalCode;
+              this.selectedReserveClubGeo = "Longitude: " + data.address.geoLocation.longitude +" Latitude: " +data.address.geoLocation.latitude;
+              this.selectedReserveClubSegment ="Segment: "+ data.segment.color;
               // this.selectedMHRCDistance = 
               if(this.selectedReservedClubAddrID && this.selectedMemberAddressID)
               {

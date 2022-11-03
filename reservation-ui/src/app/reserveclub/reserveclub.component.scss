@@ -7,8 +7,9 @@
 }
 
 ::ng-deep .mat-tooltip {
-    font-size: 10px;
+    font-size: 15px;
     max-width: 350px !important;
+    white-space: pre-line !important;
 }
 
 .tooltip-inner {
