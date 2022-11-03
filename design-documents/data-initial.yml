@@ -1035,8 +1035,8 @@ Clubs:
             code: B0009
             description: 25% off evening dining at all City & Stadium clubs
     segment:
-      color: Green
-      name: Select
+      color: Orange
+      name: Classic
     lineOfBusiness:
       id: 4
       name: Country Club

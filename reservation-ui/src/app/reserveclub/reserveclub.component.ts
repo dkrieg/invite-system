@@ -2,7 +2,7 @@ import { Component, OnInit,ViewChildren } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup,Validators} from '@angular/forms';
 import { ReserveclubService} from './service/reserveclub.service';
 
-import { SweetAlertOptions} from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 
 
@@ -51,10 +51,9 @@ export class ReserveclubComponent implements OnInit {
 
 
 
-  alertOpt:  SweetAlertOptions={};
-   constructor(private fb: FormBuilder,private service:ReserveclubService) { }
-
-   ngOnInit(): void {
+//  alertOpt:  SweetAlertOptions={};
+  constructor(private fb: FormBuilder,private service:ReserveclubService) { }
+  ngOnInit(): void {
      
     this.reserveClubForm = this.fb.group({
       memberName:[''],
@@ -183,7 +182,7 @@ export class ReserveclubComponent implements OnInit {
       }
     });
   }
-   toggleTooltips() {
+  toggleTooltips() {
     this.tooltipStatus = !this.tooltipStatus;
     if (this.tooltipStatus) {
       setTimeout(() => {
@@ -207,10 +206,6 @@ export class ReserveclubComponent implements OnInit {
   submitreserveClub(){
     console.log(JSON.stringify(this.reserveClubForm.value));
     this.reserveClubForm.patchValue({totalAmenities: this.amenities});
-    let bps=this.benefitPkgs.map(e=>{
-      return {'BPId':e.id}
-    });
-    //debugger;
     var memberId = this.reserveClubForm.controls['memberName'].value;
     var reserveclubid = this.reserveClubForm.controls['reservingClub'].value;
     var amenityID = this.selectedAmenityID;
@@ -222,25 +217,12 @@ export class ReserveclubComponent implements OnInit {
       if(data){
       this.loading = false;
         if(!data.reservationApproved) {
-            if(confirm("Reservation denied \n"+data.reservationDeclineReason)) {
-          
-            };
+          Swal.fire("Reservation declined \n"+data.reservationDeclineReason);
         } else {
-          alert ("Reserved");
+          Swal.fire ("Reserved");
         }
       }
     });
-
-   // debugger
-    // this.alertOpt= {
-    //   title: 'Success!',
-    //   text: 'Saved successfully',
-    //   toast: false,x``
-    //   allowOutsideClick: false,
-    // }
-    
-   // alert("OverAllResult - Denied  \n stepResults \n 4RoundsPerMonthPerCommunity - Accepted \n ");
   }
-
 }
 
