@@ -23,6 +23,7 @@
     "@sweetalert2/ngx-sweetalert2": "^12.0.2",
     "angular-dual-listbox": "^7.0.0",
     "ng-image-slider": "^6.1.0",
+    "ngx-loading": "^14.0.0",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.6.2",
     "tslib": "^2.3.0",
