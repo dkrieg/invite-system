@@ -154,7 +154,7 @@ export class ReserveclubComponent implements OnInit {
                 this.selectedReserveClubAddress += '\n'+data.address.line2;
               }
               this.selectedReserveClubAddress += '\n'+data.address.city+','+data.address.state+' '+data.address.zipCode.postalCode;
-              this.selectedReserveClubGeo = "Longitude: " + data.address.geoLocation.longitude +" Latitude: " +data.address.geoLocation.latitude;
+              this.selectedReserveClubGeo = "Longitude: " + data.address.geoLocation.longitude +"\nLatitude: " +data.address.geoLocation.latitude;
               this.selectedReserveClubSegment ="Segment: "+ data.segment.color;
               // this.selectedMHRCDistance = 
               if(this.selectedReservedClubAddrID && this.selectedMemberAddressID)
